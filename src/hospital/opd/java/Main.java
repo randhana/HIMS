@@ -20,7 +20,7 @@ public class Main extends javax.swing.JFrame {
         
          
           
-          //System.out.println(user + password);
+          
           
         
     }
