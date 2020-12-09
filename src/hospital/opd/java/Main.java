@@ -38,7 +38,7 @@ public class Main extends javax.swing.JFrame {
         // check if File exists or not 
          
         BufferedReader log;
-        log = new BufferedReader(new FileReader("login.txt"));
+        log = new BufferedReader(new FileReader("db\\login.txt"));
         String user = getUserName();
         String password =getPassword();
         String usertype = getusertype();

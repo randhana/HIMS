@@ -1,0 +1,8 @@
+awdaw,dwa,Male,dawd,dad,da,wda,Single
+wdwa,dwa,Male,wda,wad,wa,wda,Single
+AA,da2,Male,231,213,3123,123,Separated
+AAA,AA12,Female,dawd,daw42,21332,sgsefse,Divorced
+BB32,esf,Male,grdhd,jftj,3535,gerter,Married
+ZZZ,dawd,Male,3424,4,34324,fdsfs,Separated
+Rakesh,Rakesh Silva,Male,21313231,231412414V,21/2/2323,12fsdffsfaadsersdsa,Separated
+Akesh12,Akesh Perera,Male,32132131,213123V,21/02/2020,street 11,Separated
