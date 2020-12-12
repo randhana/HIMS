@@ -216,9 +216,11 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        Patients Addpatient = new Patients();
+       // Patients Addpatient = new Patients();
+       // Addpatient.setVisible(true);
        
-        Addpatient.setVisible(true);
+       MedicalOfficer AddMedOfficer = new MedicalOfficer();
+       AddMedOfficer.setVisible(true);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
