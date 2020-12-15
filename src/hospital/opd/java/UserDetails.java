@@ -86,7 +86,7 @@ public class UserDetails extends javax.swing.JFrame {
              temp = thisline.split(",");
                 System.out.println(temp[0]);
             
-            model.addRow(new Object[]{ temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7]});
+            model.addRow(new Object[]{ "Receptionist",temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7]});
 				
            
             }
@@ -97,7 +97,7 @@ public class UserDetails extends javax.swing.JFrame {
              temp = thisline.split(",");
                 System.out.println(temp[0]);
             
-            model.addRow(new Object[]{ temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7]});
+            model.addRow(new Object[]{ "MedicalOfficer",temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7]});
 				
             
             }
@@ -110,7 +110,7 @@ public class UserDetails extends javax.swing.JFrame {
              temp = thisline.split(",");
                 System.out.println(temp[0]);
             
-            model.addRow(new Object[]{ temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7]});
+            model.addRow(new Object[]{"Patient", temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7]});
 				
            
             }
@@ -194,11 +194,11 @@ public class UserDetails extends javax.swing.JFrame {
 
             },
             new String [] {
-                " Username", "Name", "Gender", "Phone Numbe", "ID Card Number", "Date of Birth", "Address", "Marital Status"
+                "UserType", " Username", "Name", "Gender", "Phone Numbe", "ID Card Number", "Date of Birth", "Address", "Marital Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -309,7 +309,8 @@ public class UserDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        UserTypeName objWindow = new UserTypeName();
+        objWindow.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
