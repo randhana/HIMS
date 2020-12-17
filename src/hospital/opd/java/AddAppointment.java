@@ -38,20 +38,50 @@ public class AddAppointment extends javax.swing.JFrame {
     public int getPatientsfilecount() throws IOException{
         
         
-            BufferedReader Countreader= new BufferedReader(new FileReader("db\\patients.txt"));
-            
-            int Plines = 0;
-        while (Countreader.readLine() != null) {
-            
-            Plines++;
+        int Plines;
+        try (BufferedReader Countreader = new BufferedReader(new FileReader("db\\patients.txt"))) {
+            Plines = 0;
+            while (Countreader.readLine() != null) {
+                
+                Plines++;
+            }
         }
-        Countreader.close();
-        
-         
-        
-        
-       return Plines;
+      return Plines;
     }
+    
+    //To get number of  lines on MedicalOfficers.txt
+    public int getMediofficersfilecount() throws IOException{
+        
+        
+        int Mlines;
+        try (BufferedReader Countreader = new BufferedReader(new FileReader("db\\MedicalOfficers.txt"))) {
+            Mlines = 0;
+            while (Countreader.readLine() != null) {
+                
+                Mlines++;
+            }
+        }
+      return Mlines;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public List<String> getPatientsList() throws IOException{
@@ -63,13 +93,7 @@ public class AddAppointment extends javax.swing.JFrame {
          
          List<String> PatientsNamesList = new ArrayList<String>();
          
-         
-       
-         
-         
-         
-         
-        try {
+         try {
             BufferedReader reader= new BufferedReader(new FileReader("db\\patients.txt"));
             Plines = getPatientsfilecount();
             //System.out.println(lines);
@@ -111,6 +135,71 @@ public class AddAppointment extends javax.swing.JFrame {
     
     
     }
+    
+    public List<String> getMedicalOffList() throws IOException{
+         int Mlines;
+         String thisline = null;
+         String[] temp;
+         
+        
+         
+         List<String> MedicalOfficersNamesList = new ArrayList<String>();
+         
+         try {
+            BufferedReader reader= new BufferedReader(new FileReader("db\\MedicalOfficers.txt"));
+            Mlines = getMediofficersfilecount();
+            //System.out.println(lines);
+            String[] temp2 = new String[Mlines];
+         for (int i=0; i<Mlines; i++){
+             thisline = reader.readLine();
+             temp = thisline.split(",");  
+             //PatientsNamesList = thisline.split(",");
+             MedicalOfficersNamesList.add(i, temp[1]);
+             temp2[i] = MedicalOfficersNamesList.get(i);
+             
+             
+             
+             System.out.println(MedicalOfficersNamesList);   
+             //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>();  
+            DefaultComboBoxModel MediOfficer = new DefaultComboBoxModel(temp2);
+             jComboBox2.setModel(MediOfficer);
+             
+            
+            }
+            
+          
+            reader.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return MedicalOfficersNamesList;     //Patient's names array
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

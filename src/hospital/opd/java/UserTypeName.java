@@ -64,30 +64,35 @@ public String PassName(){
        
      
      if ("Receptionist".equals(getTypes())){
+           type= "Receptionist";
            Receptionist objRe = new Receptionist();
+           objRe.UpdatePatientsDetails(type);
            objRe.setVisible(true);
            objRe.HideSaveButton();
            System.out.println("Recep Opened");
-            type= "Receptionist";
+            
             
        }
      
       if ("Medical Officer".equals(getTypes())){
+           type= "Medical Officer"; 
            MedicalOfficer objMe = new MedicalOfficer();
+           objMe.UpdatePatientsDetails(type);
            objMe.setVisible(true);
            objMe.HideSaveButton();
            System.out.println("Medi Opened");
-           type= "Medical Officer"; 
+           
            
        }
       if ("Patient".equals(getTypes())){
-           
+           type= "Patient"; 
            Patients objPa = new Patients();
+           objPa.UpdatePatientsDetails(type);
            objPa.setVisible(true);
            
            objPa.HideSaveButton();
            System.out.println("Patient Opened");
-           //type= "Patient"; 
+           
            
            
             

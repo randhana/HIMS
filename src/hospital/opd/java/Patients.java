@@ -1,9 +1,13 @@
 
 package hospital.opd.java;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -13,11 +17,21 @@ public class Patients extends javax.swing.JFrame {
  
     
     public Patients() {
+        try {
+            this.File = new FileWriter("db\\patients.txt",true);
+        } catch (IOException ex) {
+            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
     }
+  FileWriter File;
+     
 public String tempvalue;
+public String Utype;
+public int Plines;
+public int PatientDataRow;
 public class patients extends Patients{
 
         String username;
@@ -45,12 +59,14 @@ public void SavePatientData(){
         objPatientclass.dob  =jTextField6.getText();
         objPatientclass.address  =jTextArea1.getText();
         objPatientclass.status  =jComboBox2.getSelectedItem().toString();
+        objPatientclass.bloodgroup = jComboBox4.getSelectedItem().toString();
+        objPatientclass.allergies =  jTextField3.getText();
             
             
             
             
-        try {
-            FileWriter File=new FileWriter("db\\patients.txt",true);
+        
+          
                 try (BufferedWriter FilePatients = new BufferedWriter(File)) {
                     FilePatients.write(objPatientclass.username);
                     FilePatients.write(",");
@@ -67,13 +83,16 @@ public void SavePatientData(){
                     FilePatients.write(objPatientclass.address);
                     FilePatients.write(",");
                     FilePatients.write(objPatientclass.status);
+                    FilePatients.write(",");
+                    FilePatients.write(objPatientclass.bloodgroup);
+                    FilePatients.write(",");
+                    FilePatients.write(objPatientclass.allergies);
                     FilePatients.write("\n");
                     //for save  patients details
-                }
-        } catch (IOException ex) {
+                } catch (IOException ex) {
             Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
+
         
             
        
@@ -90,18 +109,192 @@ public void SavePatientData(){
        
    }  
  
-  public void UpdatePatientsDetails(){
-      UserTypeName objUpdate = new UserTypeName();
+ 
+    
+ 
+ 
+ 
+  public void UpdatePatientsDetails(String value){
+      initComponents();
+      Utype =value;
+      Patients objPatient = new Patients();
+      AddAppointment objAdd = new AddAppointment();
+              
       
-      //String newType = objUpdate.PassType();
-      //System.out.println("Hello!"+ newType);
-      //System.out.println(objUpdate.PassType());
+      //System.out.println("Hello Return!"+ Utype);
+      
+      String thisline = null;
+      String[] temp;
+      
+      List<String> PatientDetailsList = new ArrayList<String>();
+        try {
+            
+           
+            BufferedReader reader= new BufferedReader(new FileReader("db\\patients.txt"));
+            
+            Plines = objAdd.getPatientsfilecount();
+            String[] temp2 = new String[Plines];
+            //System.out.println(Plines);
+         
+            for (int i=0; i<(Plines); i++){
+             thisline = reader.readLine();
+             temp = thisline.split(",");  
+             
+              
+            // System.out.println(Utype);
+             if (temp[0].toString().equals(Utype)){
+                 
+                 String RowData = temp[0].toString();
+                  PatientDataRow = i;  //to get which patient 
+                 
+                 //objPatient.jTextField6.setText(RowData);
+                 
+                 
+                  this.setVisible(true);
+                  
+                  
+                  this.jTextField2.setText(temp[0].toString());
+                  this.jTextField4.setText(temp[1].toString());
+                  this.jTextField1.setText(temp[3].toString());
+                  this.jTextField5.setText(temp[4].toString());
+                  this.jTextField6.setText(temp[5].toString());
+                  this.jTextArea1.setText(temp[6].toString());
+                  this.jTextField3.setText(temp[8].toString());
+                  
+                  
+                  
+                 
+                 System.out.println("Found Setted"+i+Utype);
+                 
+                 
+             
+             }
+            // System.out.println(temp[i]);
+             //PatientsNamesList = thisline.split(",");
+             //PatientDetailsList.add(i, temp[1]);
+             //temp2[i] = PatientDetailsList.get(i);
+             
+             
+             
+           //  System.out.println(PatientDetailsList);   
+                //System.out.println(temp[i]);
+            
+             
+             
+            
+            }
+            
+         
+            
+            
+          reader.close();  
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      
+      
+      
   
   
   }
-public void print(){
-    
+public void UpdateButton(){
+    String thisline;
+    String[] temp;
+     AddAppointment objAdd = new AddAppointment();
+     patients objPatientrow = new patients();  //create a object
+            
+        
+        objPatientrow.username = jTextField2.getText();
+        objPatientrow.name     = jTextField4.getText();
+        objPatientrow.gender   = jComboBox1.getSelectedItem().toString();
+        objPatientrow.phoneno  =jTextField1.getText();
+        objPatientrow.id  =jTextField5.getText();
+        objPatientrow.dob  =jTextField6.getText();
+        objPatientrow.address  =jTextArea1.getText();
+        objPatientrow.status  =jComboBox2.getSelectedItem().toString();
+        objPatientrow.bloodgroup = jComboBox4.getSelectedItem().toString();
+        objPatientrow.allergies =  jTextField3.getText();
 
+        
+      /*  
+        try {
+             //FileWriter FileRow=new FileWriter("db\\patients.txt",true);
+            BufferedReader reader= new BufferedReader(new FileReader("db\\patients.txt"));
+            BufferedWriter FilePatientsRow = new BufferedWriter(File);
+            
+            Plines = objAdd.getPatientsfilecount();
+            System.out.println(" FileWrite"+ objPatientrow.username);
+            FilePatientsRow.write("WWWWWWWWWWWWWWWWWWWWWWWW");
+            FilePatientsRow.write(",");
+            FilePatientsRow.write(objPatientrow.username);
+          // File.close();
+            for (int i=0; i<(Plines); i++){
+            thisline = reader.readLine();
+            temp = thisline.split(",");  
+             
+              
+            System.out.println(Utype);
+             if (temp[0].toString().equals(Utype)){
+                 System.out.println("Worked");
+                 String RowData = temp[0].toString();
+                 System.out.println(temp[0]+" +"+ objPatientrow.username);
+                 temp[0] = objPatientrow.username;
+                 temp[1] = objPatientrow.name;
+                 FilePatientsRow.write(objPatientrow.username);   
+                 System.out.println(temp[0]+" DDDD"+ objPatientrow.username);//to get which patient
+                 File.close();
+             }
+            }
+            reader.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            */
+      
+      System.out.println(" FileWrite"+ objPatientrow.username);
+      System.out.println(" FileWrite"+ objPatientrow.name);
+      try (BufferedWriter FilePatients = new BufferedWriter(File)) {
+                    FilePatients.write(jTextField2.getText());
+                    FilePatients.write(",");
+                    FilePatients.write(objPatientrow.name);
+                    FilePatients.write(",");
+                    
+                    FilePatients.write("\n");
+                    //for save  patients details
+                } catch (IOException ex) {
+            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
 }
 
 
@@ -131,9 +324,10 @@ public void print(){
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
@@ -142,7 +336,6 @@ public void print(){
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
-        jTextField3 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
@@ -212,16 +405,19 @@ public void print(){
         jLabel11.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
         jLabel11.setText("Date of Birth:");
 
+        jTextField1.setBackground(new java.awt.Color(215, 227, 242));
+
+        jTextField2.setBackground(new java.awt.Color(215, 227, 242));
+
         jComboBox2.setBackground(new java.awt.Color(215, 227, 242));
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox2.setMaximumRowCount(4);
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Married", "Separated", "Divorced" }));
 
-        jTextField1.setBackground(new java.awt.Color(215, 227, 242));
-
-        jTextField2.setBackground(new java.awt.Color(215, 227, 242));
+        jTextField3.setBackground(new java.awt.Color(215, 227, 242));
 
         jTextField4.setBackground(new java.awt.Color(215, 227, 242));
+        jTextField4.setToolTipText("");
 
         jTextField5.setBackground(new java.awt.Color(215, 227, 242));
 
@@ -240,8 +436,6 @@ public void print(){
 
         jComboBox4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "" }));
-
-        jTextField3.setBackground(new java.awt.Color(215, 227, 242));
 
         jLabel19.setBackground(new java.awt.Color(153, 153, 153));
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/resources/profile pic.jpg"))); // NOI18N
@@ -318,16 +512,13 @@ public void print(){
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
@@ -420,7 +611,10 @@ public void print(){
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,8 +637,9 @@ public void print(){
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        //UpdatePatientsDetails();
       // print();
-      UserTypeName obj = new UserTypeName();
-        System.out.println(obj.checkWhichUser());
+      UpdateButton();
+    //  UserTypeName obj = new UserTypeName();
+       // obj.checkWhichUser();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

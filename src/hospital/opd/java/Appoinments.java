@@ -176,6 +176,7 @@ public class Appoinments extends javax.swing.JFrame {
             AddAppointment objAppointment = new AddAppointment();
             
             objAppointment.getPatientsList();
+            objAppointment.getMedicalOffList();
             objAppointment.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(Appoinments.class.getName()).log(Level.SEVERE, null, ex);
