@@ -106,7 +106,16 @@ public class MedicalOfficer extends javax.swing.JFrame {
        
    } 
     
-    
+    public  void UpdatePatientsDetails(String value){
+       initComponents();
+       String Utype =value;
+     // UserTypeName objUpdate = new UserTypeName();
+      
+      //String newType = objUpdate.PassType();
+      System.out.println("Hello Return!"+ value);
+   
+   
+   } 
     
     
     

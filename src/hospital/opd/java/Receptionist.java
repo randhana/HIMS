@@ -102,7 +102,16 @@ public class Receptionist extends javax.swing.JFrame {
    jButton2.setVisible(false);
        
    }   
-    
+   public  void UpdatePatientsDetails(String value){
+       initComponents();
+       String Utype =value;
+     // UserTypeName objUpdate = new UserTypeName();
+      
+      //String newType = objUpdate.PassType();
+      System.out.println("Hello Return!"+ value);
+   
+   
+   }
     
     
     
