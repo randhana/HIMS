@@ -98,7 +98,7 @@ public class AddAppointment extends javax.swing.JFrame {
             Plines = getPatientsfilecount();
             //System.out.println(lines);
             String[] temp2 = new String[Plines];
-         for (int i=0; i<Plines; i++){
+         for (int i=0; i<(Plines-2); i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
              //PatientsNamesList = thisline.split(",");
@@ -115,17 +115,7 @@ public class AddAppointment extends javax.swing.JFrame {
             
             }
             
-          /*  thisline = reader.readLine();
-            temp = thisline.split(",");  
-            PatientsNamesList = thisline.split(",");
-             PatientsNamesList[0] = temp[2]; 
-            
-            System.out.println(temp.length);
-            System.out.println(temp[2]);
-           System.out.println(Arrays.toString(PatientsNamesList));
-           System.out.println(Arrays.toString(temp));
-           */
-          //System.out.println(Arrays.toString(PatientsNamesList));
+          
             reader.close();
             
         } catch (FileNotFoundException ex) {
@@ -148,12 +138,12 @@ public class AddAppointment extends javax.swing.JFrame {
          try {
             BufferedReader reader= new BufferedReader(new FileReader("db\\MedicalOfficers.txt"));
             Mlines = getMediofficersfilecount();
-            //System.out.println(lines);
+           System.out.println("Medicaloff lines"+Mlines);
             String[] temp2 = new String[Mlines];
          for (int i=0; i<Mlines; i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
-             //PatientsNamesList = thisline.split(",");
+             //MedicalOfficersNamesList = thisline.split(",");
              MedicalOfficersNamesList.add(i, temp[1]);
              temp2[i] = MedicalOfficersNamesList.get(i);
              

@@ -30,6 +30,7 @@ public class Patients extends javax.swing.JFrame {
      
 public String tempvalue;
 public String Utype;
+public String Uname;
 public int Plines;
 public int PatientDataRow;
 public class patients extends Patients{
@@ -114,9 +115,12 @@ public void SavePatientData(){
  
  
  
-  public void UpdatePatientsDetails(String value){
+  public void UpdatePatientsDetails(String value1, String value2){
       initComponents();
-      Utype =value;
+      Utype =value1;
+      Uname = value2;
+      System.out.println("USERTYPE- "+Utype);
+      System.out.println("USERNAME- "+Uname);
       Patients objPatient = new Patients();
       AddAppointment objAdd = new AddAppointment();
               
@@ -150,7 +154,7 @@ public void SavePatientData(){
                  //objPatient.jTextField6.setText(RowData);
                  
                  
-                  this.setVisible(true);
+                  
                   
                   
                   this.jTextField2.setText(temp[0].toString());
@@ -200,9 +204,10 @@ public void SavePatientData(){
   
   }
 public void UpdateButton(){
+    
     String thisline;
     String[] temp;
-     AddAppointment objAdd = new AddAppointment();
+     
      patients objPatientrow = new patients();  //create a object
             
         
@@ -216,7 +221,7 @@ public void UpdateButton(){
         objPatientrow.status  =jComboBox2.getSelectedItem().toString();
         objPatientrow.bloodgroup = jComboBox4.getSelectedItem().toString();
         objPatientrow.allergies =  jTextField3.getText();
-
+    
         
       /*  
         try {
@@ -253,13 +258,30 @@ public void UpdateButton(){
         }
             */
       
-      System.out.println(" FileWrite"+ objPatientrow.username);
-      System.out.println(" FileWrite"+ objPatientrow.name);
+      System.out.println(" FileWrite username"+ objPatientrow.username);
+      System.out.println(" FileWrite Name "+ objPatientrow.name);
       try (BufferedWriter FilePatients = new BufferedWriter(File)) {
+          repaint();
                     FilePatients.write(jTextField2.getText());
                     FilePatients.write(",");
-                    FilePatients.write(objPatientrow.name);
+                    FilePatients.write(jTextField4.getText());
                     FilePatients.write(",");
+                    FilePatients.write(jComboBox1.getSelectedItem().toString());
+                    FilePatients.write(",");
+                    FilePatients.write(jTextField1.getText());
+                    FilePatients.write(",");
+                    FilePatients.write(jTextField5.getText());
+                    FilePatients.write(",");
+                    FilePatients.write(jTextField6.getText());
+                    FilePatients.write(",");
+                    FilePatients.write(jTextArea1.getText());
+                    FilePatients.write(",");
+                    FilePatients.write(jComboBox2.getSelectedItem().toString());
+                    FilePatients.write(",");
+                    FilePatients.write(jTextField3.getText());
+                    FilePatients.write("\n");
+                    
+                    
                     
                     FilePatients.write("\n");
                     //for save  patients details
@@ -507,14 +529,16 @@ public void UpdateButton(){
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel19)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -578,10 +602,13 @@ public void UpdateButton(){
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
