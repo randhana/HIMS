@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 public class Patients extends javax.swing.JFrame {
@@ -22,6 +23,7 @@ public class Patients extends javax.swing.JFrame {
             Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
     }
   FileWriter File;

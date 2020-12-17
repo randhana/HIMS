@@ -15,11 +15,23 @@ import java.lang.String;
 
 
 public class Main extends javax.swing.JFrame {
+
     
       String username;
       String password;
       String usertype;
     
+
+
+    private void userlogin() {
+        
+         
+          
+          
+          
+        
+    }
+
   
    public void filereader() throws IOException{ 
         String[] tokens;
