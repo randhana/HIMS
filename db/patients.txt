@@ -12,3 +12,5 @@ Awq,weera,Male,123,123456,12/232/2341,esd,Single,B,ead
 Akram21,House,Male,12342,324242342,12/23/131,ad,Single,B,ead
 Kumar21,Kumara Dhar,Male,2142,32424,12/21/2332,dwqad,Single,A+,no
 Akash2,Akash perera,Male,21342,35432,4/2/1212,was,Single,A+,-
+
+
