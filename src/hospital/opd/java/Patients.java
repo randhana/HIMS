@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 public class Patients extends javax.swing.JFrame {
@@ -13,6 +14,7 @@ public class Patients extends javax.swing.JFrame {
     
     public Patients() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
     }
 public String tempvalue;
