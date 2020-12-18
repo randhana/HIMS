@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class Appoinments extends javax.swing.JFrame {
 
     /**
-     * Creates new form Appoinments
+     * Creates new form Appointments
      */
     public Appoinments() {
         initComponents();

@@ -123,13 +123,7 @@ public class UserDetails extends javax.swing.JFrame {
         
     }
     
- public void setEditUserdetails(){
- 
-     
- 
- 
- 
- }   
+  
     
     
     
