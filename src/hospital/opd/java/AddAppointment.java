@@ -6,14 +6,22 @@
 package hospital.opd.java;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import static java.nio.file.Files.lines;
 import static java.nio.file.Files.lines;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -33,7 +41,111 @@ public class AddAppointment extends javax.swing.JFrame {
         initComponents();
     }
 
+    private Appointments SaveAppointmentData() {
+        Appointments objAppoint  = new Appointments();  //Create object assign user inputs
+        
+        objAppoint.PatientName        = PatientName();
+        objAppoint.MedicalOfficerName = MedOfficerName();
+        objAppoint.AppointmetDate     = getDate();
+        objAppoint.AppointmentTime    = getTime();
+        objAppoint.Symptoms           = Symptoms();
+        return objAppoint; 
+        
+    }
+    
+    public class Appointments extends AddAppointment{
+    
+        String AppointmetDate;
+        String AppointmentTime;
+        String Symptoms;
+        String PatientName;
+        String MedicalOfficerName;
+        
+        
+ 
+    }
+    
+    
+public String getDate(){   //for getdate 
+
+    String outputDate = jTextField1.getText();
+    
+        
+ return outputDate;
+}
+
+public String getTime(){   //for getTime
+    
+    String outputTime = jTextField2.getText();
+    
+return outputTime;
+}
+public String Symptoms(){
+    
+    String Symptoms = jTextArea1.getText();
+    
+    
+    return Symptoms;
+}
+public String PatientName(){
+    
+    String PatientName = jComboBox1.getSelectedItem().toString();
+    
+    return PatientName;
+}
+    
+public String MedOfficerName(){
+    
+    String MedOfficerName = jComboBox2.getSelectedItem().toString();
+    
+    return MedOfficerName;
+}
+public int getAppointmentfilecount() throws FileNotFoundException, IOException{
+    
+    int Alines = 0;
+    BufferedReader Countreader ;
+    
+    Countreader = new BufferedReader(new FileReader("db\\Appointments.txt"));
+    
+        while (Countreader.readLine() != null) {
+                
+              Alines++;
+              
+            }
+     return Alines;
+     
+    }
+
+public void SaveAppointments(){
+   Appointments obj = new Appointments();
    
+        try {    
+            FileWriter fw=new FileWriter("db\\Appointments.txt",true);
+           // BufferedWriter FileAppointments = new BufferedWriter(fw);
+            
+            fw.write(SaveAppointmentData().PatientName);
+            fw.write(",");
+            fw.write(SaveAppointmentData().MedicalOfficerName);
+            fw.write(",");
+            fw.write(SaveAppointmentData().AppointmetDate);
+            fw.write(",");
+            fw.write(SaveAppointmentData().AppointmentTime);
+            fw.write(",");
+            fw.write(SaveAppointmentData().Symptoms);
+            fw.write("\n");
+            
+            
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+}
+
+
+
+
     //To get number of  lines on patients.txt
     public int getPatientsfilecount() throws IOException{
         
@@ -98,7 +210,7 @@ public class AddAppointment extends javax.swing.JFrame {
             Plines = getPatientsfilecount();
             //System.out.println(lines);
             String[] temp2 = new String[Plines];
-         for (int i=0; i<(Plines-2); i++){
+         for (int i=0; i<(8); i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
              //PatientsNamesList = thisline.split(",");
@@ -140,7 +252,7 @@ public class AddAppointment extends javax.swing.JFrame {
             Mlines = getMediofficersfilecount();
            System.out.println("Medicaloff lines"+Mlines);
             String[] temp2 = new String[Mlines];
-         for (int i=0; i<Mlines; i++){
+         for (int i=0; i<(Mlines); i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
              //MedicalOfficersNamesList = thisline.split(",");
@@ -390,8 +502,8 @@ public class AddAppointment extends javax.swing.JFrame {
   
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
+           
+            SaveAppointments();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

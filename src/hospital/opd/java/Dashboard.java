@@ -260,6 +260,12 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Appoinments appoint = new Appoinments();
+        try {
+            appoint.showAppointmentsTable();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         appoint.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
