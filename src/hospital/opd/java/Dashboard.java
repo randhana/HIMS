@@ -150,7 +150,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(30, 40, 299, 682);
+        jPanel2.setBounds(30, 40, 299, 683);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/resources/patient.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -181,6 +181,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButton6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Patients Details");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
         jButton6.setBounds(420, 360, 140, 40);
 
@@ -214,6 +219,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButton8.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Complaints");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton8);
         jButton8.setBounds(690, 630, 140, 40);
 
@@ -267,6 +277,15 @@ public class Dashboard extends javax.swing.JFrame {
         Patients us = new Patients();
         us.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       AddComplaints Complaints=new AddComplaints();
+       Complaints.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

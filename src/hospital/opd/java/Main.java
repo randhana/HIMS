@@ -341,6 +341,18 @@ public class Main extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        String obj=jComboBox1.getSelectedItem().toString();
+        if (obj=="Receptionist"){
+            ReceptionistRoom re=new ReceptionistRoom();
+            re.setVisible(true);
+            
+        }
+         if (obj=="patient"){
+            Dashboard re=new Dashboard();
+            re.setVisible(true);
+             
+            
+        }
         
        
         
