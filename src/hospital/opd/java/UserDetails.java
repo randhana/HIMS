@@ -105,7 +105,7 @@ public class UserDetails extends javax.swing.JFrame {
             //Patients details
             Plines=objGetCount.getPatientsfilecount();
             System.out.println("Count" +Plines);
-            for (int i=0; i<Plines; i++){
+            for (int i=0; i<(Plines); i++){
              thisline = PatientReader.readLine();
              temp = thisline.split(",");
                 System.out.println(temp[0]);
@@ -122,6 +122,9 @@ public class UserDetails extends javax.swing.JFrame {
         }
         
     }
+    
+    
+    
     
  public void setEditUserdetails(){
  
