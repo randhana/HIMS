@@ -3,4 +3,5 @@ john,Dr John,23/02/2020,6.00PM,test2
 AA12,Dr Aiken,24/03/2020,3.15PM,test3
 Rakesh Silva,Jake fer,20/02/2020,7.45PM,Blood test4
 Rakesh Silva,Dr Aiken,20/02/2020,7.40PM,Blood test & Sugar
-Rakesh Silva,Jake fer,21/08/2020,4.15PM,test7
+Rakesh Silva,Jake fer,21/08/2020,4.15PM,test7weera,Dr Soma,
+
