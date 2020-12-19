@@ -99,13 +99,19 @@ public class Main extends javax.swing.JFrame {
         }  
    
          
-      
-      
+     
         
         
 // close the file 
           
        }
+   
+   public void encryption(){
+        //login password encrypt and decrypt
+ 
+ }     
+  
+   
    public void Showdashboard(){
         Dashboard d = new Dashboard();
         d.setVisible(true);
