@@ -15,11 +15,15 @@ import java.lang.String;
 
 
 public class Main extends javax.swing.JFrame {
+
     
       String username;
       String password;
-      String usertype;
+      public String usertype;
     
+
+
+   
   
    public void filereader() throws IOException{ 
         String[] tokens;
@@ -336,6 +340,18 @@ public class Main extends javax.swing.JFrame {
             filereader();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String obj=jComboBox1.getSelectedItem().toString();
+        if (obj=="Receptionist"){
+            ReceptionistRoom re=new ReceptionistRoom();
+            re.setVisible(true);
+            
+        }
+         if (obj=="patient"){
+            Dashboard re=new Dashboard();
+            re.setVisible(true);
+             
+            
         }
         
        

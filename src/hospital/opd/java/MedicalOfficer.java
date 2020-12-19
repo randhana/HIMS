@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -22,6 +23,7 @@ public class MedicalOfficer extends javax.swing.JFrame {
      */
     public MedicalOfficer() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public class MedOfficer extends MedicalOfficer{
