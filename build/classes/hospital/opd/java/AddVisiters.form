@@ -271,7 +271,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="e3" red="d7" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="attach"/>
+            <Property name="text" type="java.lang.String" value="Browse"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">

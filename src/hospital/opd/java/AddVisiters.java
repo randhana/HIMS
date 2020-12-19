@@ -90,7 +90,7 @@ public class AddVisiters extends javax.swing.JFrame {
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/resources/profile pic.jpg"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(215, 227, 242));
-        jButton1.setText("attach");
+        jButton1.setText("Browse");
 
         jLabel20.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
         jLabel20.setText("Daucument");

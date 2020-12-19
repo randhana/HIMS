@@ -1,3 +1,4 @@
+UserName,Name,Gender,Phone Number,ID Number,Date of Birth,Address,Status,Blood Group,Allergies
 Patient,weera,Male,123,123456,12/232/2341,esd,Single,B,ead
 dew,john,Male,dawd,dad,da,wda,Single,B,ead
 wdwa,Fill,Male,wda,wad,wa,wda,Single,B,ead
