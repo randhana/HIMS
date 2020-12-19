@@ -15,6 +15,7 @@ Akash2,Akash perera,Male,21342,35432,4/2/1212,was,Single,A+,-AAAAA,AAAAA,Male,AA
 
 AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
 
+<<<<<<< HEAD
 AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
 
 AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
@@ -22,3 +23,7 @@ AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
 AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,A+,AAAAA
 Patient,weera,Male,123,123456,12/232/2341,esd,Single,A+,B
 ,,Male,,,,,Single,A+,
+=======
+,,Male,,,,,Single,
+
+>>>>>>> origin/Rumesh
