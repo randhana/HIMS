@@ -5,6 +5,7 @@
  */
 package hospital.opd.java;
 
+import java.io.FileWriter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +30,7 @@ public class HospitalOPDJava extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         Main u =new Main();
         u.setVisible(true);
         
