@@ -5,6 +5,15 @@
  */
 package hospital.opd.java;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 /**
@@ -24,7 +33,8 @@ public class UserTypeName extends javax.swing.JFrame {
        public  String userSelectedtype;
        public  String userSelectedname;
        public String type ;
-       //public String passtype;
+       public String uname;
+       
        public String temp;
         
       
@@ -60,34 +70,105 @@ public String PassName(){
         return this.userSelectedname;
     }
     
+    public List<String> getPatientsList() throws IOException{
+         int Plines;
+         String thisline = null;
+         String[] temp;
+         
+    List<String> PatientsNamesList1 = new ArrayList<String>();
+    AddAppointment objappo = new AddAppointment();
+         
+         try {
+            BufferedReader reader1= new BufferedReader(new FileReader("db\\patients.txt"));
+            Plines = objappo.getPatientsfilecount();
+            System.out.println("Plines :"+Plines);
+            String[] temp2 = new String[Plines];
+         for (int i=0; i<(10); i++){
+             thisline = reader1.readLine();
+             temp = thisline.split(",");  
+             //PatientsNamesList = thisline.split(",");
+             PatientsNamesList1.add(i, temp[1]);
+             temp2[i] = PatientsNamesList1.get(i);
+             System.out.println(PatientsNamesList1);   
+             //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>();  
+            DefaultComboBoxModel Patientlst = new DefaultComboBoxModel(temp2);
+             jComboBox2.setModel(Patientlst);
+             
+            
+            }
+            
+          
+            reader1.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return PatientsNamesList1;     //Patient's names array
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
    public String checkWhichUser(){
        
      
      if ("Receptionist".equals(getTypes())){
+           type= "Receptionist";
            Receptionist objRe = new Receptionist();
+           objRe.UpdatePatientsDetails(type);
            objRe.setVisible(true);
            objRe.HideSaveButton();
            System.out.println("Recep Opened");
-            type= "Receptionist";
+            
             
        }
      
       if ("Medical Officer".equals(getTypes())){
+           type= "Medical Officer"; 
            MedicalOfficer objMe = new MedicalOfficer();
+           objMe.UpdatePatientsDetails(type);
            objMe.setVisible(true);
            objMe.HideSaveButton();
            System.out.println("Medi Opened");
-           type= "Medical Officer"; 
+           
            
        }
       if ("Patient".equals(getTypes())){
-           
+           type= getTypes(); 
+           uname = getName();
            Patients objPa = new Patients();
-           objPa.setVisible(true);
+           objPa.UpdatePatientsDetails(type,uname);
+           
            
            objPa.HideSaveButton();
            System.out.println("Patient Opened");
-           //type= "Patient"; 
+           objPa.setVisible(true);
+           this.setVisible(false);
+           
            
            
             
@@ -215,6 +296,7 @@ public String PassName(){
         
         getUsernameType();
         checkWhichUser();
+        
        //temp = passType();
         
        // checkWhichUser();
@@ -263,6 +345,7 @@ public String PassName(){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new UserTypeName().setVisible(true);
+                
             }
         });
     }

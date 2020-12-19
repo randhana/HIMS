@@ -6,14 +6,22 @@
 package hospital.opd.java;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import static java.nio.file.Files.lines;
 import static java.nio.file.Files.lines;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -21,6 +29,8 @@ import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,26 +42,199 @@ public class AddAppointment extends javax.swing.JFrame {
     public AddAppointment() {
         initComponents();
     }
+public boolean requird = false;
 
+    
+    
+    public class Appointments extends AddAppointment{
+    
+        String AppointmetDate;
+        String AppointmentTime;
+        String Symptoms;
+        String PatientName;
+        String MedicalOfficerName;
+        
+        
+ 
+    }
+  private Appointments SaveAppointmentData() {
+        
+        Appointments objAppoint  = new Appointments();  //Create object assign user inputs
+        
+        objAppoint.PatientName        = PatientName();
+        objAppoint.MedicalOfficerName = MedOfficerName();
+        objAppoint.AppointmetDate     = getDate();
+        objAppoint.AppointmentTime    = getTime();
+        objAppoint.Symptoms           = Symptoms();
+        
+       if(objAppoint.AppointmetDate != null && objAppoint.AppointmetDate.trim().isEmpty() || objAppoint.Symptoms != null 
+               && objAppoint.Symptoms.trim().isEmpty() || objAppoint.AppointmentTime != null && objAppoint.AppointmentTime.trim().isEmpty()) {  
+            
+            requird= false;
+            
+        } else {
+            requird = true;
+            
+        }
+        return objAppoint; 
+        
+    }
+    
+public String getDate(){   //for getdate 
+
+    String outputDate = jTextField1.getText();
+    
+        
+ return outputDate;
+}
+
+public String getTime(){   //for getTime
+    
+    String outputTime = jTextField2.getText();
+    
+return outputTime;
+}
+public String Symptoms(){
+    
+    String Symptoms = jTextArea1.getText();
+    
+    
+    return Symptoms;
+}
+public String PatientName(){
+    
+    String PatientName = jComboBox1.getSelectedItem().toString();
+    
+    return PatientName;
+}
+    
+public String MedOfficerName(){
+    
+    String MedOfficerName = jComboBox2.getSelectedItem().toString();
+    
+    return MedOfficerName;
+}
+public int getAppointmentfilecount() throws FileNotFoundException, IOException{
+    
+    int Alines = 0;
+    BufferedReader Countreader ;
+    
+    Countreader = new BufferedReader(new FileReader("db\\Appointments.txt"));
+    
+        while (Countreader.readLine() != null) {
+                
+              Alines++;
+              
+            }
+     return Alines;
+     
+    }
+
+public void SaveAppointments(){
+   Appointments obj = new Appointments();
    
+   
+       
+        try {    
+            FileWriter fw=new FileWriter("db\\Appointments.txt",true);
+           // BufferedWriter FileAppointments = new BufferedWriter(fw);
+            
+            fw.write(SaveAppointmentData().PatientName);
+            fw.write(",");
+            fw.write(SaveAppointmentData().MedicalOfficerName);
+            fw.write(",");
+            fw.write(SaveAppointmentData().AppointmetDate);
+            fw.write(",");
+            fw.write(SaveAppointmentData().AppointmentTime);
+            fw.write(",");
+            fw.write(SaveAppointmentData().Symptoms);
+            fw.write("\n");
+            
+            
+            fw.close();
+        }
+      
+        catch (IOException ex) {
+            Logger.getLogger(AddAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+   
+
+}
+
+
+
+
     //To get number of  lines on patients.txt
     public int getPatientsfilecount() throws IOException{
         
         
-            BufferedReader Countreader= new BufferedReader(new FileReader("db\\patients.txt"));
-            
-            int Plines = 0;
-        while (Countreader.readLine() != null) {
-            
-            Plines++;
+        int Plines;
+        try (BufferedReader Countreader = new BufferedReader(new FileReader("db\\patients.txt"))) {
+            Plines = 0;
+            while (Countreader.readLine() != null) {
+                
+                Plines++;
+            }
         }
-        Countreader.close();
-        
-         
-        
-        
-       return Plines;
+      return Plines;
     }
+    
+    //To get number of  lines on MedicalOfficers.txt
+    public int getMediofficersfilecount() throws IOException{
+        
+        
+        int Mlines;
+        try (BufferedReader Countreader = new BufferedReader(new FileReader("db\\MedicalOfficers.txt"))) {
+            Mlines = 0;
+            while (Countreader.readLine() != null) {
+                
+                Mlines++;
+            }
+        }
+      return Mlines;
+    }
+    
+    
+  public void ShowMassageDialogBox(){
+        JFrame f;
+        f=new JFrame(); 
+
+        JOptionPane.showMessageDialog(f,"Appointment has been successfully added.","Massage Box",JOptionPane.WARNING_MESSAGE);
+   }                                                             
+   public void ShowNoinputDialogBox(){
+        JFrame f;
+        f=new JFrame(); 
+
+        JOptionPane.showMessageDialog(f,"You must fill in all of the fields.","Alert",JOptionPane.WARNING_MESSAGE);
+   }
+  
+  public void setToEmpty(){
+      jComboBox1.setSelectedIndex(0);
+      jComboBox2.setSelectedIndex(0);
+      jTextField1.setText("");
+      jTextField2.setText("");
+      jTextArea1.setText("");
+      
+  
+  }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public List<String> getPatientsList() throws IOException{
@@ -63,18 +246,12 @@ public class AddAppointment extends javax.swing.JFrame {
          
          List<String> PatientsNamesList = new ArrayList<String>();
          
-         
-       
-         
-         
-         
-         
-        try {
+         try {
             BufferedReader reader= new BufferedReader(new FileReader("db\\patients.txt"));
             Plines = getPatientsfilecount();
             //System.out.println(lines);
             String[] temp2 = new String[Plines];
-         for (int i=0; i<Plines; i++){
+         for (int i=0; i<(8); i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
              //PatientsNamesList = thisline.split(",");
@@ -91,17 +268,7 @@ public class AddAppointment extends javax.swing.JFrame {
             
             }
             
-          /*  thisline = reader.readLine();
-            temp = thisline.split(",");  
-            PatientsNamesList = thisline.split(",");
-             PatientsNamesList[0] = temp[2]; 
-            
-            System.out.println(temp.length);
-            System.out.println(temp[2]);
-           System.out.println(Arrays.toString(PatientsNamesList));
-           System.out.println(Arrays.toString(temp));
-           */
-          //System.out.println(Arrays.toString(PatientsNamesList));
+          
             reader.close();
             
         } catch (FileNotFoundException ex) {
@@ -111,6 +278,71 @@ public class AddAppointment extends javax.swing.JFrame {
     
     
     }
+    
+    public List<String> getMedicalOffList() throws IOException{
+         int Mlines;
+         String thisline = null;
+         String[] temp;
+         
+        
+         
+         List<String> MedicalOfficersNamesList = new ArrayList<String>();
+         
+         try {
+            BufferedReader reader= new BufferedReader(new FileReader("db\\MedicalOfficers.txt"));
+            Mlines = getMediofficersfilecount();
+           System.out.println("Medicaloff lines"+Mlines);
+            String[] temp2 = new String[Mlines];
+         for (int i=0; i<(Mlines); i++){
+             thisline = reader.readLine();
+             temp = thisline.split(",");  
+             //MedicalOfficersNamesList = thisline.split(",");
+             MedicalOfficersNamesList.add(i, temp[1]);
+             temp2[i] = MedicalOfficersNamesList.get(i);
+             
+             
+             
+             System.out.println(MedicalOfficersNamesList);   
+             //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>();  
+            DefaultComboBoxModel MediOfficer = new DefaultComboBoxModel(temp2);
+             jComboBox2.setModel(MediOfficer);
+             
+            
+            }
+            
+          
+            reader.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddAppointment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return MedicalOfficersNamesList;     //Patient's names array
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -311,8 +543,21 @@ public class AddAppointment extends javax.swing.JFrame {
   
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
+           SaveAppointmentData();
+        if (requird==true){
+            SaveAppointments();
+            System.out.println("true vale "+requird);
+            ShowMassageDialogBox();
+            this.setVisible(false);
+            
+        } else {
+            System.out.println("false vale "+requird);
+            ShowNoinputDialogBox();
+            setToEmpty();
+            
+        }
+            
+            //
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

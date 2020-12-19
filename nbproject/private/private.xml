@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/UserTypeName.java</file>
             <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/Patients.java</file>
             <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/UserDetails.java</file>
@@ -10,6 +11,37 @@
             <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/Main.java</file>
             <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/Dashboard.java</file>
             <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/AddAppointment.java</file>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/Main.java</file>
+            <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/Appoinments.java</file>
+            <file>file:/D:/KTPR%20BACKUP/KTPR/Java%20Practicals/Hospital%20OPD%20Java/HIMS/src/hospital/opd/java/AddAppointment.java</file>
+=======
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/AddPostal.java</file>
+=======
+            <file>file:/D:/Github/HIMS/src/Class/FileWrite.java</file>
+            <file>file:/D:/Github/HIMS/src/Class/Patients.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/Dashboard.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/Main.java</file>
+>>>>>>> origin/Rumesh
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/ReceptionistRoom.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/Patients.java</file>
+            <file>file:/D:/Github/HIMS/src/Class/complaints.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/AddVisiters.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/AddPostal.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/AdminRoom.java</file>
+            <file>file:/D:/Github/HIMS/src/Class/Visiters.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/AddComplaints.java</file>
+<<<<<<< HEAD
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/AdminRoom.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/Main.java</file>
+            <file>file:/D:/Github/HIMS/src/hospital/opd/java/Dashboard.java</file>
+            <file>file:/D:/Github/HIMS/src/Class/Patients.java</file>
+>>>>>>> origin/Rumesh
+=======
+>>>>>>> origin/Rumesh
+>>>>>>> 8601c58addc3e4c62932f3e3a2cf5110d0e58763
         </group>
     </open-files>
 </project-private>

@@ -105,7 +105,7 @@ public class UserDetails extends javax.swing.JFrame {
             //Patients details
             Plines=objGetCount.getPatientsfilecount();
             System.out.println("Count" +Plines);
-            for (int i=0; i<Plines; i++){
+            for (int i=0; i<(Plines); i++){
              thisline = PatientReader.readLine();
              temp = thisline.split(",");
                 System.out.println(temp[0]);
@@ -123,9 +123,7 @@ public class UserDetails extends javax.swing.JFrame {
         
     }
     
-  
-    
-    
+
     
     
     
@@ -303,8 +301,16 @@ public class UserDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
         UserTypeName objWindow = new UserTypeName();
-        objWindow.setVisible(true);
+        
+        try {
+            objWindow.getPatientsList();
+            objWindow.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(UserDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //objWindow.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
