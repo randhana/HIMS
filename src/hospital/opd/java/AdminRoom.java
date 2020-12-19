@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KODITHUWAKKU
  */
-public class AdminRoom extends javax.swing.JFrame {
+public class ReceptionistRoom extends javax.swing.JFrame {
 
     public void detailsView(String Fileparth){
          String fileparth=Fileparth;
@@ -55,7 +55,7 @@ public class AdminRoom extends javax.swing.JFrame {
     
     
     
-    public AdminRoom() {
+    public ReceptionistRoom() {
         initComponents();
     }
 
@@ -79,7 +79,7 @@ public class AdminRoom extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        jLabel2.setText("Admin Room");
+        jLabel2.setText("Receptionist Room");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Visiter Details", "Postal Details", "Complaints Details", "Patients Details" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -243,20 +243,20 @@ public class AdminRoom extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReceptionistRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReceptionistRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReceptionistRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReceptionistRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminRoom().setVisible(true);
+                new ReceptionistRoom().setVisible(true);
             }
         });
     }
