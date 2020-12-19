@@ -16,14 +16,14 @@ import java.lang.String;
 
 public class Main extends javax.swing.JFrame {
 
-    private void userlogin() {
-        
-         
-          
-          //System.out.println(user + password);
-          
-        
-    }
+    
+      String username;
+      String password;
+      public String usertype;
+    
+
+
+   
   
    public void filereader() throws IOException{ 
         String[] tokens;
@@ -38,10 +38,10 @@ public class Main extends javax.swing.JFrame {
         // check if File exists or not 
          
         BufferedReader log;
-        log = new BufferedReader(new FileReader("login.txt"));
-        String user = getUserName();
-        String password =getPassword();
-        String usertype = getusertype();
+        log = new BufferedReader(new FileReader("db\\login.txt"));
+        username = getUserName();
+        password =getPassword();
+        usertype = getusertype();
             
         
             
@@ -59,7 +59,7 @@ public class Main extends javax.swing.JFrame {
         
         
             try {
-                if ((user.equals(tokens[0])) && (password.equals(tokens[1]))){
+                if ((username.equals(tokens[0])) && (password.equals(tokens[1]))){
                  
                   
                     
@@ -116,19 +116,19 @@ public class Main extends javax.swing.JFrame {
 
     
     public String getUserName(){
-       String user = jTextField2.getText();
-       return user;
+       username = jTextField2.getText();
+       return username;
        
    }
    public String getPassword(){
-       String password = jPasswordField1.getText();
+       password = jPasswordField1.getText();
        return password;
    }
    public String getusertype(){
-   String usertype = jComboBox1.getSelectedItem().toString();
+   usertype = jComboBox1.getSelectedItem().toString();
    return usertype;
    }
-    
+   
     public Main() {
         initComponents();
         
@@ -335,10 +335,23 @@ public class Main extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //userlogin();
+        
         try {
             filereader();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String obj=jComboBox1.getSelectedItem().toString();
+        if (obj=="Receptionist"){
+            ReceptionistRoom re=new ReceptionistRoom();
+            re.setVisible(true);
+            
+        }
+         if (obj=="patient"){
+            Dashboard re=new Dashboard();
+            re.setVisible(true);
+             
+            
         }
         
        
