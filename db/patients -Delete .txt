@@ -11,5 +11,20 @@ web,weera,Male,123,123456,12/232/2341,esd,Single,B,ead
 Awq,weerra,Male,123,123456,12/232/2341,esd,Single,B,ead
 Akram21,House,Male,12342,324242342,12/23/131,ad,Single,B,ead
 Kumar21,Kumara Dhar,Male,2142,32424,12/21/2332,dwqad,Single,A+,no
-Akash2,Akash perera,Male,21342,35432,4/2/1212,was,Single,A+,-
-Saw21,Sameen,Male,23546654532,21412423423V,12/7/1997,Street 8 lk,Single,A+,no
+Akash2,Akash perera,Male,21342,35432,4/2/1212,was,Single,A+,-AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
+
+AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
+
+<<<<<<< HEAD
+AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
+
+AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,AAAAA
+
+AAAAA,AAAAA,Male,AAAAA,AAAAA,AAAAA,AAAAA,Single,A+,AAAAA
+Patient,weera,Male,123,123456,12/232/2341,esd,Single,A+,B
+,,Male,,,,,Single,A+,
+=======
+,,Male,,,,,Single,
+
+>>>>>>> origin/Rumesh
+Rakesh21,Rakesh,Male,3244234234,32432424,21/21/2010,street,Single,A+,no
