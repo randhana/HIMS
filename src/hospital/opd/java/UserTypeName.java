@@ -83,7 +83,7 @@ public String PassName(){
             Plines = objappo.getPatientsfilecount();
             System.out.println("Plines :"+Plines);
             String[] temp2 = new String[Plines];
-         for (int i=0; i<(Plines-2); i++){
+         for (int i=0; i<(10); i++){
              thisline = reader1.readLine();
              temp = thisline.split(",");  
              //PatientsNamesList = thisline.split(",");
@@ -162,10 +162,12 @@ public String PassName(){
            uname = getName();
            Patients objPa = new Patients();
            objPa.UpdatePatientsDetails(type,uname);
-           objPa.setVisible(true);
+           
            
            objPa.HideSaveButton();
            System.out.println("Patient Opened");
+           objPa.setVisible(true);
+           this.setVisible(false);
            
            
            
@@ -294,6 +296,7 @@ public String PassName(){
         
         getUsernameType();
         checkWhichUser();
+        
        //temp = passType();
         
        // checkWhichUser();

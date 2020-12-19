@@ -8,9 +8,8 @@ ZZZ,dawd,Male,3424,4,34324,fdsfs,Separated,B,ead
 Rakesh,Rakesh Silva,Male,21313231,231412414V,21/2/2323,12fsdffsfaadsersdsa,Separated,B,ead
 Akesh12,Akesh Perera,Male,32132131,213123V,21/02/2020,street 11,Separated,B,ead
 web,weera,Male,123,123456,12/232/2341,esd,Single,B,ead
-Awq,weera,Male,123,123456,12/232/2341,esd,Single,B,ead
+Awq,weerra,Male,123,123456,12/232/2341,esd,Single,B,ead
 Akram21,House,Male,12342,324242342,12/23/131,ad,Single,B,ead
 Kumar21,Kumara Dhar,Male,2142,32424,12/21/2332,dwqad,Single,A+,no
 Akash2,Akash perera,Male,21342,35432,4/2/1212,was,Single,A+,-
-
-
+Saw21,Sameen,Male,23546654532,21412423423V,12/7/1997,Street 8 lk,Single,A+,no

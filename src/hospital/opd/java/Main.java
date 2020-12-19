@@ -99,13 +99,19 @@ public class Main extends javax.swing.JFrame {
         }  
    
          
-      
-      
+     
         
         
 // close the file 
           
        }
+   
+   public void encryption(){
+        //login password encrypt and decrypt
+ 
+ }     
+  
+   
    public void Showdashboard(){
         Dashboard d = new Dashboard();
         d.setVisible(true);
@@ -340,6 +346,18 @@ public class Main extends javax.swing.JFrame {
             filereader();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String obj=jComboBox1.getSelectedItem().toString();
+        if (obj=="Receptionist"){
+            ReceptionistRoom re=new ReceptionistRoom();
+            re.setVisible(true);
+            
+        }
+         if (obj=="patient"){
+            Dashboard re=new Dashboard();
+            re.setVisible(true);
+             
+            
         }
         
        
