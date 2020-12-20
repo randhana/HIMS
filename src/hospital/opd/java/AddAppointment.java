@@ -371,39 +371,49 @@ public void SaveAppointments(){
         setMinimumSize(new java.awt.Dimension(1232, 820));
         getContentPane().setLayout(null);
 
-        jPanel4.setBackground(new java.awt.Color(51, 110, 123));
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel4.setBackground(new java.awt.Color(0, 153, 204,80));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204,80));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel3.setText("Appointment Date:");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Patient:");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel5.setText("Appointment Time:");
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Medical Officer:");
 
-        jComboBox1.setBackground(new java.awt.Color(215, 227, 242));
+        jComboBox1.setBackground(new java.awt.Color(0, 153, 204,50));
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient" }));
+        jComboBox1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 51, 102), null, null));
 
+        jTextField1.setBackground(new java.awt.Color(0, 153, 204,50));
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 51, 102), null, null));
 
+        jTextField2.setBackground(new java.awt.Color(0, 153, 204,50));
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 51, 102), null, null));
 
-        jComboBox2.setBackground(new java.awt.Color(215, 227, 242));
+        jComboBox2.setBackground(new java.awt.Color(0, 153, 204,50));
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Officer" }));
+        jComboBox2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 51, 102), null, null));
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel7.setText("Symptoms:");
 
+        jTextArea1.setBackground(new java.awt.Color(0, 153, 204,50));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 51, 102), null, null));
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -423,21 +433,20 @@ public void SaveAppointments(){
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(201, 201, 201))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(201, 201, 201)))
                 .addGap(45, 45, 45))
         );
         jPanel2Layout.setVerticalGroup(
@@ -453,43 +462,45 @@ public void SaveAppointments(){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(260, 120, 926, 619);
+        jPanel4.setBounds(260, 120, 930, 620);
 
-        jPanel5.setBackground(new java.awt.Color(51, 110, 123));
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel5.setBackground(new java.awt.Color(0, 153, 204,80));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setBackground(new java.awt.Color(0, 153, 204,50));
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,9 +508,8 @@ public void SaveAppointments(){
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setBackground(new java.awt.Color(0, 153, 204,50));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Clear");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -526,13 +536,13 @@ public void SaveAppointments(){
         getContentPane().add(jPanel5);
         jPanel5.setBounds(30, 120, 215, 619);
 
-        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setBackground(new java.awt.Color(0, 153, 204,80));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel2.setText("Add Appointments");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(349, 48, 541, 52);
+        jLabel2.setBounds(410, 40, 410, 52);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/wallpaper-login.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sahan Sandeepa\\Desktop\\project Java\\firstpage.png")); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1220, 770);
 
@@ -611,7 +621,7 @@ public void SaveAppointments(){
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private volatile javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
