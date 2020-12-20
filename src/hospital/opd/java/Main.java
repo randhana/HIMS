@@ -1,25 +1,42 @@
 
 package hospital.opd.java;
 
+import static hospital.opd.java.PatientDashboard.jLabel13;
+import static hospital.opd.java.PatientDashboard.jLabel14;
+import static hospital.opd.java.PatientDashboard.jLabel15;
+import static hospital.opd.java.PatientDashboard.jLabel16;
+import static hospital.opd.java.PatientDashboard.jLabel17;
+import static hospital.opd.java.PatientDashboard.jLabel18;
+import static hospital.opd.java.PatientDashboard.jLabel19;
+import static hospital.opd.java.PatientDashboard.jLabel20;
+import static hospital.opd.java.Patients.jComboBox1;
 import java.awt.Component;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class Main extends javax.swing.JFrame {
-
-    
+    private List<String> list;
+    private static Scanner x; 
       String username;
       String password;
       public String usertype;
+      public String PatientName;
+      public  String Pusername;
     
 
 
@@ -59,16 +76,80 @@ public class Main extends javax.swing.JFrame {
         
         
             try {
-                if ((username.equals(tokens[0])) && (password.equals(tokens[1]))){
+                if ((username.equals(tokens[0])) && (password.equals(tokens[1])) &&(usertype.equals(tokens[2]))){
                  
                   
                     
-                    System.out.println("Logged!");
+                    
                     status = true;
+                    
+                    if (usertype == "Admin" && status==true){
+                        Dashboard objDashboard = new Dashboard();
+                        Hidelogin();
+                        objDashboard.setVisible(true);
+                       }
+                    
+                     if (usertype == "Receptionist"&& status==true){
+                        Dashboard objDashboard = new Dashboard();
+                        Hidelogin();
+                        objDashboard.setVisible(true);
+                       }
+                     
+                     if (usertype == "Medical Officer"&& status==true){
+                        //-------------
+                        Hidelogin();
+                        //objDashboard.setVisible(true);
+                       }
+                    if (usertype == "Patient"&& status==true){
+                        
+                        String[] Patientsblock;
+                        String ptr;
+                        PatientDashboard objDashboard = new PatientDashboard();
+                        
+                        
+                        
+                        BufferedReader reader;
+                        reader = new BufferedReader(new FileReader("db\\patients.txt"));
+                        
+                        while ((ptr = reader.readLine()) != null) {
+                            Patientsblock = ptr.split(",");
+                            if (username.equals(Patientsblock[0])){
+                                System.out.println("Found patients record");
+                               
+                                
+                                PatientDashboard obj = new PatientDashboard();
+                                obj.putTextNow(jLabel14,Patientsblock[0]);
+                                obj.putTextNow(jLabel15,Patientsblock[1]);
+                                obj.putTextNow(jLabel16,Patientsblock[2]);
+                                obj.putTextNow(jLabel18,Patientsblock[5]);
+                                obj.putTextNow(jLabel17,Patientsblock[6]);
+                                obj.putTextNow(jLabel19,Patientsblock[7]);
+                                obj.putTextNow(jLabel20,Patientsblock[4]);
+                                obj.putTextNow(jLabel13,Patientsblock[3]);
+                                
+                                obj.setVisible(true);
+                                
+                            
+                            }
+                        
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        Hidelogin();
+                        //objDashboard.setVisible(true);
+                        getPatientUname(tokens[0].toString());
+                        System.out.println("Patient login");
+                        
+                       }
                     
                     //for hide current login window and move to main dashboard
                     Hidelogin();
-                    Showdashboard();
+                    //Showdashboard();
                     
                     //log.close();
                     break;  //To stop the loop 
@@ -99,12 +180,90 @@ public class Main extends javax.swing.JFrame {
         }  
    
          
-     
+   
         
         
 // close the file 
           
        }
+   public List<String> getList() {
+      return list;  
+   }
+   
+   
+   
+   public String OpenPatientdashboard() throws FileNotFoundException
+   {
+       initComponents();
+   
+   String CheckValue = PatientName;
+       System.out.println("open Fun ="+PatientName);
+   
+   //String filepath ="db\\patients.txt";
+        String[] tokens;
+        String str;
+        
+        System.out.println("CheckValue"+ CheckValue);
+         
+        
+        //File oldFile = new File(filepath);
+        
+        String name; String gender; String phono; String id;
+        String dob; String address; String status; String bloodgroup; String allergies;
+        
+        BufferedReader reader;
+        
+        
+            reader = new BufferedReader(new FileReader("db\\patients.txt"));
+            
+            
+        try {
+            while ((str = reader.readLine()) != null) {
+                tokens = str.split(",");
+                if (tokens[0].equals(CheckValue)){
+                    System.out.println("Found Uname");
+                    Pusername = tokens[0];
+                    name = tokens[0];
+                    gender = tokens[0];
+                    phono = tokens[0];
+                    id = tokens[0];
+                    dob = tokens[0];
+                    address = tokens[0];
+                    status = tokens[0];
+                    
+                    
+                    
+                    
+                
+                }
+                
+                
+                
+                
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+         
+        
+  return Pusername; 
+}      
+         
+         
+   
+   
+   
+   
+   
+    public String getPatientUname(String value){
+       
+       PatientName = value;
+       System.out.println("Return Value in fun"+PatientName);
+    return PatientName;
+    
+    
+    }
    
    public void encryption(){
         //login password encrypt and decryptgit status
@@ -134,6 +293,8 @@ public class Main extends javax.swing.JFrame {
    usertype = jComboBox1.getSelectedItem().toString();
    return usertype;
    }
+   
+   
    
     public Main() {
         initComponents();
@@ -346,18 +507,6 @@ public class Main extends javax.swing.JFrame {
             filereader();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String obj=jComboBox1.getSelectedItem().toString();
-        if (obj=="Receptionist"){
-            ReceptionistRoom re=new ReceptionistRoom();
-            re.setVisible(true);
-            
-        }
-         if (obj=="patient"){
-            Dashboard re=new Dashboard();
-            re.setVisible(true);
-             
-            
         }
         
        

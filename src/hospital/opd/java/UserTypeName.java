@@ -161,7 +161,7 @@ public String PassName(){
            type= getTypes(); 
            uname = getName();
            Patients objPa = new Patients();
-           objPa.UpdatePatientsDetails(type,uname);
+        //   objPa.UpdatePatientsDetails(type,uname);
            
            
            objPa.HideSaveButton();
