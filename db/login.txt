@@ -1,2 +1,4 @@
-Admin,0000
-user,1111
+Admin,0000,Admin
+user,1111,Receptionist
+dew,0000,Patient
+Rakesh,0000,Patient

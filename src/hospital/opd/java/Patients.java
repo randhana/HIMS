@@ -3,11 +3,14 @@ package hospital.opd.java;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -27,7 +30,7 @@ public class Patients extends javax.swing.JFrame {
        
     }
   FileWriter File;
-     
+ private static Scanner x;     
 public String tempvalue;
 public String Utype;
 public String Uname;
@@ -49,45 +52,121 @@ public class patients extends Patients{
         
   }
 public void SavePatientData(){
-            patients objPatientclass = new patients();
+            patients objPatientrow = new patients();
             
             
-        objPatientclass.username = jTextField2.getText();
-        objPatientclass.name     = jTextField4.getText();
-        objPatientclass.gender   = jComboBox1.getSelectedItem().toString();
-        objPatientclass.phoneno  =jTextField1.getText();
-        objPatientclass.id  =jTextField5.getText();
-        objPatientclass.dob  =jTextField6.getText();
-        objPatientclass.address  =jTextArea1.getText();
-        objPatientclass.status  =jComboBox2.getSelectedItem().toString();
-        objPatientclass.bloodgroup = jComboBox4.getSelectedItem().toString();
-        objPatientclass.allergies =  jTextField3.getText();
-            
-            
+        objPatientrow.username = this.jTextField2.getText();
+        objPatientrow.name     = jTextField4.getText();
+        objPatientrow.gender   = this.jComboBox1.getSelectedItem().toString();
+        objPatientrow.phoneno  =jTextField1.getText();
+        objPatientrow.id  =jTextField5.getText();
+        objPatientrow.dob  =jTextField6.getText();
+        objPatientrow.address  =jTextArea1.getText();
+        objPatientrow.status  =jComboBox2.getSelectedItem().toString();
+        objPatientrow.bloodgroup = jComboBox4.getSelectedItem().toString();
+        objPatientrow.allergies =  jTextField3.getText();
+        System.out.println("save btn objname="+objPatientrow.username);
+        System.out.println("SAVE Method");
+          
+        String CheckValue = getEditValue(Uname);
+         if (CheckValue != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\patients.txt";
+        
+        System.out.println("Update Button Clicked");
+        System.out.println("VheckValue"+CheckValue);
+         
+        String tempFile = "db\\temp.txt";
+        File oldFile = new File(filepath);
+        File newFile = new File(tempFile);
+        String username; String name; String gender; String phono; String id;
+        String dob; String address; String status; String bloodgroup; String allergies;
+        
+        FileWriter fw;
+        try {
+            fw = new FileWriter(tempFile,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter pw = new PrintWriter(bw);
+        
+         x =new Scanner(new File(filepath));
+         x.useDelimiter("[,\n]");
+         
+         while(x.hasNext()){
+             username = x.next();
+             name = x.next();
+             gender = x.next();
+             phono = x.next();
+             id = x.next();
+             dob = x.next();
+             address = x.next();
+             status = x.next();
+             bloodgroup = x.next();
+             allergies = x.next();
+             
+             if (username.equals(CheckValue)){
+                 System.out.println("Found equal"+"nextline= "+username+" objcombo val="+jComboBox1.getSelectedItem().toString()+"objUsername= "+objPatientrow.username);
+                    pw.println(objPatientrow.username+ ","+ objPatientrow.name+","+
+                            objPatientrow.gender+","+objPatientrow.phoneno+","+objPatientrow.id+","+
+                            objPatientrow.dob+","+objPatientrow.address+","+
+                            objPatientrow.status+","+objPatientrow.bloodgroup+","+
+                            objPatientrow.allergies);
+                   }
+             else
+             {
+                 pw.println(username+","+ name+","+ gender+","+ phono+","+ id+","+ dob+","+ address+","+ status+","+
+                         bloodgroup+","+ allergies);
+             }
+             
+         
+         
+         }
+         x.close();
+         pw.flush();
+         pw.close();
+         oldFile.delete();
+         File dump = new File(filepath);
+         newFile.renameTo(dump);
+         
+         
+        } catch (IOException ex) {
+            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         }   
             
             
         
           
                 try (BufferedWriter FilePatients = new BufferedWriter(File)) {
-                    FilePatients.write(objPatientclass.username);
+                    FilePatients.write(objPatientrow.username);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.name);
+                    FilePatients.write(objPatientrow.name);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.gender);
+                    FilePatients.write(objPatientrow.gender);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.phoneno);
+                    FilePatients.write(objPatientrow.phoneno);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.id);
+                    FilePatients.write(objPatientrow.id);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.dob);
+                    FilePatients.write(objPatientrow.dob);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.address);
+                    FilePatients.write(objPatientrow.address);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.status);
+                    FilePatients.write(objPatientrow.status);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.bloodgroup);
+                    FilePatients.write(objPatientrow.bloodgroup);
                     FilePatients.write(",");
-                    FilePatients.write(objPatientclass.allergies);
+                    FilePatients.write(objPatientrow.allergies);
                     FilePatients.write("\n");
                     //for save  patients details
                 } catch (IOException ex) {
@@ -110,111 +189,19 @@ public void SavePatientData(){
        
    }  
  
- 
-    
- 
- 
- 
-  public void UpdatePatientsDetails(String value1, String value2){
+ public String getEditValue(String value){
       initComponents();
-      Utype =value1;
-      Uname = value2;
-      System.out.println("USERTYPE- "+Utype);
-      System.out.println("USERNAME- "+Uname);
-     patients objPatient = new patients();
-      AddAppointment objAdd = new AddAppointment();
-              
-      
-      //System.out.println("Hello Return!"+ Utype);
-      
-      String thisline = null;
-      String[] temp;
-      
-      List<String> PatientDetailsList = new ArrayList<String>();
-        try {
-            
-           
-            BufferedReader reader= new BufferedReader(new FileReader("db\\patients.txt"));
-            
-            Plines = objAdd.getPatientsfilecount();
-           String[] temp2 = new String[Plines];
-            System.out.println(Plines);
-         
-            for (int i=0; i<(Plines); i++){
-             thisline = reader.readLine();
-             temp = thisline.split(",");  
-             
-              
-            // System.out.println(Utype);
-             if (temp[0].toString().equals(Uname)){
-                 
-                 String RowData = temp[0].toString();
-                  PatientDataRow = i;  //to get which patient 
-                 
-                 //objPatient.jTextField6.setText(RowData);
-                 
-                 
-                  
-                  
-              
-                  this.jTextField2.setText(temp[0].toString());
-                  this.jTextField4.setText(temp[1].toString());
-                  this.jTextField1.setText(temp[3].toString());
-                  this.jTextField5.setText(temp[4].toString());
-                  this.jTextField6.setText(temp[5].toString());
-                  this.jTextArea1.setText(temp[6].toString());
-                  this.jTextField3.setText(temp[8].toString());
-                
-                  
-                 
-          
-          
-                  
-                 
-                 System.out.println("Found Setted"+i+Utype);
-                 break;
-                 
-             
-             }
-            // System.out.println(temp[i]);
-             //PatientsNamesList = thisline.split(",");
-             //PatientDetailsList.add(i, temp[1]);
-             //temp2[i] = PatientDetailsList.get(i);
-             
-             
-             
-           //  System.out.println(PatientDetailsList);   
-                //System.out.println(temp[i]);
-            
-             
-             
-            
-            }
-            
-         
-            
-            
-          reader.close();  
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-      
-      
-      
-  
-  
+        Uname = value;
+      System.out.println("Return Value"+Uname);
+  return Uname;
   }
-public void UpdateButton(){
+  public void getValues(){
+      patients objPatientrow = new patients();  //create a object
+           
     
-    
-     patients objPatientrow = new patients();  //create a object
-            
-        
         objPatientrow.username = jTextField2.getText();
         objPatientrow.name     = jTextField4.getText();
-        objPatientrow.gender   = jComboBox1.getSelectedItem().toString();
+        objPatientrow.gender   = Patients.jComboBox1.getSelectedItem().toString();
         objPatientrow.phoneno  =jTextField1.getText();
         objPatientrow.id  =jTextField5.getText();
         objPatientrow.dob  =jTextField6.getText();
@@ -222,105 +209,102 @@ public void UpdateButton(){
         objPatientrow.status  =jComboBox2.getSelectedItem().toString();
         objPatientrow.bloodgroup = jComboBox4.getSelectedItem().toString();
         objPatientrow.allergies =  jTextField3.getText();
+  System.out.println("user ="+objPatientrow.username);
+  System.out.println("dob ="+objPatientrow.dob);
+  System.out.println("id ="+objPatientrow.id);
+  System.out.println("ADD ="+objPatientrow.address);
+  System.out.println("Name" +objPatientrow.name);
+  System.out.println("Gender ="+objPatientrow.gender);
+  //this.jTextField2.setText("asSas");
+  }
+
+
+public void UpdateButton(){
     
+     patients objPatientrow = new patients();  //create a object
+           
+        String filepath ="db\\patients.txt";
+       String CheckValue = getEditValue(Uname);
+        System.out.println("Update Button Clicked");
+        System.out.println("VheckValue"+CheckValue);
         
-      /*  
+       
+       
+        objPatientrow.username = jTextField3.getText();
+        objPatientrow.name     = jTextField4.getText();
+        objPatientrow.gender   = Patients.jComboBox1.getSelectedItem().toString();
+        objPatientrow.phoneno  =jTextField1.getText();
+        objPatientrow.id  =jTextField5.getText();
+        objPatientrow.dob  =jTextField6.getText();
+        objPatientrow.address  =jTextArea1.getText();
+        objPatientrow.status  =jComboBox2.getSelectedItem().toString();
+        objPatientrow.bloodgroup = jComboBox4.getSelectedItem().toString();
+        objPatientrow.allergies =  jTextField3.getText();
+  
+        String tempFile = "db\\temp.txt";
+        File oldFile = new File(filepath);
+        File newFile = new File(tempFile);
+        String username; String name; String gender; String phono; String id;
+        String dob; String address; String status; String bloodgroup; String allergies;
+        
+        FileWriter fw;
         try {
-             //FileWriter FileRow=new FileWriter("db\\patients.txt",true);
-            BufferedReader reader= new BufferedReader(new FileReader("db\\patients.txt"));
-            BufferedWriter FilePatientsRow = new BufferedWriter(File);
-            
-            Plines = objAdd.getPatientsfilecount();
-            System.out.println(" FileWrite"+ objPatientrow.username);
-            FilePatientsRow.write("WWWWWWWWWWWWWWWWWWWWWWWW");
-            FilePatientsRow.write(",");
-            FilePatientsRow.write(objPatientrow.username);
-          // File.close();
-            for (int i=0; i<(Plines); i++){
-            thisline = reader.readLine();
-            temp = thisline.split(",");  
+            fw = new FileWriter(tempFile,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter pw = new PrintWriter(bw);
+        
+         x =new Scanner(new File(filepath));
+         x.useDelimiter("[,\n]");
+         
+         while(x.hasNext()){
+             username = x.next();
+             name = x.next();
+             gender = x.next();
+             phono = x.next();
+             id = x.next();
+             dob = x.next();
+             address = x.next();
+             status = x.next();
+             bloodgroup = x.next();
+             allergies = x.next();
              
-              
-            System.out.println(Utype);
-             if (temp[0].toString().equals(Utype)){
-                 System.out.println("Worked");
-                 String RowData = temp[0].toString();
-                 System.out.println(temp[0]+" +"+ objPatientrow.username);
-                 temp[0] = objPatientrow.username;
-                 temp[1] = objPatientrow.name;
-                 FilePatientsRow.write(objPatientrow.username);   
-                 System.out.println(temp[0]+" DDDD"+ objPatientrow.username);//to get which patient
-                 File.close();
+             if (username.equals(CheckValue)){
+                 System.out.println("Found equal"+"nextline= "+username+" objcombo val="+jComboBox1.getSelectedItem().toString()+"objUsername= "+objPatientrow.username);
+                    pw.println(objPatientrow.username+ ","+ objPatientrow.name+","+
+                            objPatientrow.gender+","+objPatientrow.phoneno+","+objPatientrow.id+","+
+                            objPatientrow.dob+","+objPatientrow.address+","+
+                            objPatientrow.status+","+objPatientrow.bloodgroup+","+
+                            objPatientrow.allergies);
+                   }
+             else
+             {
+                 pw.println(username+","+ name+","+ gender+","+ phono+","+ id+","+ dob+","+ address+","+ status+","+
+                         bloodgroup+","+ allergies);
              }
-            }
-            reader.close();
+             
+         
+         
+         }
+         x.close();
+         pw.flush();
+         pw.close();
+         oldFile.delete();
+         File dump = new File(filepath);
+         newFile.renameTo(dump);
+         
+         
         } catch (IOException ex) {
             Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
         }
-            */
-      
-      System.out.println(" FileWrite username"+ objPatientrow.username);
-      System.out.println(" FileWrite Name "+ objPatientrow.name);
-      try (BufferedWriter FilePatients = new BufferedWriter(File)) {
-          repaint();
-                    FilePatients.write(objPatientrow.username);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.name);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.gender);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.phoneno);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.id);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.dob);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.address);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.status);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.bloodgroup);
-                    FilePatients.write(",");
-                    FilePatients.write(objPatientrow.allergies);
-                    FilePatients.write("\n");
-                    
-                    
-                    
-                    
-                    //for save  patients details
-                } catch (IOException ex) {
-            Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        
+        
+        
+ 
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-}
+     }
 
 
 
@@ -343,7 +327,7 @@ public void UpdateButton(){
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -351,7 +335,7 @@ public void UpdateButton(){
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
@@ -360,14 +344,13 @@ public void UpdateButton(){
         jTextArea1 = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<String>();
+        jComboBox4 = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -414,7 +397,7 @@ public void UpdateButton(){
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox1.setMaximumRowCount(2);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
         jLabel6.setText("ID Number:");
@@ -434,11 +417,16 @@ public void UpdateButton(){
         jTextField1.setBackground(new java.awt.Color(215, 227, 242));
 
         jTextField2.setBackground(new java.awt.Color(215, 227, 242));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setBackground(new java.awt.Color(215, 227, 242));
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox2.setMaximumRowCount(4);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Single", "Married", "Separated", "Divorced" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Married", "Separated", "Divorced" }));
 
         jTextField3.setBackground(new java.awt.Color(215, 227, 242));
 
@@ -461,7 +449,7 @@ public void UpdateButton(){
         jLabel14.setText("Blood Group:");
 
         jComboBox4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "" }));
 
         jLabel19.setBackground(new java.awt.Color(153, 153, 153));
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/resources/profile pic.jpg"))); // NOI18N
@@ -495,8 +483,6 @@ public void UpdateButton(){
                 jButton4ActionPerformed(evt);
             }
         });
-
-        jTextField7.setText("jTextField7");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -561,13 +547,8 @@ public void UpdateButton(){
                             .addComponent(jButton1)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -626,8 +607,7 @@ public void UpdateButton(){
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -650,13 +630,11 @@ public void UpdateButton(){
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -679,9 +657,14 @@ public void UpdateButton(){
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        //UpdatePatientsDetails();
       // print();
-      //Patients objPat = new Patients();
+     // Patients objPat = new Patients();
       //objPat.
-      UpdateButton();
+     // jTextField2.setText("gttyhdchch");
+    // getValues();
+        //System.out.println("LABLE="+labal);
+      //UpdateButton();
+     // SavePatientData();
+      this.setVisible(false);
       //SavePatientData();
     //  UserTypeName obj = new UserTypeName();
        // obj.checkWhichUser();
@@ -690,6 +673,11 @@ public void UpdateButton(){
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -733,7 +721,7 @@ public void UpdateButton(){
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -762,6 +750,5 @@ public void UpdateButton(){
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

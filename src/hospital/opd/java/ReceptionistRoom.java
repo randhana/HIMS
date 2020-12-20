@@ -141,6 +141,11 @@ public class ReceptionistRoom extends javax.swing.JFrame {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -266,6 +271,56 @@ public class ReceptionistRoom extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+        int selectedRowIndex = jTable1.getSelectedRow();
+        String details=jComboBox1.getSelectedItem().toString();
+        
+        if (details =="Visiter Details"){
+            AddVisiters objVisiter = new AddVisiters();
+            
+            objVisiter.setVisible(true);
+          }
+        
+        if (details =="Postal Details"){
+            AddPostal objVisiter = new AddPostal();
+            
+            objVisiter.setVisible(true);
+          }
+        
+        if (details =="Complaints Details"){
+            AddComplaints objVisiter = new AddComplaints();
+            
+            objVisiter.setVisible(true);
+          }
+        
+        if (details =="Patients Details"){
+            Patients objPatient = new Patients();
+            String PatientUsername = model1.getValueAt(selectedRowIndex,0).toString();
+            System.out.println("Edit "+PatientUsername);
+            objPatient.getEditValue(PatientUsername);
+            
+            //objPatient.HideSaveButton();
+            
+            objPatient.setVisible(true);
+            objPatient.getValues();
+            this.setVisible(false);
+            
+          }
+        
+        if (details =="Appointments Details"){
+            AddAppointment objVisiter = new AddAppointment();
+            
+            objVisiter.setVisible(true);
+          }
+        
+        
+        
+       
+        
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

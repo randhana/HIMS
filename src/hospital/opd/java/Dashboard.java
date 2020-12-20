@@ -260,11 +260,11 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-       // Patients Addpatient = new Patients();
-       // Addpatient.setVisible(true);
+        Patients Addpatient = new Patients();
+        Addpatient.setVisible(true);
        
-       MedicalOfficer AddMedOfficer = new MedicalOfficer();
-       AddMedOfficer.setVisible(true);
+     //  MedicalOfficer AddMedOfficer = new MedicalOfficer();
+       //AddMedOfficer.setVisible(true);
        
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -280,7 +280,13 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Patients us = new Patients();
+        UserDetails us = new UserDetails();
+        try {
+            us.SaveUserDetails();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         us.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
