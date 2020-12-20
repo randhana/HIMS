@@ -107,7 +107,7 @@ public class Main extends javax.swing.JFrame {
        }
    
    public void encryption(){
-        //login password encrypt and decrypt
+        //login password encrypt and decryptgit status
  
  }     
   
