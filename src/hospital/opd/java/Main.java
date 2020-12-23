@@ -9,6 +9,7 @@ import static hospital.opd.java.PatientDashboard.jLabel17;
 import static hospital.opd.java.PatientDashboard.jLabel18;
 import static hospital.opd.java.PatientDashboard.jLabel19;
 import static hospital.opd.java.PatientDashboard.jLabel20;
+import static hospital.opd.java.PatientDashboard.jPanel3;
 import static hospital.opd.java.Patients.jComboBox1;
 import java.awt.Component;
 import java.io.BufferedReader;
@@ -128,6 +129,7 @@ public class Main extends javax.swing.JFrame {
                                 obj.putTextNow(jLabel13,Patientsblock[3]);
                                 
                                 obj.setVisible(true);
+                                obj.jPanel3.setVisible(false);
                                 
                             
                             }

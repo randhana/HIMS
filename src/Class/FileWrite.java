@@ -21,6 +21,7 @@ public class FileWrite {
     private static final String fileparth2="db\\ReceivedMail.txt";
     private static final String fileparth3="db\\dispatchedMail.txt";
      private static final String fileparth4="db\\Complaints.txt";
+     private static final String fileparth5="db\\Appointments.txt";
     FileWriter fr=null;
     BufferedWriter bw=null;
     public Boolean addvisiter(Visiters vr){
@@ -101,5 +102,26 @@ public class FileWrite {
         
         return true;
      }
+     
+      public Boolean AddAppointments(appointments appointments){
+        
+        PrintWriter pw=null;
+        String AppointmentsDetails = appointments.getPatientName()+","+appointments.getMedicalOfficerName()+","+appointments.getAppointmetDate()+","+appointments.getAppointmentTime()+","+appointments.getSymptoms();
+        try {
+            pw=new PrintWriter(new BufferedWriter(new FileWriter(fileparth5,true)));
+            pw.println(AppointmentsDetails);
+            pw.close();
+            JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+        } catch (IOException ex) {
+            Logger.getLogger(FileWrite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                
+                
+        
+        
+        return true;
+     }
+     
     
 }
