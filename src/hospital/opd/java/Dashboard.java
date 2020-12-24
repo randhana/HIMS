@@ -8,22 +8,31 @@ package hospital.opd.java;
 import Class.FileWrite;
 import Class.appointments;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
-/**
- *
- * @author Ruser
- */
+
 public class Dashboard extends javax.swing.JFrame {
 
+    private Scanner x;
     
     public List<String> getPatientsList() throws FileNotFoundException, IOException {
          int Plines;
@@ -132,6 +141,204 @@ public class Dashboard extends javax.swing.JFrame {
       return Mlines;
     }
     
+    public void detailsView(String Fileparth){
+        
+         String fileparth=Fileparth;
+         File file;
+         file = new File(fileparth);
+         try {
+            BufferedReader brr=new BufferedReader(new FileReader(file));
+            //String firstline=brr.readLine().trim();
+           // String []ColumsName=firstline.split(",");
+            DefaultTableModel model1=(DefaultTableModel) jTable1.getModel();
+           // model1.setColumnIdentifiers(ColumsName);
+           model1.setRowCount(0);  //For prevent data duplication
+           
+           
+           
+            Object [] tableline=brr.lines().toArray();
+           
+             for (Object tableline1 : tableline) {
+                 String line = tableline1.toString().trim();
+                 String[] datarow=line.split(",");
+                 model1.addRow(datarow);
+             }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
+        
+        
+        } 
+        
+        
+    }
+    
+    public void UpdateAppointments() throws IOException{
+    
+        String patientname = jComboBox4.getSelectedItem().toString();
+        String medicalofficername= jComboBox5.getSelectedItem().toString();
+        String appodate = jTextField12.getText();
+        String appotime = jTextField13.getText();
+        String symptoms = jTextArea3.getText();
+        
+        String NewRowdata =patientname+","+medicalofficername+","+appodate+","+appotime+","+symptoms;
+        System.out.println("oldLine="+NewRowdata);
+        
+        String CheckLine = SetAppointmentData();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\Appointments.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+        
+        
+       
+        
+        
+        
+            
+                    while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+                    
+               
+               
+                
+        
+        
+    
+    
+    
+    }
+    
+    public void DeleteAppointments() throws IOException{
+    
+        String patientname = jComboBox4.getSelectedItem().toString();
+        String medicalofficername= jComboBox5.getSelectedItem().toString();
+        String appodate = jTextField12.getText();
+        String appotime = jTextField13.getText();
+        String symptoms = jTextArea3.getText();
+        
+        String NewRowdata =SetAppointmentData();
+        System.out.println("oldLine="+NewRowdata);
+        
+        String CheckLine = SetAppointmentData();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\Appointments.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+                 while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = "";
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+                    
+               
+               
+                
+        
+        
+    
+    
+    
+    }
+    
+    
+    
+    public void updatefilenames(){
+       Path source1 = Paths.get("db\\Appointments.txt");
+     Path source = Paths.get("db\\tempappo.txt");
+
+  try{
+
+    // rename a file in the same directory
+    
+    Files.move(source1, source1.resolveSibling("Appointmentssold.txt"));
+    Files.move(source, source.resolveSibling("Appointments.txt"));
+
+  } catch (IOException e) {
+    e.printStackTrace();
+  }
+   } 
+    
+    public String SetAppointmentData(){
+    
+      // get the selected row
+       int index = jTable1.getSelectedRow();
+
+       TableModel model = jTable1.getModel();
+
+      String Patientname = String.valueOf(model.getValueAt(index, 0).toString());
+      String MedicalOfficername = String.valueOf(model.getValueAt(index, 1).toString());
+      String AppointmentDate = String.valueOf(model.getValueAt(index, 2).toString());
+      String AppointmentTime = String.valueOf(model.getValueAt(index, 3).toString());
+      String Symptoms = String.valueOf(model.getValueAt(index, 4).toString());
+      
+      String OldRowData = Patientname+","+MedicalOfficername+","+AppointmentDate+","+AppointmentTime+","+Symptoms;
+      
+       System.out.println("Row value:"+Patientname);
+       
+       jComboBox4.setSelectedIndex(0);
+       jComboBox5.setSelectedIndex(0);
+       jTextField12.setText(AppointmentDate);
+       jTextField13.setText(AppointmentTime);
+       jTextArea3.setText(Symptoms);
+       
+       
+     //  int sum = value1+value2+value3+value4;
+       
+    
+    return OldRowData;
+    }
+    
     
     
     
@@ -184,6 +391,14 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel45 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        AppointmentView = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -210,6 +425,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Poor Richard", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Suwin Hospital");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_appointments pre.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,6 +456,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_complaint pre.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel13MouseEntered(evt);
             }
@@ -417,6 +640,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setText("Save");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -426,22 +654,32 @@ public class Dashboard extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton11.setText("Clear");
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton5.setText("Update");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddAppointmentsLayout = new javax.swing.GroupLayout(AddAppointments);
         AddAppointments.setLayout(AddAppointmentsLayout);
         AddAppointmentsLayout.setHorizontalGroup(
             AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddAppointmentsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(AddAppointmentsLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddAppointmentsLayout.createSequentialGroup()
+                        .addGap(616, 616, 616)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddAppointmentsLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(76, 76, 76))
             .addGroup(AddAppointmentsLayout.createSequentialGroup()
                 .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +715,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -487,16 +725,124 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addGroup(AddAppointmentsLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(AddAppointmentsLayout.createSequentialGroup()
+                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
 
         jLayeredPane1.add(AddAppointments, "card3");
+
+        AppointmentView.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("Appointments Records");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Patient", "Medical Officer", "Date", "Time", "Symptoms", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable1MousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(230);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(190);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(220);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(140);
+        }
+
+        jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Edit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AppointmentViewLayout = new javax.swing.GroupLayout(AppointmentView);
+        AppointmentView.setLayout(AppointmentViewLayout);
+        AppointmentViewLayout.setHorizontalGroup(
+            AppointmentViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppointmentViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AppointmentViewLayout.createSequentialGroup()
+                .addGroup(AppointmentViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                    .addGroup(AppointmentViewLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
+        );
+        AppointmentViewLayout.setVerticalGroup(
+            AppointmentViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppointmentViewLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(AppointmentViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+
+        jLayeredPane1.add(AppointmentView, "card4");
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(270, 140, 940, 600);
@@ -611,11 +957,39 @@ public class Dashboard extends javax.swing.JFrame {
         appointments appointment=new appointments(PatientName, MedicalOfficerName, AppointmetDate, AppointmentTime, Symptoms);
         FileWrite AppointmentFile=new FileWrite();
         AppointmentFile.AddAppointments(appointment);
+        DashboardIcon.setVisible(true);
+        AddAppointments.setVisible(false);
+        AppointmentView.setVisible(false);
+        jButton5.setVisible(true);
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        
+        
+           detailsView("db\\Appointments.txt");
+        
+        
         try {
+            
+            getPatientsList();
+            getMedicalOffList();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AppointmentView.setVisible(true);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        try {
+            jButton5.setVisible(false);
+            jButton3.setVisible(true);
             getPatientsList();
             getMedicalOffList();
         } catch (IOException ex) {
@@ -624,8 +998,87 @@ public class Dashboard extends javax.swing.JFrame {
        
         
         DashboardIcon.setVisible(false);
+        AppointmentView.setVisible(false);
         AddAppointments.setVisible(true);
-    }//GEN-LAST:event_jLabel11MouseClicked
+        
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+       
+      
+      
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            
+            UpdateAppointments();
+            
+            AddAppointments.setVisible(false);
+            AppointmentView.setVisible(false);
+           DashboardIcon.setVisible(true);
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+;
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+      // updatefilenames();
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+       //Hospital Name Back to Home page
+       DashboardIcon.setVisible(true);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+        
+    }//GEN-LAST:event_jTable1MousePressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            SetAppointmentData();
+            DeleteAppointments();
+            
+             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+       // get selected row index
+
+       try{
+       int SelectedRowIndex = jTable1.getSelectedRow();
+       model.removeRow(SelectedRowIndex);
+       }catch(Exception ex)
+       {
+           JOptionPane.showMessageDialog(null, ex);
+       }
+            
+            JOptionPane.showConfirmDialog(null,
+                "Record Deleted Successfully",
+                "Done",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        SetAppointmentData();
+       AppointmentView.setVisible(false);
+       DashboardIcon.setVisible (false);
+       AddAppointments.setVisible(true);
+       jButton3.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -659,9 +1112,14 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddAppointments;
+    private javax.swing.JPanel AppointmentView;
     private javax.swing.JPanel DashboardIcon;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -673,6 +1131,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
@@ -690,7 +1149,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    public static javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;

@@ -5,6 +5,14 @@
  */
 package Class;
 
+import hospital.opd.java.AddAppointment;
+import hospital.opd.java.Dashboard;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ruser
@@ -25,6 +33,8 @@ public class appointments {
         this.Symptoms = Symptoms;
        
     }
+
+    
          
 
     public String getPatientName() {

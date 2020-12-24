@@ -421,7 +421,7 @@ public class PatientDashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(33, 152, 207));
 
         jLabel9.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 72)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -447,15 +447,15 @@ public class PatientDashboard extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(280, 20, 550, 90);
 
-        jPanel2.setBackground(new java.awt.Color(51, 110, 123));
+        jPanel2.setBackground(new java.awt.Color(33, 152, 207));
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setFont(new java.awt.Font("Poor Richard", 1, 30)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Suwin Hospital");
 
         jLabel2.setFont(new java.awt.Font("Rage Italic", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("We care always");
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
@@ -549,7 +549,7 @@ public class PatientDashboard extends javax.swing.JFrame {
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        jPanel3.setBackground(new java.awt.Color(114, 190, 190));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Username:");
@@ -1219,7 +1219,7 @@ public class PatientDashboard extends javax.swing.JFrame {
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(260, 130, 680, 481);
 
-        jPanel7.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
