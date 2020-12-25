@@ -554,25 +554,16 @@ public class PatientDashboard extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Username:");
 
-        jTextField2.setBackground(new java.awt.Color(136, 216, 216));
-
-        jTextField3.setBackground(new java.awt.Color(136, 216, 216));
         jTextField3.setToolTipText("");
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Gender:");
 
-        jTextField4.setBackground(new java.awt.Color(136, 216, 216));
-
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Mobile No:");
 
-        jTextField5.setBackground(new java.awt.Color(136, 216, 216));
-
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("NIC No:");
-
-        jTextField6.setBackground(new java.awt.Color(136, 216, 216));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Date of Birth");
@@ -592,12 +583,8 @@ public class PatientDashboard extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel33.setText("Allergies:");
 
-        jTextField9.setBackground(new java.awt.Color(136, 216, 216));
-
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel34.setText("Password");
-
-        jPasswordField1.setBackground(new java.awt.Color(136, 216, 216));
 
         jLabel22.setText("Change your username & password");
 
@@ -631,7 +618,6 @@ public class PatientDashboard extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(114, 190, 190));
         jButton7.setText("Back");
 
-        jTextArea1.setBackground(new java.awt.Color(136, 216, 216));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);

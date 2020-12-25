@@ -5,11 +5,7 @@
  */
 package Class;
 
-/**
- *
- * @author KODITHUWAKKU
- */
-public class Patients {
+public class MedicalOfficers {
       private  String username;
       private  String name;
       private  String gender;
@@ -19,10 +15,14 @@ public class Patients {
       private  String dob;
       private  String address;
       private  String status;
-      private  String bloodgroup;
-      private  String allergies;
+      private  String staffId;
+      private  String staffEmail;
+      private  String dateofJoining;
+      private  String specialtyArea;
+ 
+      
 
-    public Patients(String username, String name, String gender, String phoneno, String id, String dob, String address, String status, String bloodgroup, String allergies) {
+    public MedicalOfficers(String username, String name, String gender, String phoneno, String id, String dob, String address, String status, String staffId, String staffEmail,String dateofJoining,String specialtyArea ) {
         this.username = username;
         this.name = name;
         this.gender = gender;
@@ -31,22 +31,20 @@ public class Patients {
         this.dob = dob;
         this.address = address;
         this.status = status;
-        this.bloodgroup = bloodgroup;
-        this.allergies = allergies;
+        this.staffId = staffId;
+        this.staffEmail = staffEmail;
+        this.dateofJoining = dateofJoining;
+        this.specialtyArea = specialtyArea;
     }
 
-    @Override
-    public String toString() {
-        
-        //return "Patent{" + "username=" + username + ", name=" + name + ", gender=" + gender + ", phoneno=" + phoneno + ", dob=" + dob + ", address=" + address + ", status=" + status + ", bloodgroup=" + bloodgroup + ", allergies=" + allergies + '}';
-        return username + "," +name + "," + gender + "," + phoneno + "," + dob + "," + address + "," +status + "," + bloodgroup + "," + allergies ;
-    }
+    
+    
 
-    public String getPatientUserName() {
+    public String getMediUserName() {
         return username;
     }
 
-    public String getPatientName() {
+    public String getMeditName() {
         
         return name;
     }
@@ -76,16 +74,35 @@ public class Patients {
         return status;
     }
     
-    public String getBloodgroup() {
-        return bloodgroup;
+    public String getStaffId() {
+        return staffId;
     }
     
-    public String getAllergies() {
-        return allergies;
+    public String getStaffMail() {
+        return staffEmail;
+    }
+    
+    public String getDateofjoin() {
+        return dateofJoining;
     }
     
     
+    public String getSpecialityarea() {
+        return specialtyArea;
+    }
     
     
-      
+       
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
