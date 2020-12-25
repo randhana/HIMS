@@ -3,3 +3,4 @@ Med2,Dr John,Male,21345,234567,21/2/2323,sfs,Single,23456,esd@fse.lk,12/23/2323,
 Med3,Dr Aiken,Male,12345,2345678V,12/02/2121,street21,Separated,21121,erfs@sd.ku,12/98/3443,Critical Care Medicine Specialists
 Jake21,Jake fer,Male,2345,234546576V,21/23/1111,esfsefsef,Single,32123,sdfs@fsf.gh,12/23/1212,Cardiologists
 Akash,Dr Akash,Male,243235435345,3452342,12/21/22,esf,Single,23432132,214234,12/23/12,Allergists/Immunologists
+Heshan,Dr.Silva ,Male,32523523,243535332V,17/09/2001,street87,Married,12212,dwadawd@es.ft,21/21/2005,Family Physicians
