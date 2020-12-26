@@ -131,6 +131,27 @@ public class Dashboard extends javax.swing.JFrame {
       return Plines;
     } 
     
+    public int getReceptionistfilecount() throws IOException{
+        
+        
+        int Rlines;
+        try (BufferedReader RecepCountreader = new BufferedReader(new FileReader("db\\Receptionists.txt"))) {
+            Rlines = 0;
+            while (RecepCountreader.readLine() != null) {
+                
+                Rlines++;
+            }
+        }
+        
+         
+        
+        
+       return Rlines;
+    }
+    
+    
+    
+    
     public int getMediofficersfilecount() throws IOException{
         
         
@@ -177,6 +198,378 @@ public class Dashboard extends javax.swing.JFrame {
         
         
     }
+    
+      public void UpdateMedicalOfficers() throws FileNotFoundException, IOException{
+    
+        String username = jTextField1.getText();
+        String name     = jTextField2.getText();
+        String gender   = jComboBox6.getSelectedItem().toString();
+        String phoneno  =jTextField8.getText();
+        String id  =jTextField10.getText();
+        String dob  =jTextField11.getText();
+        String address  =jTextArea2.getText();
+        String status  =jComboBox7.getSelectedItem().toString();
+        String staffid =jTextField14.getText();
+        String staffmail =jTextField15.getText();
+        String joindate =jTextField16.getText();
+        String SpecialityArea = jComboBox8.getSelectedItem().toString();
+
+        
+        String NewRowdata =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+staffid+","+staffmail+","+joindate+","+SpecialityArea;
+        System.out.println("oldLine="+NewRowdata);
+        
+        String CheckLine = EditUsers();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\MedicalOfficers.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+         while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+   }
+
+
+        
+    
+    
+    
+    
+    
+    
+   public void UpdateReceptionists() throws FileNotFoundException, IOException{
+    
+        String username = jTextField17.getText();
+        String name     = jTextField18.getText();
+        String gender   = jComboBox9.getSelectedItem().toString();
+        String phoneno  =jTextField19.getText();
+        String id  =jTextField20.getText();
+        String dob  =jTextField21.getText();
+        String address  =jTextArea4.getText();
+        String status  =jComboBox10.getSelectedItem().toString();
+        String staffid =jTextField24.getText();
+        String staffmail =jTextField23.getText();
+        String joindate =jTextField22.getText();
+
+        
+        String NewRowdata =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+staffid+","+staffmail+","+joindate;
+        System.out.println("oldLine="+NewRowdata);
+        
+        String CheckLine = EditUsers();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\Receptionists.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+         while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+   }
+  
+    
+    
+    
+    
+    
+    
+    
+    public void UpdatePatients() throws FileNotFoundException, IOException{
+    
+        String username = jTextField7.getText();
+        String name     = jTextField3.getText();
+        String gender   = jComboBox1.getSelectedItem().toString();
+        String phoneno  =jTextField4.getText();
+        String id  =jTextField5.getText();
+        String dob  =jTextField6.getText();
+        String address  =jTextArea1.getText();
+        String status  =jComboBox3.getSelectedItem().toString();
+        String bloodgroup = jComboBox2.getSelectedItem().toString();
+        String allergies =  jTextField9.getText();
+        
+        String NewRowdata =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+bloodgroup+","+allergies;
+        System.out.println("NewLine="+NewRowdata);
+        
+        String CheckLine = EditUsers();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\patients.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("OldLine returned"+CheckLine);
+         
+         while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+   }
+  public void SetTextPatients(){
+  
+        
+  
+  
+  
+  
+  }
+    
+ public String EditUsers(){
+    
+       int index = jTable2.getSelectedRow();
+       String OldLine = null;
+       TableModel model = jTable2.getModel();
+
+       String UserType = String.valueOf(model.getValueAt(index, 0).toString());
+        String username = String.valueOf(model.getValueAt(index, 1).toString());
+        String name     = String.valueOf(model.getValueAt(index, 2).toString());
+        String gender   = String.valueOf(model.getValueAt(index, 3).toString());
+        String phoneno  = String.valueOf(model.getValueAt(index, 4).toString());
+        String id  = String.valueOf(model.getValueAt(index, 5).toString());
+        String dob  = String.valueOf(model.getValueAt(index, 6).toString());
+        String address  = String.valueOf(model.getValueAt(index, 7).toString());
+        String status = String.valueOf(model.getValueAt(index, 8).toString());
+       
+       if ("Patient".equals(UserType)){
+            String bloodgroup = String.valueOf(model.getValueAt(index, 9).toString());
+            String allergies = String.valueOf(model.getValueAt(index, 10).toString());
+        
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           AppointmentView.setVisible(false);
+           DashboardIcon.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddPatients.setVisible(true);
+           jButton6.setVisible(false);    // Hide Save Button
+           jButton19.setVisible(true);    //Unhide Update Button
+           
+           //set patient's details
+           jTextField7.setText(username);
+           jTextField3.setText(name);
+           jComboBox1.setSelectedIndex(0);
+           jTextField4.setText(phoneno);
+           jTextField5.setText(id);
+           jTextField6.setText(dob);
+           jTextArea1.setText(address);
+           jComboBox3.setSelectedIndex(0);
+           jComboBox2.setSelectedIndex(0);
+           jTextField9.setText(allergies);
+           
+           
+           
+           
+           System.out.println("Patient selected");
+           OldLine =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+bloodgroup+","+allergies;
+           
+       }
+       
+        if ("Receptionist".equals(UserType)){
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           AppointmentView.setVisible(false);
+           DashboardIcon.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(true);
+           jButton15.setVisible(false);    // Hide Save Button
+           jButton14.setVisible(true);    //Unhide Update Button
+           String staffid = String.valueOf(model.getValueAt(index, 11).toString());
+           String staffmail = String.valueOf(model.getValueAt(index, 12).toString());
+           String joindate = String.valueOf(model.getValueAt(index, 13).toString());
+            
+           jTextField17.setText(username);
+           jTextField18.setText(name);
+           jComboBox9.setSelectedIndex(0);
+           jTextField19.setText(phoneno);
+           jTextField20.setText(id);
+           jTextField21.setText(dob);
+           jTextArea4.setText(address);
+           jComboBox10.setSelectedIndex(0);
+           jTextField24.setText(staffid);
+           jTextField23.setText(staffmail);
+           jTextField22.setText(joindate);
+           
+           System.out.println("Recep selected");
+            OldLine =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+staffid+","+staffmail+","+joindate; 
+            
+           }
+        if ("MedicalOfficer".equals(UserType)){
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           DashboardIcon.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(true);
+           jButton10.setVisible(false);    // Hide Save Button
+           jButton9.setVisible(true);    //Unhide Update Button
+           String staffid = String.valueOf(model.getValueAt(index, 11).toString());
+           String staffmail = String.valueOf(model.getValueAt(index, 12).toString());
+           String joindate = String.valueOf(model.getValueAt(index, 13).toString());
+           String speciality = String.valueOf(model.getValueAt(index, 14).toString());
+           
+           jTextField1.setText(username);
+           jTextField2.setText(name);
+           jComboBox6.setSelectedIndex(0);
+           jTextField8.setText(phoneno);
+           jTextField10.setText(id);
+           jTextField11.setText(dob);
+           jTextArea2.setText(address);
+           jComboBox7.setSelectedIndex(0);
+           jTextField14.setText(staffid);
+           jTextField15.setText(staffmail);
+           jTextField16.setText(joindate);
+           jComboBox8.setSelectedIndex(0);
+           
+           
+           System.out.println("Medi selected");
+           OldLine =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+staffid+","+staffmail+","+joindate+","+speciality;
+           
+                   
+           }
+       return OldLine;
+       }
+    
+    
+    
+   
+    
+    
+    
+    public void UserDetailsView() throws IOException{
+        int Plines;
+        int Mlines;
+        int Rlines;
+        String thisline = null;
+        String[] temp;
+       
+        
+        
+        
+        
+        try {
+            BufferedReader RecepReader= new BufferedReader(new FileReader("db\\Receptionists.txt"));
+            BufferedReader MedReader= new BufferedReader(new FileReader("db\\MedicalOfficers.txt"));
+            BufferedReader PatientReader= new BufferedReader(new FileReader("db\\patients.txt"));
+            
+            DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+            model.setRowCount(0);
+            
+            //Receptionists details
+            Rlines = getReceptionistfilecount(); 
+            for (int i=0; i<Rlines; i++){
+             thisline = RecepReader.readLine();
+             temp = thisline.split(",");
+                System.out.println(temp[0]);
+            
+            model.addRow(new Object[]{ "Receptionist",temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],"-","-",temp[8],temp[9],temp[10]});
+				
+           
+            }
+           //medical officers details
+           Mlines = getMediofficersfilecount();
+            for (int j=0; j<Mlines; j++){
+             thisline = MedReader.readLine();
+             temp = thisline.split(",");
+                System.out.println(temp[0]);
+            
+            model.addRow(new Object[]{ "MedicalOfficer",temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],"-","-",temp[8],temp[9],temp[10],temp[11]});
+				
+            
+            }
+            
+            //Patients details
+            Plines = getPatientsfilecount();
+            System.out.println("Count" +Plines);
+            for (int i=0; i<(Plines-2); i++){
+             thisline = PatientReader.readLine();
+             temp = thisline.split(",");
+                System.out.println(temp[0]);
+            
+            model.addRow(new Object[]{"Patient", temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9]});
+				
+           
+            }
+            
+          
+          
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UserDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
+    
+    
+    
     
     public void UpdateAppointments() throws IOException{
     
@@ -428,6 +821,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jButton19 = new javax.swing.JButton();
         AddMedicalOfficer = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
@@ -492,6 +886,12 @@ public class Dashboard extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jLabel62 = new javax.swing.JLabel();
+        UsersView = new javax.swing.JPanel();
+        jLabel63 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -639,6 +1039,11 @@ public class Dashboard extends javax.swing.JFrame {
         DashboardIcon.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/users.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Complaints.png"))); // NOI18N
 
@@ -943,7 +1348,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel35.setBackground(new java.awt.Color(255, 255, 255));
         jLabel35.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        jLabel35.setText(" My Personal Details");
+        jLabel35.setText("Patients Details");
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel30.setText("Name:");
@@ -1014,6 +1419,14 @@ public class Dashboard extends javax.swing.JFrame {
 
         jTextField7.setToolTipText("");
 
+        jButton19.setBackground(new java.awt.Color(114, 190, 190));
+        jButton19.setText("Update");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddPatientsLayout = new javax.swing.GroupLayout(AddPatients);
         AddPatients.setLayout(AddPatientsLayout);
         AddPatientsLayout.setHorizontalGroup(
@@ -1070,10 +1483,12 @@ public class Dashboard extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPatientsLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton6)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton7)
-                        .addGap(77, 77, 77))))
+                        .addComponent(jButton19)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         AddPatientsLayout.setVerticalGroup(
             AddPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1107,7 +1522,8 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(278, 278, 278)
                         .addGroup(AddPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AddPatientsLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(AddPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1201,7 +1617,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel48.setBackground(new java.awt.Color(255, 255, 255));
         jLabel48.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        jLabel48.setText(" My Personal Details");
+        jLabel48.setText("Add Medical Officer");
 
         jButton9.setText("Update");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -1584,6 +2000,80 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLayeredPane1.add(AddReceptionists, "card7");
 
+        UsersView.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel63.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel63.setText("User Records");
+
+        jTable2.setFont(new java.awt.Font("Microsoft Tai Le", 0, 12)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "UserType", " Username", "Name", "Gender", "Phone Numbe", "ID Card Number", "Date of Birth", "Address", "Marital Status", "Blood Group", "Allergies", "Staff Id", "Staff Mail", "Date of Joining", "Specility Area"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable2);
+
+        jButton17.setText("Add");
+
+        jButton18.setText("Edit");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout UsersViewLayout = new javax.swing.GroupLayout(UsersView);
+        UsersView.setLayout(UsersViewLayout);
+        UsersViewLayout.setHorizontalGroup(
+            UsersViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsersViewLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+            .addGroup(UsersViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(UsersViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(UsersViewLayout.createSequentialGroup()
+                        .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(687, Short.MAX_VALUE))))
+        );
+        UsersViewLayout.setVerticalGroup(
+            UsersViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UsersViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(UsersViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+
+        jLayeredPane1.add(UsersView, "card8");
+
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(270, 140, 940, 600);
 
@@ -1867,7 +2357,28 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // Medical Officer's Update button
+            UpdateMedicalOfficers();
+            
+            
+           
+            JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+            UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           DashboardIcon.setVisible(true);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+           
+        
+        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1900,7 +2411,28 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // Receptionist's upadate button
+
+            UpdateReceptionists();
+            
+         JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+         
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           DashboardIcon.setVisible(true);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        
+        
+        
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -1937,6 +2469,58 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        try {
+            //UserView Table2
+
+            UserDetailsView();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //UserdetailsView("db\\Receptionists.txt");
+        //UserdetailsView("db\\MedicalOfficers.txt");
+      AppointmentView.setVisible(false);
+       AddPatients.setVisible(false);
+       AddAppointments.setVisible(false);
+       AddReceptionists.setVisible(false);
+       AddMedicalOfficer.setVisible(false);
+       DashboardIcon.setVisible (false);
+       UsersView.setVisible(true);
+      
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        //UserDetails Edit button
+        EditUsers();
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+       // Update button Patient's
+        try {
+            
+            UpdatePatients();
+            
+            JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+            
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           DashboardIcon.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+        
+        
+           
+        
+        
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1975,6 +2559,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static javax.swing.JPanel AddReceptionists;
     private javax.swing.JPanel AppointmentView;
     private javax.swing.JPanel DashboardIcon;
+    public static javax.swing.JPanel UsersView;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1983,11 +2568,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    public static javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    public static javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -2061,6 +2649,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2073,7 +2662,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     public static javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
