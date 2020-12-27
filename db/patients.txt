@@ -8,6 +8,6 @@ web,Kamal,Male,123,123456,12/232/2341,esd,Single,A+,ead
 Awq,weerra,Male,123,123456,12/232/2341,esd,Single,B,ead
 Akram21,Lakmal,Male,12342,324242342,12/23/131,ad,Single,A+,ead
 Kumar21,Kumara Dhar,Male,2142,32424,12/21/2332,dwqad,Single,A+,no
-2222,222,Male,222,222,222,2222,Married,A-,222,A+,-
+Yasiru1,Yasiru Wijenayake,Male,423424342,857546345V,12/06/1997,Strret1,Married,A+,no,A+,-
 Saw21,Sameen,Male,23546654532,21412423423V,12/7/1997,Street 8 lk,Single,A+,no
 

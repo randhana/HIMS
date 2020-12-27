@@ -773,6 +773,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
         AddAppointments = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -892,6 +898,17 @@ public class Dashboard extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
+        CreateUser = new javax.swing.JPanel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel79 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -1060,24 +1077,64 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/signout.png"))); // NOI18N
 
+        jLabel64.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel64.setText("Appointments");
+
+        jLabel65.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel65.setText("Patients");
+
+        jLabel66.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel66.setText("Reports");
+
+        jLabel67.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel67.setText("Users");
+
+        jLabel68.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel68.setText("Complaints");
+
+        jLabel69.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel69.setText("Exit");
+
         javax.swing.GroupLayout DashboardIconLayout = new javax.swing.GroupLayout(DashboardIcon);
         DashboardIcon.setLayout(DashboardIconLayout);
         DashboardIconLayout.setHorizontalGroup(
             DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardIconLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel3)
-                .addGap(77, 77, 77)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(23, 23, 23))
+                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel3)
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(351, 351, 351))
+                    .addGroup(DashboardIconLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)))
+                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
+                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(23, 23, 23))))
             .addGroup(DashboardIconLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121)
+                .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148)
+                .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(35, 35, 35))
+                .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
             .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
                     .addContainerGap(353, Short.MAX_VALUE)
@@ -1091,20 +1148,34 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(DashboardIconLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3))
                     .addGroup(DashboardIconLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(59, 59, 59))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
             .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(DashboardIconLayout.createSequentialGroup()
                     .addGap(10, 10, 10)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(374, Short.MAX_VALUE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(367, Short.MAX_VALUE)))
         );
 
         jLayeredPane1.add(DashboardIcon, "card2");
@@ -2032,6 +2103,11 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane6.setViewportView(jTable2);
 
         jButton17.setText("Add");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("Edit");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -2073,6 +2149,119 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         jLayeredPane1.add(UsersView, "card8");
+
+        CreateUser.setBackground(new java.awt.Color(255, 255, 255));
+        CreateUser.setLayout(null);
+
+        jLabel70.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel70.setText("Select UserType:");
+        CreateUser.add(jLabel70);
+        jLabel70.setBounds(22, 33, 218, 54);
+
+        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/receptionist.jpg"))); // NOI18N
+        jLabel71.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel71MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel71MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel71);
+        jLabel71.setBounds(350, 150, 260, 256);
+
+        jLabel72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Patients.png"))); // NOI18N
+        jLabel72.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel72MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel72MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel72);
+        jLabel72.setBounds(681, 160, 220, 247);
+
+        jLabel73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/doctor.jpeg"))); // NOI18N
+        CreateUser.add(jLabel73);
+        jLabel73.setBounds(20, 140, 260, 267);
+
+        jLabel74.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_receptionist pre.png"))); // NOI18N
+        jLabel74.setText("Receptionist");
+        jLabel74.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel74MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel74MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel74);
+        jLabel74.setBounds(380, 410, 210, 51);
+
+        jLabel75.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_medical-officer pre.png"))); // NOI18N
+        jLabel75.setText("Medical Officer");
+        jLabel75.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel75MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel75MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel75);
+        jLabel75.setBounds(40, 410, 226, 51);
+
+        jLabel76.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_patient pre.png"))); // NOI18N
+        jLabel76.setText("Patient");
+        jLabel76.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel76MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel76MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel76);
+        jLabel76.setBounds(690, 410, 200, 51);
+
+        jLabel77.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel77MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel77MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel77);
+        jLabel77.setBounds(10, 123, 280, 350);
+
+        jLabel78.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel78MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel78MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel78);
+        jLabel78.setBounds(340, 120, 280, 350);
+
+        jLabel79.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel79MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel79MouseExited(evt);
+            }
+        });
+        CreateUser.add(jLabel79);
+        jLabel79.setBounds(670, 120, 240, 350);
+
+        jLayeredPane1.add(CreateUser, "card9");
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(270, 140, 940, 600);
@@ -2364,18 +2553,18 @@ public class Dashboard extends javax.swing.JFrame {
             
            
             JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
-            UsersView.setVisible(false);
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           UsersView.setVisible(false);
            AddAppointments.setVisible(false);
            AppointmentView.setVisible(false);
            AddPatients.setVisible(false);
            AddReceptionists.setVisible(false);
            AddMedicalOfficer.setVisible(false);
            DashboardIcon.setVisible(true);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
            
         
         
@@ -2522,6 +2711,102 @@ public class Dashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // UserView Add Button
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           DashboardIcon.setVisible(false);
+           CreateUser.setVisible(true);
+        
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jLabel75MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel75MouseEntered
+        // Medical off create uset
+       jLabel77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+        jLabel75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_medical-officer past.png")));
+    }//GEN-LAST:event_jLabel75MouseEntered
+
+    private void jLabel75MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel75MouseExited
+        // TODO add your handling code here:
+        
+        jLabel75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_medical-officer pre.png")));
+    }//GEN-LAST:event_jLabel75MouseExited
+
+    private void jLabel77MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel77MouseEntered
+        // TODO add your handling code here:
+        jLabel77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+    }//GEN-LAST:event_jLabel77MouseEntered
+
+    private void jLabel77MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel77MouseExited
+        // TODO add your handling code here:
+        jLabel77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel77MouseExited
+
+    private void jLabel74MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel74MouseEntered
+        // TODO add your handling code here:
+        jLabel78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+        jLabel74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_receptionist past.png")));
+    }//GEN-LAST:event_jLabel74MouseEntered
+
+    private void jLabel74MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel74MouseExited
+        // TODO add your handling code here:
+        jLabel74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_receptionist pre.png")));
+    }//GEN-LAST:event_jLabel74MouseExited
+
+    private void jLabel71MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel71MouseEntered
+        jLabel78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+    }//GEN-LAST:event_jLabel71MouseEntered
+
+    private void jLabel78MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel78MouseEntered
+        // TODO add your handling code here:
+        jLabel78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+    }//GEN-LAST:event_jLabel78MouseEntered
+
+    private void jLabel78MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel78MouseExited
+        // TODO add your handling code here:
+        jLabel78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel78MouseExited
+
+    private void jLabel71MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel71MouseExited
+        // TODO add your handling code here:
+        jLabel78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel71MouseExited
+
+    private void jLabel76MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel76MouseEntered
+        // TODO add your handling code here:
+        jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_patient past.png")));
+        jLabel79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+    }//GEN-LAST:event_jLabel76MouseEntered
+
+    private void jLabel76MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel76MouseExited
+        // TODO add your handling code here:
+        jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_patient pre.png")));
+    }//GEN-LAST:event_jLabel76MouseExited
+
+    private void jLabel79MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel79MouseEntered
+        // TODO add your handling code here:
+        jLabel79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+    }//GEN-LAST:event_jLabel79MouseEntered
+
+    private void jLabel79MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel79MouseExited
+        // TODO add your handling code here:
+        jLabel79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel79MouseExited
+
+    private void jLabel72MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseEntered
+        // TODO add your handling code here:
+        jLabel79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout past.png")));
+    }//GEN-LAST:event_jLabel72MouseEntered
+
+    private void jLabel72MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseExited
+        // TODO add your handling code here:
+        jLabel79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel72MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -2558,6 +2843,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static javax.swing.JPanel AddPatients;
     public static javax.swing.JPanel AddReceptionists;
     private javax.swing.JPanel AppointmentView;
+    public static javax.swing.JPanel CreateUser;
     private javax.swing.JPanel DashboardIcon;
     public static javax.swing.JPanel UsersView;
     private javax.swing.JButton jButton1;
@@ -2650,7 +2936,23 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
