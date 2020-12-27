@@ -368,7 +368,6 @@ public class PatientDashboard extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
@@ -384,6 +383,7 @@ public class PatientDashboard extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jComboBox6 = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -769,7 +769,7 @@ public class PatientDashboard extends javax.swing.JFrame {
 
         jLayeredPane1.add(jPanel3, "card2");
 
-        jPanel4.setBackground(new java.awt.Color(114, 190, 190));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel29.setText("Complain");
@@ -777,22 +777,15 @@ public class PatientDashboard extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel36.setText("Action Taken");
 
-        jTextField1.setBackground(new java.awt.Color(136, 216, 216));
-
-        jTextField7.setBackground(new java.awt.Color(136, 216, 216));
-
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel37.setText("Complaints Type");
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel38.setText("Complaints By");
 
-        jTextField8.setBackground(new java.awt.Color(136, 216, 216));
-
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel39.setText("Phone Number");
 
-        jTextField10.setBackground(new java.awt.Color(136, 216, 216));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
@@ -802,12 +795,9 @@ public class PatientDashboard extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel40.setText("Date");
 
-        jTextField11.setBackground(new java.awt.Color(136, 216, 216));
-
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel41.setText("Discription");
 
-        jTextArea2.setBackground(new java.awt.Color(136, 216, 216));
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
@@ -837,6 +827,9 @@ public class PatientDashboard extends javax.swing.JFrame {
             }
         });
 
+        jComboBox6.setMaximumRowCount(6);
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Safety", "Quality", "Institutional issues", "Timing and access", "Communication", "Humaneness/caring", "Patient rights" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -854,13 +847,17 @@ public class PatientDashboard extends javax.swing.JFrame {
                             .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField11)
-                            .addComponent(jTextField10)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(49, 49, 49)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField11)
+                                    .addComponent(jTextField10)
+                                    .addComponent(jTextField8)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(49, 49, 49))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -902,9 +899,9 @@ public class PatientDashboard extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
                                 .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21)
                                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1247,6 +1244,7 @@ public class PatientDashboard extends javax.swing.JFrame {
         jPanel3.setVisible(false);
         jPanel6.setVisible(false);
         jPanel4.setVisible(true);
+        jTextField1.setEditable(false);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1286,7 +1284,7 @@ public class PatientDashboard extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         String  ActionTaken    =jTextField1.getText();
-        String  ComplaintsType =jTextField7.getText();
+        String  ComplaintsType =jComboBox6.getSelectedItem().toString();
         String  ComplaintsBy   =jTextField8.getText();
         String  PhoneNumber    =jTextField10.getText();
         String  Date           =jTextField11.getText();
@@ -1370,6 +1368,7 @@ public class PatientDashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1443,7 +1442,6 @@ public class PatientDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
