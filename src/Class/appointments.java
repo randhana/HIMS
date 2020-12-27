@@ -5,7 +5,7 @@
  */
 package Class;
 
-import hospital.opd.java.AddAppointment;
+
 import hospital.opd.java.Dashboard;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

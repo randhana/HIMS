@@ -13,16 +13,16 @@ import Class.Receptionists;
 import Class.complaints;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -598,7 +598,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         
         
-        try {
+        
             BufferedReader RecepReader= new BufferedReader(new FileReader("db\\Receptionists.txt"));
             BufferedReader MedReader= new BufferedReader(new FileReader("db\\MedicalOfficers.txt"));
             BufferedReader PatientReader= new BufferedReader(new FileReader("db\\patients.txt"));
@@ -644,9 +644,7 @@ public class Dashboard extends javax.swing.JFrame {
             
           
           
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(UserDetails.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
     }
     
@@ -972,6 +970,20 @@ public class Dashboard extends javax.swing.JFrame {
     return OldRowData;
     }
     
+    public String getDate(){   //for getdate 
+
+ 
+    LocalDate todaynow = LocalDate.now( ZoneId.of( "America/Montreal" ) ) ;// Create a date ob
+    String outputDate = todaynow.toString() ; 
+    //System.out.println(outputDate);                           // Display the current date
+        
+ return outputDate;
+}
+
+
+    
+    
+    
     public String SetComplaintData(){
     
       // get the selected row
@@ -994,7 +1006,7 @@ public class Dashboard extends javax.swing.JFrame {
        jComboBox11.setSelectedItem(Complainttype);
        jTextField27.setText(Complaintby);
        jTextField28.setText(Phoneno);
-       jTextField29.setText(Date);
+       jTextField29.setText(getDate());
        jTextArea5.setText(Discription);
        
        
@@ -1209,6 +1221,31 @@ public class Dashboard extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
+        Reports = new javax.swing.JPanel();
+        ReceivedMailView = new javax.swing.JPanel();
+        jLabel90 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton28 = new javax.swing.JButton();
+        jButton29 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        AddPostal = new javax.swing.JPanel();
+        jLabel91 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
+        jLabel93 = new javax.swing.JLabel();
+        jLabel94 = new javax.swing.JLabel();
+        jLabel95 = new javax.swing.JLabel();
+        jLabel96 = new javax.swing.JLabel();
+        jLabel97 = new javax.swing.JLabel();
+        jComboBox12 = new javax.swing.JComboBox();
+        jTextField26 = new javax.swing.JTextField();
+        jTextField30 = new javax.swing.JTextField();
+        jTextField31 = new javax.swing.JTextField();
+        jTextField32 = new javax.swing.JTextField();
+        jTextField33 = new javax.swing.JTextField();
+        jButton31 = new javax.swing.JButton();
+        jButton32 = new javax.swing.JButton();
+        jButton33 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -2865,6 +2902,214 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLayeredPane1.add(ComplaintsView, "card11");
 
+        Reports.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout ReportsLayout = new javax.swing.GroupLayout(Reports);
+        Reports.setLayout(ReportsLayout);
+        ReportsLayout.setHorizontalGroup(
+            ReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 940, Short.MAX_VALUE)
+        );
+        ReportsLayout.setVerticalGroup(
+            ReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+
+        jLayeredPane1.add(Reports, "card12");
+
+        ReceivedMailView.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel90.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel90.setText("Received Mails");
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "From", "Reference Number", " From Address", "Note", "To Name,", "Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(jTable4);
+
+        jButton28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton28.setText("Add");
+
+        jButton29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton29.setText("Edit");
+
+        jButton30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton30.setText("Delete");
+
+        javax.swing.GroupLayout ReceivedMailViewLayout = new javax.swing.GroupLayout(ReceivedMailView);
+        ReceivedMailView.setLayout(ReceivedMailViewLayout);
+        ReceivedMailViewLayout.setHorizontalGroup(
+            ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReceivedMailViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ReceivedMailViewLayout.createSequentialGroup()
+                        .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ReceivedMailViewLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(ReceivedMailViewLayout.createSequentialGroup()
+                        .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton30)
+                        .addGap(19, 19, 19))))
+        );
+        ReceivedMailViewLayout.setVerticalGroup(
+            ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReceivedMailViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(ReceivedMailView, "card13");
+
+        AddPostal.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel91.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        jLabel91.setText("Postal Details");
+
+        jLabel92.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel92.setText("Referenses Number");
+
+        jLabel93.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel93.setText("From Address");
+
+        jLabel94.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel94.setText("Note");
+
+        jLabel95.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel95.setText("To Name");
+
+        jLabel96.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel96.setText("Date");
+
+        jLabel97.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel97.setText("Mail is");
+
+        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Received", "Dispatched" }));
+
+        jTextField26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField26ActionPerformed(evt);
+            }
+        });
+
+        jButton31.setText("Save");
+
+        jButton32.setText("Update");
+
+        jButton33.setText("Clear");
+
+        javax.swing.GroupLayout AddPostalLayout = new javax.swing.GroupLayout(AddPostal);
+        AddPostal.setLayout(AddPostalLayout);
+        AddPostalLayout.setHorizontalGroup(
+            AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddPostalLayout.createSequentialGroup()
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddPostalLayout.createSequentialGroup()
+                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddPostalLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(AddPostalLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField30, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                .addComponent(jTextField31)
+                                .addComponent(jTextField32)
+                                .addComponent(jTextField33)
+                                .addComponent(jTextField26))
+                            .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 572, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPostalLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton32)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        AddPostalLayout.setVerticalGroup(
+            AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddPostalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(AddPostal, "card14");
+
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(270, 140, 940, 600);
 
@@ -3588,6 +3833,7 @@ public class Dashboard extends javax.swing.JFrame {
         CreateUser.setVisible(false);
         ComplaintsView.setVisible(false);
         AddComplaints.setVisible(true);
+        jTextField29.setText(getDate());
         jButton27.setVisible(false);
         jButton22.setVisible(true);
         
@@ -3661,6 +3907,10 @@ public class Dashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton26ActionPerformed
 
+    private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField26ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3696,11 +3946,14 @@ public class Dashboard extends javax.swing.JFrame {
     public static javax.swing.JPanel AddComplaints;
     public static javax.swing.JPanel AddMedicalOfficer;
     public static javax.swing.JPanel AddPatients;
+    public static javax.swing.JPanel AddPostal;
     public static javax.swing.JPanel AddReceptionists;
     private javax.swing.JPanel AppointmentView;
     public static javax.swing.JPanel ComplaintsView;
     public static javax.swing.JPanel CreateUser;
     private javax.swing.JPanel DashboardIcon;
+    public static javax.swing.JPanel ReceivedMailView;
+    public static javax.swing.JPanel Reports;
     public static javax.swing.JPanel UsersView;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -3722,7 +3975,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     public static javax.swing.JButton jButton6;
@@ -3732,6 +3991,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
+    private javax.swing.JComboBox jComboBox12;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -3830,6 +4090,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -3842,9 +4110,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     public static javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
@@ -3868,10 +4138,15 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
+    private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
