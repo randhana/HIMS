@@ -33,7 +33,8 @@ public class FileWrite {
     public Boolean addvisiter(Visiters vr){
         
         PrintWriter pw=null;
-        String VisiterData = " ,"+vr.getName()+","+vr.getId()+vr.getPhoneNo()+","+vr.getInTime()+","+vr.getOutTime()+"     /"+vr.getNote();
+        String VisiterData =vr.getName()+","+vr.getId()+","+vr.getPhoneNo()+","+vr.getDate()+","+vr.getInTime()+","+vr.getOutTime()+","+vr.getNote()+","+vr.getPurpose();
+        System.out.println("VISITOR -"+VisiterData);
         try {
             pw=new PrintWriter(new BufferedWriter(new FileWriter(fileparth1,true)));
             pw.println(VisiterData);
