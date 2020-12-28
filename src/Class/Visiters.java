@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Class;
 
 
@@ -10,17 +6,21 @@ public class Visiters {
    private String Name;
    private String Id;
    private String PhoneNo;
+   private String Date;
    private String InTime;
    private String OutTime;
    private String Note;
+   private String Purpose;
 
-    public Visiters(String Name, String Id, String PhoneNo, String InTime, String OutTime, String Note) {
+    public Visiters(String Name, String Id, String PhoneNo,String Date, String InTime, String OutTime, String Note, String Purpose) {
         this.Name = Name;
         this.Id = Id;
         this.PhoneNo = PhoneNo;
+        this.Date =Date;
         this.InTime = InTime;
         this.OutTime = OutTime;
         this.Note = Note;
+        this.Purpose = Purpose;
     }
 
     public String getName() {
@@ -46,6 +46,13 @@ public class Visiters {
     public void setPhoneNo(String PhoneNo) {
         this.PhoneNo = PhoneNo;
     }
+    public String getDate(){
+        return Date;
+    }
+    public void setDate(String Date){
+        this.Date = Date;
+    
+    }
 
     public String getInTime() {
         return InTime;
@@ -66,7 +73,12 @@ public class Visiters {
     public String getNote() {
         return Note;
     }
-
+    public String getPurpose(){
+        return Purpose;
+    }
+    public void setPurpose(String Purpose){
+         this.Purpose = Purpose;
+    }
     public void setNote(String Note) {
         this.Note = Note;
     }

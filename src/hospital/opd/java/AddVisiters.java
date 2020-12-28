@@ -277,11 +277,11 @@ public class AddVisiters extends javax.swing.JFrame {
         
         
         Visiters visiter;
-      visiter=new Visiters(name, id, phoneNo, inTime, outTime, note);
+    //  visiter=new Visiters(name, id, phoneNo, inTime, outTime, note);
    
         
         FileWrite vi=new FileWrite();
-        vi.addvisiter(visiter);
+      //  vi.addvisiter(visiter);
 
         
         
