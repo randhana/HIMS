@@ -2,14 +2,7 @@ dew,john Wing,Male,222,22,2,22,Single,O+,no
 Gentlk,AA12,Male,dawd,daw42,21332,sgsefse,Single,A+,ead
 BB32,Sanjana,Female,grdhd,3424234242342X,12/08/2009,gerter,Single,A+,no
 ZZZ,Zoldi,Male,3424,4,34324,fdsfs,Single,A+,ead
-Rakesh1,Rakesh Silva,Male,21313231,231412414V,21/2/2323,12fsdffsfaadsersdsa,Single,A+,ead
-Akesh1,Akesh Perera,Male,32132131,213123V,21/02/2020,street 11,Separated,A+,ead
-web,Kamal,Male,123,123456,12/232/2341,esd,Single,A+,ead
-Awq,weerra,Male,123,123456,12/232/2341,esd,Single,B,ead
-Akram21,Lakmal,Male,12342,324242342,12/23/131,ad,Single,A+,ead
-Kumar21,Kumara Dhar,Male,2142,32424,12/21/2332,dwqad,Single,A+,no
-Yasiru1,Yasiru Wijenayake,Male,423424342,857546345V,12/06/1997,Strret1,Married,A+,no,A+,-
-Saw21,Sameen,Male,23546654532,21412423423V,12/7/1997,Street 8 lk,Single,A+,no
-
-
-
+farhan,111,Male,11111,9999,4543,esfs,Single,A+,dwad
+Dasaw,f2,Male,342,432,4324234423,2342,Single,A+,4322
+Dasaw1,f2,Male,342,1111,4324234423,2342,Single,A+,4322
+web,fesf,Male,fsefs,3333,feffes,fesf,Single,A+,fse

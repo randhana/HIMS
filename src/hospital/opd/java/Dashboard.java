@@ -11,6 +11,7 @@ import Class.appointments;
 import Class.Patients;
 import Class.Receptionists;
 import Class.complaints;
+import Class.postal;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -234,6 +235,46 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
     
+   public void ReceivedMaildetailsView(String Fileparth){
+        
+         String fileparth=Fileparth;
+         File file;
+         file = new File(fileparth);
+         try {
+            BufferedReader brr=new BufferedReader(new FileReader(file));
+            //String firstline=brr.readLine().trim();
+           // String []ColumsName=firstline.split(",");
+            DefaultTableModel model1=(DefaultTableModel) jTable4.getModel();
+           // model1.setColumnIdentifiers(ColumsName);
+           model1.setRowCount(0);  //For prevent data duplication
+           
+           
+           
+            Object [] tableline=brr.lines().toArray();
+           
+             for (Object tableline1 : tableline) {
+                 String line = tableline1.toString().trim();
+                 String[] datarow=line.split(",");
+                 model1.addRow(datarow);
+             }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
+        
+        
+        } 
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
       public void UpdateMedicalOfficers() throws FileNotFoundException, IOException{
     
@@ -407,6 +448,62 @@ public class Dashboard extends javax.swing.JFrame {
                         
                    }
    }
+    
+     public void UpdatePatientsButton2() throws FileNotFoundException, IOException{
+    
+        String username = jTextField7.getText();
+        String name     = jTextField3.getText();
+        String gender   = jComboBox1.getSelectedItem().toString();
+        String phoneno  =jTextField4.getText();
+        String id  =jTextField5.getText();
+        String dob  =jTextField6.getText();
+        String address  =jTextArea1.getText();
+        String status  =jComboBox3.getSelectedItem().toString();
+        String bloodgroup = jComboBox2.getSelectedItem().toString();
+        String allergies =  jTextField9.getText();
+        
+        String NewRowdata =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+bloodgroup+","+allergies;
+        System.out.println("NewLine="+NewRowdata);
+        
+        String CheckLine = EditPatients();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\patients.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("OldLine returned"+CheckLine);
+         
+         while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()).append(System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+   }
+    
+    
+    
+    
+    
  
     
  public String EditUsers(){
@@ -439,6 +536,7 @@ public class Dashboard extends javax.swing.JFrame {
            AddPatients.setVisible(true);
            jButton6.setVisible(false);    // Hide Save Button
            jButton19.setVisible(true);    //Unhide Update Button
+           jButton37.setVisible(false); //update 2
            
            //set patient's details
            jTextField7.setText(username);
@@ -529,6 +627,58 @@ public class Dashboard extends javax.swing.JFrame {
        return OldLine;
        }
  
+ public String EditPatients(){
+    
+     
+       int index = jTable5.getSelectedRow();
+       String OldLine = null;
+       TableModel model = jTable5.getModel();
+
+        
+        String username = String.valueOf(model.getValueAt(index, 0).toString());
+        String name     = String.valueOf(model.getValueAt(index, 1).toString());
+        String gender   = String.valueOf(model.getValueAt(index, 2).toString());
+        String phoneno  = String.valueOf(model.getValueAt(index, 3).toString());
+        String id       = String.valueOf(model.getValueAt(index, 4).toString());
+        String dob      = String.valueOf(model.getValueAt(index, 5).toString());
+        String address  = String.valueOf(model.getValueAt(index, 6).toString());
+        String status   = String.valueOf(model.getValueAt(index, 7).toString());
+        String bloodgroup = String.valueOf(model.getValueAt(index, 8).toString());
+        String allergies = String.valueOf(model.getValueAt(index, 9).toString());
+       
+            
+           System.out.println("Blood"+bloodgroup);
+           
+
+
+	   jTextField7.setText(username);
+           jTextField3.setText(name);
+           jComboBox1.setSelectedItem(gender);
+           jTextField4.setText(phoneno);
+           jTextField5.setText(id);
+           jTextField6.setText(dob);
+           jTextArea1.setText(address);
+           jComboBox3.setSelectedItem(status);
+           jComboBox2.setSelectedItem(bloodgroup);
+           jTextField9.setText(allergies);
+           
+           
+           
+           
+           System.out.println("Patient selected");
+           OldLine =username+","+name+","+gender+","+phoneno+","+id+","+dob+","+address+","+status+","+bloodgroup+","+allergies;
+
+	return OldLine;
+       }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  public String DeleteUsers(){
     
        int index = jTable2.getSelectedRow();
@@ -576,7 +726,38 @@ public class Dashboard extends javax.swing.JFrame {
        return OldLine;
        }
  
- 
+     public void PatientsdetailsView(String Fileparth){
+        
+         String fileparth=Fileparth;
+         File file;
+         file = new File(fileparth);
+         try {
+            BufferedReader brr=new BufferedReader(new FileReader(file));
+            //String firstline=brr.readLine().trim();
+           // String []ColumsName=firstline.split(",");
+            DefaultTableModel model1=(DefaultTableModel) jTable5.getModel();
+           // model1.setColumnIdentifiers(ColumsName);
+           model1.setRowCount(0);  //For prevent data duplication
+           
+           
+           
+            Object [] tableline=brr.lines().toArray();
+           
+             for (Object tableline1 : tableline) {
+                 String line = tableline1.toString().trim();
+                 String[] datarow=line.split(",");
+                 model1.addRow(datarow);
+             }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
+        
+        
+        } 
+        
+        
+    }
  
  
  
@@ -772,6 +953,68 @@ public class Dashboard extends javax.swing.JFrame {
    }
     
     
+  public void UpdateReceivedmailRecords() throws IOException{
+    
+        String ReNo=jTextField33.getText();
+       String FromAddress=jTextField32.getText();
+       String Note=jTextField31.getText();
+       String ToName=jTextField30.getText();
+       String  date  =jTextField26.getText();
+       String  doing=jComboBox12.getSelectedItem().toString();
+        
+        String NewRowdata =ReNo+","+FromAddress+","+Note+","+ToName+","+date+","+doing;
+        System.out.println("newline="+NewRowdata);
+        
+        String CheckLine = SetReceivedmailData();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\DispatchedMail.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+        
+        
+       
+        
+        
+        
+            
+                    while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+                    
+               
+   }
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -800,7 +1043,55 @@ public class Dashboard extends javax.swing.JFrame {
                         
                         sc.close();
                         String oldLine =CheckLine;
-                        String newLine = "9999999999999999999";
+                        String newLine = "";
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine,newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        System.out.println("old line "+oldLine);
+                        System.out.println("newline "+newLine);
+                   }
+                    
+               
+               
+                
+        
+        
+    
+    
+    
+    }
+    
+    
+  public void DeletePatients2() throws IOException{
+    
+        String CheckLine = EditPatients();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\patients.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+                 while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine;
+                        String newLine = "";
                             //Replacing the old line with new line
                         fileContents = fileContents.replaceAll(oldLine,newLine);
                         //instantiating the FileWriter class
@@ -917,7 +1208,46 @@ public class Dashboard extends javax.swing.JFrame {
   }
     
     
+  public void DeletePostalRecords() throws IOException{
     
+        
+        String NewRowdata =SetReceivedmailData();
+        System.out.println("oldLine="+NewRowdata);
+        
+        String CheckLine = SetReceivedmailData();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\DispatchedMail.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+                 while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = "";
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+  }  
     
     
     
@@ -969,6 +1299,53 @@ public class Dashboard extends javax.swing.JFrame {
     
     return OldRowData;
     }
+    
+    
+    
+    public String SetReceivedmailData(){
+        System.out.println("In function");
+      // get the selected row
+       int index = jTable4.getSelectedRow();
+
+       TableModel model = jTable4.getModel();
+
+      String ReNo = String.valueOf(model.getValueAt(index, 0).toString());
+      String FromAddress = String.valueOf(model.getValueAt(index, 1).toString());
+      String Note = String.valueOf(model.getValueAt(index, 2).toString());
+      String ToName = String.valueOf(model.getValueAt(index, 3).toString());
+      String date = String.valueOf(model.getValueAt(index, 4).toString());
+     // String doing = String.valueOf(model.getValueAt(index, 5).toString());
+      
+      String OldRowData = ReNo+","+FromAddress+","+Note+","+ToName+","+date;
+        System.out.println("stdadta="+OldRowData);
+       
+       jTextField33.setText(ReNo);
+       jTextField32.setText(FromAddress);
+       jTextField31.setText(Note);
+       jTextField30.setText(ToName);
+       jTextField26.setText(date);
+      // jComboBox12.setSelectedItem(doing);
+       
+       
+       
+    
+    return OldRowData;
+    }
+    public void ClearPostal(){
+    
+    jTextField33.setText("");
+   jTextField32.setText("");
+    jTextField31.setText("");
+    jTextField30.setText("");
+    jTextField26.setText("");
+    jComboBox12.setSelectedIndex(1);
+    
+    
+    
+    }
+    
+    
+    
     
     public String getDate(){   //for getdate 
 
@@ -1062,6 +1439,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel103 = new javax.swing.JLabel();
         AddAppointments = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -1111,6 +1494,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jButton19 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
         AddMedicalOfficer = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
@@ -1246,10 +1630,18 @@ public class Dashboard extends javax.swing.JFrame {
         jButton31 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
         jButton33 = new javax.swing.JButton();
+        PatientsView = new javax.swing.JPanel();
+        jLabel104 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jButton34 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel105 = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -1293,6 +1685,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/button_postal-records pre.png"))); // NOI18N
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel12MouseEntered(evt);
             }
@@ -1391,15 +1786,20 @@ public class Dashboard extends javax.swing.JFrame {
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
         DashboardIcon.setBackground(new java.awt.Color(255, 255, 255));
+        DashboardIcon.setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/users.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/useer.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
+        DashboardIcon.add(jLabel3);
+        jLabel3.setBounds(60, 331, 200, 200);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Complaints.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/complaint.png"))); // NOI18N
+        DashboardIcon.add(jLabel4);
+        jLabel4.setBounds(357, 311, 230, 230);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/output-onlinepngtools (2).png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1407,113 +1807,121 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
+        DashboardIcon.add(jLabel5);
+        jLabel5.setBounds(353, 10, 250, 223);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/appointments.png"))); // NOI18N
+        DashboardIcon.add(jLabel6);
+        jLabel6.setBounds(45, 11, 259, 230);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/repo.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/repo edited.png"))); // NOI18N
+        DashboardIcon.add(jLabel7);
+        jLabel7.setBounds(670, 0, 230, 240);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/signout.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/exit.png"))); // NOI18N
+        DashboardIcon.add(jLabel8);
+        jLabel8.setBounds(697, 338, 173, 194);
 
         jLabel64.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel64.setText("Appointments");
+        DashboardIcon.add(jLabel64);
+        jLabel64.setBounds(97, 247, 145, 41);
 
         jLabel65.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel65.setText("Patients");
+        DashboardIcon.add(jLabel65);
+        jLabel65.setBounds(440, 247, 145, 41);
 
         jLabel66.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel66.setText("Reports");
+        DashboardIcon.add(jLabel66);
+        jLabel66.setBounds(730, 250, 145, 41);
 
         jLabel67.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel67.setText("Users");
+        jLabel67.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel67MouseEntered(evt);
+            }
+        });
+        DashboardIcon.add(jLabel67);
+        jLabel67.setBounds(121, 547, 145, 41);
 
         jLabel68.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel68.setText("Complaints");
+        DashboardIcon.add(jLabel68);
+        jLabel68.setBounds(414, 547, 145, 41);
 
         jLabel69.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel69.setText("Exit");
+        DashboardIcon.add(jLabel69);
+        jLabel69.setBounds(746, 547, 87, 30);
 
-        javax.swing.GroupLayout DashboardIconLayout = new javax.swing.GroupLayout(DashboardIcon);
-        DashboardIcon.setLayout(DashboardIconLayout);
-        DashboardIconLayout.setHorizontalGroup(
-            DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DashboardIconLayout.createSequentialGroup()
-                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel3)
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(351, 351, 351))
-                    .addGroup(DashboardIconLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)))
-                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(23, 23, 23))))
-            .addGroup(DashboardIconLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148)
-                .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
-            .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                    .addContainerGap(353, Short.MAX_VALUE)
-                    .addComponent(jLabel5)
-                    .addGap(337, 337, 337)))
-        );
-        DashboardIconLayout.setVerticalGroup(
-            DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(DashboardIconLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
-                    .addGroup(DashboardIconLayout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardIconLayout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
-            .addGroup(DashboardIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(DashboardIconLayout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(367, Short.MAX_VALUE)))
-        );
+        jLabel98.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel98MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel98MouseExited(evt);
+            }
+        });
+        DashboardIcon.add(jLabel98);
+        jLabel98.setBounds(30, 0, 260, 300);
+
+        jLabel99.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel99MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel99MouseExited(evt);
+            }
+        });
+        DashboardIcon.add(jLabel99);
+        jLabel99.setBounds(340, 0, 280, 300);
+
+        jLabel100.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel100MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel100MouseExited(evt);
+            }
+        });
+        DashboardIcon.add(jLabel100);
+        jLabel100.setBounds(640, -10, 280, 310);
+
+        jLabel101.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel101MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel101MouseExited(evt);
+            }
+        });
+        DashboardIcon.add(jLabel101);
+        jLabel101.setBounds(30, 320, 250, 270);
+
+        jLabel102.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel102MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel102MouseExited(evt);
+            }
+        });
+        DashboardIcon.add(jLabel102);
+        jLabel102.setBounds(330, 300, 280, 290);
+
+        jLabel103.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel103MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel103MouseExited(evt);
+            }
+        });
+        DashboardIcon.add(jLabel103);
+        jLabel103.setBounds(670, 300, 240, 280);
 
         jLayeredPane1.add(DashboardIcon, "card2");
 
@@ -1836,6 +2244,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton37.setText("Update");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddPatientsLayout = new javax.swing.GroupLayout(AddPatients);
         AddPatients.setLayout(AddPatientsLayout);
         AddPatientsLayout.setHorizontalGroup(
@@ -1892,8 +2307,10 @@ public class Dashboard extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPatientsLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton19)
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1928,11 +2345,12 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGroup(AddPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(278, 278, 278)
+                        .addGap(276, 276, 276)
                         .addGroup(AddPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AddPatientsLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(AddPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2927,14 +3345,14 @@ public class Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "From", "Reference Number", " From Address", "Note", "To Name,", "Date"
+                "Reference Number", " From Address", "Note", "To Name,", "Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2949,12 +3367,27 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton28.setText("Add");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         jButton29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton29.setText("Edit");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
 
         jButton30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton30.setText("Delete");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ReceivedMailViewLayout = new javax.swing.GroupLayout(ReceivedMailView);
         ReceivedMailView.setLayout(ReceivedMailViewLayout);
@@ -2962,15 +3395,16 @@ public class Dashboard extends javax.swing.JFrame {
             ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReceivedMailViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ReceivedMailViewLayout.createSequentialGroup()
-                        .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ReceivedMailViewLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(21, Short.MAX_VALUE))
-                    .addGroup(ReceivedMailViewLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReceivedMailViewLayout.createSequentialGroup()
+                        .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(707, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReceivedMailViewLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2984,8 +3418,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(251, 251, 251)
                 .addGroup(ReceivedMailViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3027,8 +3461,18 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton31.setText("Save");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
 
         jButton32.setText("Update");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
 
         jButton33.setText("Clear");
 
@@ -3110,6 +3554,108 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLayeredPane1.add(AddPostal, "card14");
 
+        PatientsView.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel104.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        jLabel104.setText("Patients Details");
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "UserName", "Name", "Gender", "Phone No", "NIC No", "Date of Birth", "Address", "Status", "Blood Group", "Allergies"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(jTable5);
+        if (jTable5.getColumnModel().getColumnCount() > 0) {
+            jTable5.getColumnModel().getColumn(0).setPreferredWidth(60);
+            jTable5.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable5.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jTable5.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTable5.getColumnModel().getColumn(4).setPreferredWidth(67);
+            jTable5.getColumnModel().getColumn(5).setPreferredWidth(60);
+            jTable5.getColumnModel().getColumn(6).setPreferredWidth(100);
+            jTable5.getColumnModel().getColumn(7).setPreferredWidth(60);
+            jTable5.getColumnModel().getColumn(8).setPreferredWidth(50);
+            jTable5.getColumnModel().getColumn(9).setPreferredWidth(120);
+        }
+
+        jButton34.setText("Edit");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+
+        jButton35.setText("Add");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+
+        jButton36.setText("Delete");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PatientsViewLayout = new javax.swing.GroupLayout(PatientsView);
+        PatientsView.setLayout(PatientsViewLayout);
+        PatientsViewLayout.setHorizontalGroup(
+            PatientsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PatientsViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel104, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PatientsViewLayout.createSequentialGroup()
+                .addGroup(PatientsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PatientsViewLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE))
+                    .addGroup(PatientsViewLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton36)))
+                .addContainerGap())
+        );
+        PatientsViewLayout.setVerticalGroup(
+            PatientsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PatientsViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel104, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(PatientsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(PatientsView, "card15");
+
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(270, 140, 940, 600);
 
@@ -3123,18 +3669,30 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("WELCOME");
 
+        jLabel105.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel105.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel105.setText("Admin Panel");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(364, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel105, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(261, 261, 261))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel105, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -3405,11 +3963,25 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        DashboardIcon.setVisible (false);
-        AddAppointments.setVisible(false);
-        AppointmentView.setVisible(false);
-        AddComplaints.setVisible(false);
-        AddPatients.setVisible(true);
+        //patient on dashboard icon
+        PatientsdetailsView("db\\patients.txt");
+        
+        
+       AppointmentView.setVisible(false);
+       CreateUser.setVisible(false); 
+       AddAppointments.setVisible(false);
+       AddReceptionists.setVisible(false);
+       AddMedicalOfficer.setVisible(false);
+       DashboardIcon.setVisible (false);
+       UsersView.setVisible(false);
+       ComplaintsView.setVisible(false);
+       AddComplaints.setVisible(false);
+       AddPatients.setVisible(false);
+       AddPostal.setVisible(false);
+       PatientsView.setVisible(true);
+       
+        
+        
                 
     }//GEN-LAST:event_jLabel5MouseClicked
 
@@ -3574,6 +4146,7 @@ public class Dashboard extends javax.swing.JFrame {
            AddMedicalOfficer.setVisible(false);
            AddComplaints.setVisible(false);
            DashboardIcon.setVisible(true);
+           jButton6.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -3693,6 +4266,7 @@ public class Dashboard extends javax.swing.JFrame {
        UsersView.setVisible(false);
        AddPatients.setVisible(true);
        jButton19.setVisible(false);   //For Hide the  Update Button 
+       jButton37.setVisible(false);   //update 2
     }//GEN-LAST:event_jLabel76MouseClicked
 
     private void jLabel72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseClicked
@@ -3707,6 +4281,7 @@ public class Dashboard extends javax.swing.JFrame {
        AddComplaints.setVisible(false);
        AddPatients.setVisible(true);
        jButton19.setVisible(false);
+       jButton37.setVisible(false);
     }//GEN-LAST:event_jLabel72MouseClicked
 
     private void jLabel74MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel74MouseClicked
@@ -3911,6 +4486,285 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField26ActionPerformed
 
+    private void jLabel98MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel98MouseEntered
+        // Dashboard appointment label
+        jLabel98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel98MouseEntered
+
+    private void jLabel98MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel98MouseExited
+        // TODO add your handling code here:
+        jLabel98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel98MouseExited
+
+    private void jLabel99MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel99MouseEntered
+        jLabel99.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel99MouseEntered
+
+    private void jLabel99MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel99MouseExited
+       jLabel99.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel99MouseExited
+
+    private void jLabel100MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel100MouseEntered
+         jLabel100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel100MouseEntered
+
+    private void jLabel100MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel100MouseExited
+         jLabel100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel100MouseExited
+
+    private void jLabel67MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel67MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel67MouseEntered
+
+    private void jLabel101MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel101MouseEntered
+        jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel101MouseEntered
+
+    private void jLabel101MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel101MouseExited
+       jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel101MouseExited
+
+    private void jLabel102MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel102MouseEntered
+       jLabel102.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel102MouseEntered
+
+    private void jLabel102MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel102MouseExited
+       jLabel102.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel102MouseExited
+
+    private void jLabel103MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel103MouseEntered
+        jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel103MouseEntered
+
+    private void jLabel103MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel103MouseExited
+       jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel103MouseExited
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // Postal save button
+       String ReNo=jTextField33.getText();
+       String FromAddress=jTextField32.getText();
+       String Note=jTextField31.getText();
+       String ToName=jTextField30.getText();
+       String  date  =jTextField26.getText();
+       String  doing=jComboBox12.getSelectedItem().toString();
+       
+       
+       postal postal=new postal(ReNo, FromAddress, Note, ToName, date);
+       
+       FileWrite mail=new FileWrite();
+       if (doing=="Dispatched"){
+           mail.AddDispatchedMail(postal);
+           
+       }
+       if (doing=="Received"){
+           mail.AddReceivedMail(postal);
+           
+           
+    }//GEN-LAST:event_jButton31ActionPerformed
+   ClearPostal();
+    }
+    
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        
+        try {
+            UpdateReceivedmailRecords();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        AddAppointments.setVisible(false);
+        AppointmentView.setVisible(false);
+        AddPatients.setVisible(false);
+        UsersView.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddReceptionists.setVisible(false);
+        CreateUser.setVisible(false);
+        AddComplaints.setVisible(false);
+        DashboardIcon.setVisible (false);
+        ComplaintsView.setVisible(false);
+        AddPostal.setVisible(false);
+        ReceivedMailView.setVisible(true);
+        ClearPostal();
+        
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        //Postal Records
+        ReceivedMaildetailsView("db\\DispatchedMail.txt");
+        
+        AddAppointments.setVisible(false);
+        AppointmentView.setVisible(false);
+        AddPatients.setVisible(false);
+        UsersView.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddReceptionists.setVisible(false);
+        CreateUser.setVisible(false);
+        AddComplaints.setVisible(false);
+        DashboardIcon.setVisible (false);
+        ComplaintsView.setVisible(false);
+        AddPostal.setVisible(false);
+        ReceivedMailView.setVisible(true);
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        //Postal Add Button
+        AddAppointments.setVisible(false);
+        AppointmentView.setVisible(false);
+        AddPatients.setVisible(false);
+        UsersView.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddReceptionists.setVisible(false);
+        CreateUser.setVisible(false);
+        AddComplaints.setVisible(false);
+        DashboardIcon.setVisible (false);
+        ComplaintsView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        AddPostal.setVisible(true);
+        jButton32.setVisible(false);
+        jButton31.setVisible(true);
+        ClearPostal();
+        
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        SetReceivedmailData();
+        
+        AddAppointments.setVisible(false);
+        AppointmentView.setVisible(false);
+        AddPatients.setVisible(false);
+        UsersView.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddReceptionists.setVisible(false);
+        CreateUser.setVisible(false);
+        AddComplaints.setVisible(false);
+        DashboardIcon.setVisible (false);
+        ComplaintsView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        AddPostal.setVisible(true);
+        jButton31.setVisible(false);  //save
+        jButton32.setVisible(true);    //update
+        
+        
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        try {
+            SetReceivedmailData();
+            DeletePostalRecords();
+            
+             DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
+
+       // get selected row index
+
+       try{
+       int SelectedRowIndex = jTable4.getSelectedRow();
+       model.removeRow(SelectedRowIndex);
+       }catch(Exception ex)
+       {
+           JOptionPane.showMessageDialog(null, ex);
+       }
+            
+            JOptionPane.showConfirmDialog(null,
+                "Record Deleted Successfully",
+                "Done",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+       AppointmentView.setVisible(false);
+       CreateUser.setVisible(false); 
+       AddAppointments.setVisible(false);
+       AddReceptionists.setVisible(false);
+       AddMedicalOfficer.setVisible(false);
+       DashboardIcon.setVisible (false);
+       UsersView.setVisible(false);
+       AddComplaints.setVisible(false);
+       AddPostal.setVisible(false);
+       PatientsView.setVisible(false);
+       AddPatients.setVisible(true);
+       jButton19.setVisible(false); //update
+       jButton37.setVisible(false); //update 2
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        //Patient's view edit button
+        EditPatients();
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           AppointmentView.setVisible(false);
+           DashboardIcon.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddComplaints.setVisible(false);
+           AddPostal.setVisible(false);
+           ComplaintsView.setVisible(false);
+           ReceivedMailView.setVisible(false);
+           PatientsView.setVisible(false);
+           AddPatients.setVisible(true);
+           jButton6.setVisible(false);    // Hide Save Button
+           jButton19.setVisible(false);    //Unhide Update Button
+           jButton37.setVisible(true);       
+        
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        try {
+            UpdatePatientsButton2();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           AddComplaints.setVisible(false);
+           AddPatients.setVisible(false);
+           jButton6.setVisible(true);
+           DashboardIcon.setVisible(false);
+           PatientsView.setVisible(true);
+        
+    }//GEN-LAST:event_jButton37ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+       
+        try {
+            EditPatients();
+            DeletePatients2();
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+
+       // get selected row index
+       
+       try{
+       int SelectedRowIndex = jTable5.getSelectedRow();
+       model.removeRow(SelectedRowIndex);
+       }catch(Exception ex)
+       {
+           JOptionPane.showMessageDialog(null, ex);
+       }
+            
+            JOptionPane.showConfirmDialog(null,
+                "Record Deleted Successfully",
+                "Done",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jButton36ActionPerformed
+       
+   
     /**
      * @param args the command line arguments
      */
@@ -3952,6 +4806,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static javax.swing.JPanel ComplaintsView;
     public static javax.swing.JPanel CreateUser;
     private javax.swing.JPanel DashboardIcon;
+    public static javax.swing.JPanel PatientsView;
     public static javax.swing.JPanel ReceivedMailView;
     public static javax.swing.JPanel Reports;
     public static javax.swing.JPanel UsersView;
@@ -3982,6 +4837,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     public static javax.swing.JButton jButton6;
@@ -4003,6 +4862,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    public static javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -4098,11 +4963,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -4115,6 +4983,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;

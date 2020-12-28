@@ -88,12 +88,14 @@ public class Main extends javax.swing.JFrame {
                         Dashboard objDashboard = new Dashboard();
                         Hidelogin();
                         objDashboard.setVisible(true);
+                        objDashboard.jLabel105.setText("Admin Panel");
                        }
                     
                      if (usertype == "Receptionist"&& status==true){
                         Dashboard objDashboard = new Dashboard();
                         Hidelogin();
                         objDashboard.setVisible(true);
+                        objDashboard.jLabel105.setText("Receptionist");
                        }
                      
                      if (usertype == "Medical Officer"&& status==true){
