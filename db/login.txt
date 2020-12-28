@@ -2,9 +2,13 @@ Admin,0000,Admin
 user,1111,Receptionist
 dew,0000,Patient
 Rakesh,0000,Patient
-farhan,9999,Patient
+farhan,1111,Patient
 Dasaw,432,Patient
 Dasaw1,1111,Patient
 web,3333,Patient
 DDDD,ddd,Medical Officer
 RRR,rrr,Receptionist
+farhan,0000,Patient
+Med3,3333,Medical Officer
+ff,ff,Patient
+bbb,bb,Patient

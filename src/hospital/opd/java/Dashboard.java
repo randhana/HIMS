@@ -538,7 +538,24 @@ public class Dashboard extends javax.swing.JFrame {
                    }
    }
     
-    
+   public String ChangePassword(){ 
+
+    int index = jTable2.getSelectedRow();
+       String Line = null;
+       TableModel model = jTable2.getModel();
+
+        String UserType = String.valueOf(model.getValueAt(index, 0).toString());
+        String username = String.valueOf(model.getValueAt(index, 1).toString());
+       
+        String id       = String.valueOf(model.getValueAt(index, 5).toString());
+       
+       Line = username+","+id+","+UserType;   //current text line
+       
+       jComboBox13.setSelectedItem(UserType);
+       jTextField34.setText(username);
+ 
+       return Line;
+  }    
     
     
     
@@ -577,7 +594,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPatients.setVisible(true);
         
@@ -619,7 +636,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddReceptionists.setVisible(true);
         
@@ -659,7 +676,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddMedicalOfficer.setVisible(true);
         
@@ -870,7 +887,7 @@ public class Dashboard extends javax.swing.JFrame {
              temp = thisline.split(",");
                 System.out.println(temp[0]);
             
-            model.addRow(new Object[]{ "MedicalOfficer",temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],"-","-",temp[8],temp[9],temp[10],temp[11]});
+            model.addRow(new Object[]{ "Medical Officer",temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],"-","-",temp[8],temp[9],temp[10],temp[11]});
 				
             
             }
@@ -878,7 +895,7 @@ public class Dashboard extends javax.swing.JFrame {
             //Patients details
             Plines = getPatientsfilecount();
             System.out.println("Count" +Plines);
-            for (int i=0; i<(Plines-3); i++){
+            for (int i=0; i<Plines; i++){
              thisline = PatientReader.readLine();
              temp = thisline.split(",");
                 System.out.println(temp[0]);
@@ -1074,7 +1091,56 @@ public class Dashboard extends javax.swing.JFrame {
                
    }
     
+  public void UpdateUserPasswords() throws FileNotFoundException, IOException{
     
+        String username = jTextField34.getText();
+        String password     = jPasswordField1.getText();
+        String usertype = jComboBox13.getSelectedItem().toString();
+
+        
+        String NewRowdata =username+","+password+","+usertype;
+        System.out.println("Newline="+NewRowdata);
+        
+        String CheckLine = ChangePassword();
+        
+        if (CheckLine != null){
+             System.out.println("INTHE IF CON");
+             
+        String filepath ="db\\login.txt";
+        Scanner sc = new Scanner(new File(filepath));
+        StringBuffer buffer = new StringBuffer();
+        
+        System.out.println("VcheckValue"+CheckLine);
+         
+         while (sc.hasNextLine()) {
+                        
+                        buffer.append(sc.nextLine()+System.lineSeparator());
+                        
+                     }
+                      String fileContents = buffer.toString();  
+                      System.out.println("Contents of the file: "+fileContents);  
+                        
+                        sc.close();
+                        String oldLine =CheckLine ;
+                        String newLine = NewRowdata;
+                            //Replacing the old line with new line
+                        fileContents = fileContents.replaceAll(oldLine, newLine);
+                        //instantiating the FileWriter class
+                        FileWriter writer = new FileWriter(filepath);
+                        System.out.println("");
+                        System.out.println("new data: "+fileContents);
+                        writer.append(fileContents);
+                        writer.flush();  
+                        
+                        
+                   }
+   }  
+  
+  
+  
+  
+  
+  
     
  public void UpdateVisitorRecords() throws IOException{
     
@@ -1774,6 +1840,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
+        jButton45 = new javax.swing.JButton();
         CreateUser = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
@@ -1813,7 +1880,18 @@ public class Dashboard extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
-        Reports = new javax.swing.JPanel();
+        ChangeUserPassword = new javax.swing.JPanel();
+        jLabel117 = new javax.swing.JLabel();
+        jLabel118 = new javax.swing.JLabel();
+        jComboBox13 = new javax.swing.JComboBox<>();
+        jLabel119 = new javax.swing.JLabel();
+        jLabel120 = new javax.swing.JLabel();
+        jLabel121 = new javax.swing.JLabel();
+        jTextField34 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jButton46 = new javax.swing.JButton();
+        jButton47 = new javax.swing.JButton();
         ReceivedMailView = new javax.swing.JPanel();
         jLabel90 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -2461,6 +2539,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel33.setText("Allergies:");
 
         jButton6.setBackground(new java.awt.Color(114, 190, 190));
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton6.setText("Save");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2469,6 +2548,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(114, 190, 190));
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton7.setText("Clear");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2482,6 +2562,7 @@ public class Dashboard extends javax.swing.JFrame {
         jTextField7.setToolTipText("");
 
         jButton19.setBackground(new java.awt.Color(114, 190, 190));
+        jButton19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton19.setText("Update");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2489,6 +2570,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton37.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton37.setText("Update");
         jButton37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2552,7 +2634,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPatientsLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton37)
                         .addGap(18, 18, 18)
                         .addComponent(jButton19)
                         .addGap(18, 18, 18)
@@ -3124,6 +3206,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton45.setText("Change Password");
+        jButton45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton45ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout UsersViewLayout = new javax.swing.GroupLayout(UsersView);
         UsersView.setLayout(UsersViewLayout);
         UsersViewLayout.setHorizontalGroup(
@@ -3133,11 +3222,14 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(UsersViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsersViewLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton45)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
                     .addComponent(jScrollPane6)
                     .addGroup(UsersViewLayout.createSequentialGroup()
                         .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3154,7 +3246,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(UsersViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -3565,20 +3658,104 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLayeredPane1.add(ComplaintsView, "card11");
 
-        Reports.setBackground(new java.awt.Color(255, 255, 255));
+        ChangeUserPassword.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout ReportsLayout = new javax.swing.GroupLayout(Reports);
-        Reports.setLayout(ReportsLayout);
-        ReportsLayout.setHorizontalGroup(
-            ReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 940, Short.MAX_VALUE)
+        jLabel117.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 19)); // NOI18N
+        jLabel117.setText("Change  Passwords");
+
+        jLabel118.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 18)); // NOI18N
+        jLabel118.setText("User Type:");
+
+        jComboBox13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox13.setMaximumRowCount(3);
+        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medical Officer", "Receptionist", "Patient" }));
+
+        jLabel119.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 18)); // NOI18N
+        jLabel119.setText("UserName:");
+
+        jLabel120.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 18)); // NOI18N
+        jLabel120.setText("New Password:");
+
+        jLabel121.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 18)); // NOI18N
+        jLabel121.setText("Confirm Password:");
+
+        jButton46.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton46.setText("Submit");
+        jButton46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton46ActionPerformed(evt);
+            }
+        });
+
+        jButton47.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton47.setText("Back");
+        jButton47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton47ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ChangeUserPasswordLayout = new javax.swing.GroupLayout(ChangeUserPassword);
+        ChangeUserPassword.setLayout(ChangeUserPasswordLayout);
+        ChangeUserPasswordLayout.setHorizontalGroup(
+            ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangeUserPasswordLayout.createSequentialGroup()
+                .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ChangeUserPasswordLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel117, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ChangeUserPasswordLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel118, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel119, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel121))
+                        .addGap(104, 104, 104)
+                        .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBox13, javax.swing.GroupLayout.Alignment.LEADING, 0, 181, Short.MAX_VALUE)
+                                .addComponent(jTextField34, javax.swing.GroupLayout.Alignment.LEADING)))))
+                .addContainerGap(327, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangeUserPasswordLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton46)
+                .addGap(41, 41, 41)
+                .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
-        ReportsLayout.setVerticalGroup(
-            ReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        ChangeUserPasswordLayout.setVerticalGroup(
+            ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChangeUserPasswordLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ChangeUserPasswordLayout.createSequentialGroup()
+                        .addComponent(jLabel117, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel118, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel119, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel121, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(ChangeUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
         );
 
-        jLayeredPane1.add(Reports, "card12");
+        jLayeredPane1.add(ChangeUserPassword, "card12");
 
         ReceivedMailView.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -4320,7 +4497,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(true);
         jButton5.setVisible(false);
 
@@ -4356,7 +4533,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
 
@@ -4385,7 +4562,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddAppointments.setVisible(true);
         jButton5.setVisible(false);
@@ -4424,7 +4601,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(true);
         jButton3.setVisible(true);
         jButton5.setVisible(false);
@@ -4452,7 +4629,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ComplaintsView.setVisible(true);
         
@@ -4512,7 +4689,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddAppointments.setVisible(true);
         
@@ -4551,9 +4728,10 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         PatientsView.setVisible(true);
+        
         
         
         
@@ -4612,7 +4790,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
         
@@ -4653,10 +4831,10 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
-        
+       
         
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -4682,10 +4860,10 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
-        
+       
             
         } catch (IOException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
@@ -4728,7 +4906,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
         
@@ -4790,7 +4968,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
         
@@ -4808,7 +4986,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // UserView Add Button
-           DashboardIcon.setVisible(false);
+        DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -4821,7 +4999,7 @@ public class Dashboard extends javax.swing.JFrame {
         ComplaintsView.setVisible(false);
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         CreateUser.setVisible(true);
         
@@ -4926,7 +5104,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPatients.setVisible(true);
         
@@ -4950,7 +5128,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPatients.setVisible(true);
         
@@ -4974,7 +5152,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddReceptionists.setVisible(true);
         
@@ -4998,7 +5176,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddReceptionists.setVisible(true);
         
@@ -5023,7 +5201,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddMedicalOfficer.setVisible(true);
         
@@ -5046,7 +5224,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddMedicalOfficer.setVisible(true);
         
@@ -5068,6 +5246,23 @@ public class Dashboard extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+
+       // get selected row index
+
+       try{
+       int SelectedRowIndex = jTable2.getSelectedRow();
+       model.removeRow(SelectedRowIndex);
+       }catch(Exception ex)
+       {
+           JOptionPane.showMessageDialog(null, ex);
+       }
+            
+            JOptionPane.showConfirmDialog(null,
+                "Record Deleted Successfully",
+                "Done",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
@@ -5103,7 +5298,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ComplaintsView.setVisible(true);
         
@@ -5132,7 +5327,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddComplaints.setVisible(true);
         
@@ -5159,7 +5354,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddComplaints.setVisible(true);
         
@@ -5189,7 +5384,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ComplaintsView.setVisible(true);
         
@@ -5318,7 +5513,7 @@ public class Dashboard extends javax.swing.JFrame {
         ComplaintsView.setVisible(false);
         VisitorView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ReceivedMailView.setVisible(true);
         
@@ -5349,7 +5544,7 @@ public class Dashboard extends javax.swing.JFrame {
         ComplaintsView.setVisible(false);
         VisitorView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ReceivedMailView.setVisible(true);
         
@@ -5374,7 +5569,7 @@ public class Dashboard extends javax.swing.JFrame {
         ComplaintsView.setVisible(false);
         VisitorView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ReceivedMailView.setVisible(true);
         
@@ -5395,7 +5590,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPostal.setVisible(true);
         
@@ -5421,7 +5616,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPostal.setVisible(true);
         
@@ -5472,7 +5667,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPatients.setVisible(true);
         
@@ -5497,7 +5692,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddPatients.setVisible(true);
         
@@ -5527,9 +5722,10 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         PatientsView.setVisible(false);
+        
         
         jButton37.setVisible(false);
         
@@ -5598,7 +5794,7 @@ public class Dashboard extends javax.swing.JFrame {
         ComplaintsView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         VisitorView.setVisible(true);
         
@@ -5656,7 +5852,7 @@ public class Dashboard extends javax.swing.JFrame {
         VisitorView.setVisible(false);
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
-        Reports.setVisible(false);
+        ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         AddVisitor.setVisible(true);
         
@@ -5760,9 +5956,106 @@ public class Dashboard extends javax.swing.JFrame {
         ReceivedMailView.setVisible(false);
         CreateUser.setVisible(false);
         AppointmentView.setVisible(false);
-        Reports.setVisible(true);
+        ChangeUserPassword.setVisible(true);
         
     }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
+        // Change password
+        
+        ChangePassword();
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        AppointmentView.setVisible(false);
+        ChangeUserPassword.setVisible(true);
+       
+    }//GEN-LAST:event_jButton45ActionPerformed
+
+    private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
+         // password submit button
+         JFrame f;
+         String psw1= jPasswordField1.getText();
+         String psw2 = jPasswordField2.getText();
+         if (psw1.equals(psw2)){
+             System.out.println("password equal");
+        try {
+           
+            UpdateUserPasswords();
+            JOptionPane.showConfirmDialog(null,
+                "Password changed Successfully",
+                "Done",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+            
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+        
+            
+            
+            
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         } 
+         else {
+         System.out.println("password not equal");
+         f=new JFrame(); 
+         JOptionPane.showMessageDialog(f,"These passwords didn't match.","Try Again",JOptionPane.WARNING_MESSAGE);
+         jPasswordField1.setText("");
+         jPasswordField2.setText("");
+         
+         }
+    }//GEN-LAST:event_jButton46ActionPerformed
+
+    private void jButton47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton47ActionPerformed
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+        
+    }//GEN-LAST:event_jButton47ActionPerformed
        
    
     /**
@@ -5804,6 +6097,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static javax.swing.JPanel AddReceptionists;
     public static javax.swing.JPanel AddVisitor;
     private javax.swing.JPanel AppointmentView;
+    public static javax.swing.JPanel ChangeUserPassword;
     public static javax.swing.JPanel ComplaintsView;
     public static javax.swing.JPanel CreateUser;
     private javax.swing.JPanel DashboardIcon;
@@ -5817,7 +6111,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField PhoneNumber;
     private javax.swing.JTextArea Purpose;
     public static javax.swing.JPanel ReceivedMailView;
-    public static javax.swing.JPanel Reports;
     public static javax.swing.JPanel UsersView;
     public static javax.swing.JPanel VisitorView;
     private javax.swing.JButton jButton1;
@@ -5859,6 +6152,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton44;
+    private javax.swing.JButton jButton45;
+    private javax.swing.JButton jButton46;
+    private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton5;
     public static javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -5868,6 +6164,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox jComboBox12;
+    private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -5897,7 +6194,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
+    private javax.swing.JLabel jLabel118;
+    private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel120;
+    private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -5997,6 +6299,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -6047,6 +6351,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
