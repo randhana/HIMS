@@ -14,10 +14,10 @@ The Hospital Management System can be entered using a username and password. It 
 UserName:  Admin <br>
 Password:  0000 <br>
 
-<b>Patients Login</b>     
+<b>Patients Login</b>  
 
-Username: Kasun<br>     
-Password: 990450567V<br>  
+Username: Kasun <br>     
+Password: 990450567V <br>  
 
 
 
