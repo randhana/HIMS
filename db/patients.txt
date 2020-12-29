@@ -1,8 +1,1 @@
-dew,john Wing,Male,222,22,2,22,Single,O+,no
-Gentlk,AA12,Male,dawd,daw42,21332,sgsefse,Single,A+,ead
-BB32,Sanjana,Female,grdhd,3424234242342X,12/08/2009,gerter,Single,A+,no
-ZZZ,Zoldi,Male,3424,4,34324,fdsfs,Single,A+,ead
-farhan,111,Male,11111,9999,4543,esfs,Single,A+,dwad
-Dasaw,f2,Male,342,432,4324234423,2342,Single,A+,4322
-Dasaw1,f2,Male,342,1111,4324234423,2342,Single,A+,4322
-web,fesf,Male,fsefs,3333,feffes,fesf,Single,A+,fse
+Kasun,Kasun Perera,Male,0782354678,990450567V,12/04/1998,Galle,Single,A-,no

@@ -13,6 +13,7 @@ import Class.Receptionists;
 import Class.Visiters;
 import Class.complaints;
 import Class.postal;
+import java.awt.Component;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,6 +41,7 @@ import javax.swing.table.TableModel;
 public class Dashboard extends javax.swing.JFrame {
 
     private Scanner x;
+    private Component frame;
     
     public List<String> getPatientsList() throws FileNotFoundException, IOException {
          int Plines;
@@ -169,12 +171,12 @@ public class Dashboard extends javax.swing.JFrame {
       return Mlines;
     }
     
-    public void detailsView(String Fileparth){
+    public void detailsView(String Fileparth) throws FileNotFoundException{
         
          String fileparth=Fileparth;
          File file;
          file = new File(fileparth);
-         try {
+         
             BufferedReader brr=new BufferedReader(new FileReader(file));
             //String firstline=brr.readLine().trim();
            // String []ColumsName=firstline.split(",");
@@ -191,23 +193,17 @@ public class Dashboard extends javax.swing.JFrame {
                  String[] datarow=line.split(",");
                  model1.addRow(datarow);
              }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
         
-        
-        } 
         
         
     }
     
-    public void VisitorsdetailsView(String Fileparth){
+    public void VisitorsdetailsView(String Fileparth) throws FileNotFoundException{
         
          String fileparth=Fileparth;
          File file;
          file = new File(fileparth);
-         try {
+         
             BufferedReader brr=new BufferedReader(new FileReader(file));
             //String firstline=brr.readLine().trim();
            // String []ColumsName=firstline.split(",");
@@ -224,13 +220,7 @@ public class Dashboard extends javax.swing.JFrame {
                  String[] datarow=line.split(",");
                  model1.addRow(datarow);
              }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
         
-        
-        } 
         
         
     }
@@ -239,12 +229,12 @@ public class Dashboard extends javax.swing.JFrame {
     
     
     
-    public void ComplaintdetailsView(String Fileparth){
+    public void ComplaintdetailsView(String Fileparth) throws FileNotFoundException{
         
          String fileparth=Fileparth;
          File file;
          file = new File(fileparth);
-         try {
+         
             BufferedReader brr=new BufferedReader(new FileReader(file));
             //String firstline=brr.readLine().trim();
            // String []ColumsName=firstline.split(",");
@@ -261,24 +251,18 @@ public class Dashboard extends javax.swing.JFrame {
                  String[] datarow=line.split(",");
                  model1.addRow(datarow);
              }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
         
-        
-        } 
         
         
     }
     
     
-   public void ReceivedMaildetailsView(String Fileparth){
+   public void ReceivedMaildetailsView(String Fileparth) throws FileNotFoundException{
         
          String fileparth=Fileparth;
          File file;
          file = new File(fileparth);
-         try {
+        
             BufferedReader brr=new BufferedReader(new FileReader(file));
             //String firstline=brr.readLine().trim();
            // String []ColumsName=firstline.split(",");
@@ -295,13 +279,7 @@ public class Dashboard extends javax.swing.JFrame {
                  String[] datarow=line.split(",");
                  model1.addRow(datarow);
              }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        
-        
-        } 
+       
         
         
     }
@@ -808,12 +786,12 @@ public class Dashboard extends javax.swing.JFrame {
        return OldLine;
        }
  
-     public void PatientsdetailsView(String Fileparth){
+     public void PatientsdetailsView(String Fileparth) throws FileNotFoundException{
         
          String fileparth=Fileparth;
          File file;
          file = new File(fileparth);
-         try {
+         
             BufferedReader brr=new BufferedReader(new FileReader(file));
             //String firstline=brr.readLine().trim();
            // String []ColumsName=firstline.split(",");
@@ -830,13 +808,7 @@ public class Dashboard extends javax.swing.JFrame {
                  String[] datarow=line.split(",");
                  model1.addRow(datarow);
              }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddVisiters.class.getName()).log(Level.SEVERE, null, ex);
-        
-        
-        } 
+         
         
         
     }
@@ -2116,11 +2088,28 @@ public class Dashboard extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
         });
         DashboardIcon.add(jLabel3);
         jLabel3.setBounds(60, 331, 200, 200);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/complaint.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
         DashboardIcon.add(jLabel4);
         jLabel4.setBounds(357, 311, 230, 230);
 
@@ -2129,21 +2118,57 @@ public class Dashboard extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel5MouseExited(evt);
+            }
         });
         DashboardIcon.add(jLabel5);
         jLabel5.setBounds(353, 10, 250, 223);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/appointments.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel6MouseExited(evt);
+            }
+        });
         DashboardIcon.add(jLabel6);
         jLabel6.setBounds(45, 11, 259, 230);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/repo edited.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
         DashboardIcon.add(jLabel7);
         jLabel7.setBounds(670, 0, 230, 240);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/exit.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel8MouseExited(evt);
+            }
+        });
         DashboardIcon.add(jLabel8);
-        jLabel8.setBounds(697, 338, 173, 194);
+        jLabel8.setBounds(697, 338, 200, 194);
 
         jLabel64.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel64.setText("Appointments");
@@ -2152,6 +2177,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel65.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel65.setText("Patients");
+        jLabel65.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel65MouseClicked(evt);
+            }
+        });
         DashboardIcon.add(jLabel65);
         jLabel65.setBounds(440, 247, 145, 41);
 
@@ -2163,6 +2193,9 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel67.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel67.setText("Users");
         jLabel67.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel67MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel67MouseEntered(evt);
             }
@@ -2172,6 +2205,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel68.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel68.setText("Complaints");
+        jLabel68.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel68MouseClicked(evt);
+            }
+        });
         DashboardIcon.add(jLabel68);
         jLabel68.setBounds(430, 550, 145, 41);
 
@@ -2297,6 +2335,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton11.setText("Clear");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setText("Update");
@@ -2336,8 +2379,9 @@ public class Dashboard extends javax.swing.JFrame {
                                     .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jTextField13)
                                         .addComponent(jTextField12)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(509, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(286, 286, 286)))
+                .addContainerGap(223, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddAppointmentsLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2495,7 +2539,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         jTextField3.setToolTipText("");
 
-        jComboBox1.setBackground(new java.awt.Color(136, 216, 216));
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox1.setMaximumRowCount(2);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
@@ -2519,11 +2562,9 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Address:");
 
-        jComboBox2.setBackground(new java.awt.Color(136, 216, 216));
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
 
-        jComboBox3.setBackground(new java.awt.Color(136, 216, 216));
         jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox3.setMaximumRowCount(4);
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Married", "Separated", "Divorced" }));
@@ -2537,7 +2578,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel33.setText("Allergies:");
 
-        jButton6.setBackground(new java.awt.Color(114, 190, 190));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton6.setText("Save");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -2560,7 +2601,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jTextField7.setToolTipText("");
 
-        jButton19.setBackground(new java.awt.Color(114, 190, 190));
+        jButton19.setBackground(new java.awt.Color(255, 255, 255));
         jButton19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton19.setText("Update");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -2772,6 +2813,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel48.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         jLabel48.setText("Add Medical Officer");
 
+        jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton9.setText("Update");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2779,6 +2821,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton10.setText("Save");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2786,7 +2829,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton12.setText("Clear");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AddMedicalOfficerLayout = new javax.swing.GroupLayout(AddMedicalOfficer);
         AddMedicalOfficer.setLayout(AddMedicalOfficerLayout);
@@ -2998,6 +3047,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel61.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
         jLabel61.setText("Profile Picture");
 
+        jButton14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton14.setText("Update");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3005,6 +3055,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton15.setText("Save");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3012,7 +3063,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setText("Cancel");
+        jButton16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton16.setText("Clear");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -3442,7 +3494,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton23.setText("Close");
+        jButton23.setText("Clear");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton23ActionPerformed(evt);
@@ -3855,22 +3907,22 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel91.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel91.setText("Postal Details");
 
-        jLabel92.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel92.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel92.setText("Referenses Number");
 
-        jLabel93.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel93.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel93.setText("From Address");
 
-        jLabel94.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel94.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel94.setText("Note");
 
-        jLabel95.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel95.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel95.setText("To Name");
 
-        jLabel96.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel96.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel96.setText("Date");
 
-        jLabel97.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel97.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel97.setText("Mail is");
 
         jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Received", "Dispatched" }));
@@ -3881,6 +3933,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton31.setText("Save");
         jButton31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3888,6 +3941,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton32.setText("Update");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3895,7 +3949,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton33.setText("Clear");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AddPostalLayout = new javax.swing.GroupLayout(AddPostal);
         AddPostal.setLayout(AddPostalLayout);
@@ -3903,37 +3963,43 @@ public class Dashboard extends javax.swing.JFrame {
             AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddPostalLayout.createSequentialGroup()
                 .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddPostalLayout.createSequentialGroup()
-                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(AddPostalLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(AddPostalLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField30, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                .addComponent(jTextField31)
-                                .addComponent(jTextField32)
-                                .addComponent(jTextField33)
-                                .addComponent(jTextField26))
-                            .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 572, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPostalLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton32)
                         .addGap(18, 18, 18)
                         .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddPostalLayout.createSequentialGroup()
+                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(AddPostalLayout.createSequentialGroup()
+                                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(AddPostalLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(AddPostalLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(AddPostalLayout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPostalLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextField31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField26, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(0, 562, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         AddPostalLayout.setVerticalGroup(
@@ -3942,23 +4008,23 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddPostalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -4172,25 +4238,25 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel107.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel107.setText("Visitor Details");
 
-        jLabel108.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel108.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel108.setText("Note:");
 
-        jLabel109.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel109.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel109.setText("Out Time:");
 
-        jLabel110.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel110.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel110.setText("In Time:");
 
-        jLabel111.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel111.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel111.setText("ID Number:");
 
-        jLabel112.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel112.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel112.setText("Phone Number:");
 
-        jLabel113.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel113.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel113.setText("Name:");
 
-        jLabel114.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel114.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel114.setText("Daucument:");
 
         jButton41.setBackground(new java.awt.Color(215, 227, 242));
@@ -4205,14 +4271,14 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jButton43.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton43.setText("Cancel");
+        jButton43.setText("Clear");
         jButton43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton43ActionPerformed(evt);
             }
         });
 
-        jLabel115.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel115.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel115.setText("Purpose:");
 
         Purpose.setColumns(20);
@@ -4227,7 +4293,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel116.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jLabel116.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel116.setText("Date:");
 
         javax.swing.GroupLayout AddVisitorLayout = new javax.swing.GroupLayout(AddVisitor);
@@ -4320,7 +4386,7 @@ public class Dashboard extends javax.swing.JFrame {
                             .addGroup(AddVisitorLayout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(AddVisitorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4340,9 +4406,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel109, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(AddVisitorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -4505,7 +4571,11 @@ public class Dashboard extends javax.swing.JFrame {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         
         
-           detailsView("db\\Appointments.txt");
+        try {
+            detailsView("db\\Appointments.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         try {
@@ -4538,14 +4608,17 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        
+            
         try {
-            jButton5.setVisible(false);
-            jButton3.setVisible(true);
             getPatientsList();
             getMedicalOffList();
         } catch (IOException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+            jButton5.setVisible(false);
+            jButton3.setVisible(true);
        
         
         DashboardIcon.setVisible(false);
@@ -4584,26 +4657,80 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
             
-            UpdateAppointments();
+            int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                
+              UpdateAppointments();
+              
+              DashboardIcon.setVisible(false);
+               AddAppointments.setVisible(false);
+               AddMedicalOfficer.setVisible(false);
+                AddPatients.setVisible(false);
+               AddComplaints.setVisible(false);
+                AddPostal.setVisible(false);
+                AddVisitor.setVisible(false);
+                AddReceptionists.setVisible(false);
+                PatientsView.setVisible(false);
+                UsersView.setVisible(false);
+                ComplaintsView.setVisible(false);
+                VisitorView.setVisible(false);
+                ReceivedMailView.setVisible(false);
+                CreateUser.setVisible(false);
+                 ChangeUserPassword.setVisible(false);
+                 AppointmentView.setVisible(true);
+                 jButton3.setVisible(true);
+                 jButton5.setVisible(false);
+              
+              
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               DashboardIcon.setVisible(false);
+               AddAppointments.setVisible(false);
+               AddMedicalOfficer.setVisible(false);
+                AddPatients.setVisible(false);
+               AddComplaints.setVisible(false);
+                AddPostal.setVisible(false);
+                AddVisitor.setVisible(false);
+                AddReceptionists.setVisible(false);
+                PatientsView.setVisible(false);
+                UsersView.setVisible(false);
+                ComplaintsView.setVisible(false);
+                VisitorView.setVisible(false);
+                ReceivedMailView.setVisible(false);
+                CreateUser.setVisible(false);
+                 ChangeUserPassword.setVisible(false);
+                 AppointmentView.setVisible(true);
+                 jButton3.setVisible(true);
+                 jButton5.setVisible(false);
+            }else {
+                  DashboardIcon.setVisible(false);
+               AddAppointments.setVisible(false);
+               AddMedicalOfficer.setVisible(false);
+                AddPatients.setVisible(false);
+               AddComplaints.setVisible(false);
+                AddPostal.setVisible(false);
+                AddVisitor.setVisible(false);
+                AddReceptionists.setVisible(false);
+                PatientsView.setVisible(false);
+                UsersView.setVisible(false);
+                ComplaintsView.setVisible(false);
+                VisitorView.setVisible(false);
+                ReceivedMailView.setVisible(false);
+                CreateUser.setVisible(false);
+                 ChangeUserPassword.setVisible(false);
+                 AppointmentView.setVisible(true);
+                 jButton3.setVisible(true);
+                 jButton5.setVisible(false);
+                
+     }
             
-        DashboardIcon.setVisible(false);
-        AddAppointments.setVisible(false);
-        AddMedicalOfficer.setVisible(false);
-        AddPatients.setVisible(false);
-        AddComplaints.setVisible(false);
-        AddPostal.setVisible(false);
-        AddVisitor.setVisible(false);
-        AddReceptionists.setVisible(false);
-        PatientsView.setVisible(false);
-        UsersView.setVisible(false);
-        ComplaintsView.setVisible(false);
-        VisitorView.setVisible(false);
-        ReceivedMailView.setVisible(false);
-        CreateUser.setVisible(false);
-        ChangeUserPassword.setVisible(false);
-        AppointmentView.setVisible(true);
-        jButton3.setVisible(true);
-        jButton5.setVisible(false);
+            
+            
+            
+       
             
             
         } catch (IOException ex) {
@@ -4612,8 +4739,12 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-      //Complaints
-      ComplaintdetailsView("db\\Complaints.txt");
+        try {
+            //Complaints
+            ComplaintdetailsView("db\\Complaints.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
         DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
@@ -4737,12 +4868,27 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
+       jTextField7.setText(""); 
+       jTextField3.setText("");
+       jComboBox1.setSelectedIndex(0);
+       jTextField4.setText("");
+       jTextField5.setText("");
+       jTextField6.setText("");
+       jTextArea1.setText("");
+       jComboBox2.setSelectedIndex(0);
+       jComboBox3.setSelectedIndex(0);
+       jTextField9.setText("");
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        //patient on dashboard icon
-        PatientsdetailsView("db\\patients.txt");
+        try {
+            //patient on dashboard icon
+            PatientsdetailsView("db\\patients.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
        AppointmentView.setVisible(false);
@@ -4766,17 +4912,19 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         try {
             // Medical Officer's Update button
-            UpdateMedicalOfficers();
             
-            
-           
-            JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           DashboardIcon.setVisible(false);
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                UpdateMedicalOfficers();
+                
+                
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -4792,6 +4940,35 @@ public class Dashboard extends javax.swing.JFrame {
         ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
+            }else {
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+            }
+           
+            
+            
+           
+            JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
         
            
         
@@ -4841,12 +5018,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         try {
             // Receptionist's upadate button
-
-            UpdateReceptionists();
-            
-         JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
-         
-           DashboardIcon.setVisible(false);
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+               UpdateReceptionists();
+               DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -4862,6 +5040,49 @@ public class Dashboard extends javax.swing.JFrame {
         ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
+               
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+            }else {
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+            }
+            
+            
+         
+         
+           
        
             
         } catch (IOException ex) {
@@ -4916,7 +5137,21 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        jTextField17.setText("");
+        jTextField18.setText("");
+        jComboBox9.setSelectedIndex(0);
+        jTextField19.setText("");
+        jTextField20.setText("");
+        jTextField21.setText("");
+        jTextArea4.setText("");
+        jComboBox10.setSelectedIndex(0);
+        jTextField22.setText("");
+        jTextField23.setText("");
+        jTextField24.setText("");
+        
+        
+        
+        
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -4949,11 +5184,13 @@ public class Dashboard extends javax.swing.JFrame {
        // Update button Patient's
         try {
             
-            UpdatePatients();
-            
-            //JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
-            
-           DashboardIcon.setVisible(false);
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+               UpdatePatients();
+               DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -4969,6 +5206,50 @@ public class Dashboard extends javax.swing.JFrame {
         ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         UsersView.setVisible(true);
+               
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+            }else {
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        UsersView.setVisible(true);
+            }
+            
+            
+            
+            //JOptionPane.showConfirmDialog(null,"Do you want to save changes?");
+            
+           
         
            jButton6.setVisible(true);
         } catch (IOException ex) {
@@ -5305,9 +5586,15 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        int a=JOptionPane.showConfirmDialog(null, "do you really wanto close this appplication","select",JOptionPane.YES_NO_OPTION);
-        if (a==0);
-        System.exit(0);
+        
+        jTextField25.setText("");
+        jComboBox11.setSelectedIndex(0);
+        jTextField27.setText("");
+        jTextField28.setText("");
+        jTextField29.setText("");
+        jTextArea5.setText("");
+        
+        
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
@@ -5363,13 +5650,14 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         try {
             // Complaints Update Button
-            UpdateComplaints();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        DashboardIcon.setVisible(false);
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                UpdateComplaints();
+                
+                DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -5385,6 +5673,51 @@ public class Dashboard extends javax.swing.JFrame {
         ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ComplaintsView.setVisible(true);
+                
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        ComplaintsView.setVisible(true);
+            }else {
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        ComplaintsView.setVisible(true);
+            }
+           
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
     }//GEN-LAST:event_jButton27ActionPerformed
 
@@ -5523,13 +5856,14 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         
         try {
-            UpdateReceivedmailRecords();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        DashboardIcon.setVisible(false);
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+               UpdateReceivedmailRecords();
+               
+               DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -5545,14 +5879,63 @@ public class Dashboard extends javax.swing.JFrame {
         ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         ReceivedMailView.setVisible(true);
+               
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        ReceivedMailView.setVisible(true);
+            }else {
+                DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        ReceivedMailView.setVisible(true);
+            }
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
         ClearPostal();
         
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        //Postal Records
-        ReceivedMaildetailsView("db\\DispatchedMail.txt");
+        try {
+            //Postal Records
+            ReceivedMaildetailsView("db\\DispatchedMail.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
@@ -5702,12 +6085,15 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
         try {
-            UpdatePatientsButton2();
             
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           DashboardIcon.setVisible(false);
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+               UpdatePatientsButton2();
+               
+               DashboardIcon.setVisible(false);
         AddAppointments.setVisible(false);
         AddMedicalOfficer.setVisible(false);
         AddPatients.setVisible(false);
@@ -5723,6 +6109,53 @@ public class Dashboard extends javax.swing.JFrame {
         ChangeUserPassword.setVisible(false);
         AppointmentView.setVisible(false);
         PatientsView.setVisible(false);
+               
+               
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+                DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        UsersView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        PatientsView.setVisible(false);
+            }else {
+                DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        UsersView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        PatientsView.setVisible(false);
+            }
+            
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
         
         
         jButton37.setVisible(false);
@@ -5800,20 +6233,30 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
-        int a=JOptionPane.showConfirmDialog(null, "do you really wanto close this appplication","select",JOptionPane.YES_NO_OPTION);
-        if (a==0);
-        System.exit(0);
+        
+        Name.setText("");
+        PhoneNumber.setText("");
+        Id.setText("");
+        Date.setText("");
+        InTime.setText("");
+        OutTime.setText("");
+        Note.setText("");
+        Purpose.setText("");
+        
     }//GEN-LAST:event_jButton43ActionPerformed
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
         try {
             //Visitor update button
-            UpdateVisitorRecords();
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
-           UsersView.setVisible(false);
+            
+                    
+       int result = JOptionPane.showConfirmDialog(frame,"Do you want to save changes?", "Alert",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                UpdateVisitorRecords();
+                
+                UsersView.setVisible(false);
            AddAppointments.setVisible(false);
            AppointmentView.setVisible(false);
            AddPatients.setVisible(false);
@@ -5829,6 +6272,50 @@ public class Dashboard extends javax.swing.JFrame {
            PatientsView.setVisible(false);
            AddVisitor.setVisible(false);
            VisitorView.setVisible(true);
+           
+                
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+               UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           AddComplaints.setVisible(false);
+           AddPatients.setVisible(false);
+           DashboardIcon.setVisible(false);
+           AddComplaints.setVisible(false);
+           CreateUser.setVisible(false);
+           AddPostal.setVisible(false);
+           ComplaintsView.setVisible(false);
+           PatientsView.setVisible(false);
+           AddVisitor.setVisible(false);
+           VisitorView.setVisible(true);
+            }else {
+               UsersView.setVisible(false);
+           AddAppointments.setVisible(false);
+           AppointmentView.setVisible(false);
+           AddPatients.setVisible(false);
+           AddReceptionists.setVisible(false);
+           AddMedicalOfficer.setVisible(false);
+           AddComplaints.setVisible(false);
+           AddPatients.setVisible(false);
+           DashboardIcon.setVisible(false);
+           AddComplaints.setVisible(false);
+           CreateUser.setVisible(false);
+           AddPostal.setVisible(false);
+           ComplaintsView.setVisible(false);
+           PatientsView.setVisible(false);
+           AddVisitor.setVisible(false);
+           VisitorView.setVisible(true);
+            }
+           
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
            
            
       
@@ -5861,8 +6348,12 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        // Visitor button
-        VisitorsdetailsView("db\\Visiters.txt");
+        try {
+            // Visitor button
+            VisitorsdetailsView("db\\Visiters.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
            UsersView.setVisible(false);
            AddAppointments.setVisible(false);
@@ -6054,6 +6545,247 @@ public class Dashboard extends javax.swing.JFrame {
         UsersView.setVisible(true);
         
     }//GEN-LAST:event_jButton47ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        try {
+            detailsView("db\\Appointments.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        try {
+            
+            getPatientsList();
+            getMedicalOffList();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        ComplaintsView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel65MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel65MouseClicked
+        try {
+            //patient on dashboard icon
+            PatientsdetailsView("db\\patients.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+       AppointmentView.setVisible(false);
+       CreateUser.setVisible(false); 
+       AddAppointments.setVisible(false);
+       AddReceptionists.setVisible(false);
+       AddMedicalOfficer.setVisible(false);
+       DashboardIcon.setVisible (false);
+       UsersView.setVisible(false);
+       ComplaintsView.setVisible(false);
+       AddComplaints.setVisible(false);
+       AddPatients.setVisible(false);
+       AddPostal.setVisible(false);
+       PatientsView.setVisible(true);
+    }//GEN-LAST:event_jLabel65MouseClicked
+
+    private void jLabel67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel67MouseClicked
+         try {
+            //UserView Table2
+
+            UserDetailsView();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      AppointmentView.setVisible(false);
+       AddPatients.setVisible(false);
+       AddAppointments.setVisible(false);
+       AddReceptionists.setVisible(false);
+       AddMedicalOfficer.setVisible(false);
+       DashboardIcon.setVisible (false);
+       AddComplaints.setVisible(false);
+       UsersView.setVisible(true);
+    }//GEN-LAST:event_jLabel67MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        try {
+            //Complaints
+            ComplaintdetailsView("db\\Complaints.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        ComplaintsView.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel68MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel68MouseClicked
+        try {
+            //Complaints
+            ComplaintdetailsView("db\\Complaints.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        DashboardIcon.setVisible(false);
+        AddAppointments.setVisible(false);
+        AddMedicalOfficer.setVisible(false);
+        AddPatients.setVisible(false);
+        AddComplaints.setVisible(false);
+        AddPostal.setVisible(false);
+        AddVisitor.setVisible(false);
+        AddReceptionists.setVisible(false);
+        PatientsView.setVisible(false);
+        UsersView.setVisible(false);
+        VisitorView.setVisible(false);
+        ReceivedMailView.setVisible(false);
+        CreateUser.setVisible(false);
+        ChangeUserPassword.setVisible(false);
+        AppointmentView.setVisible(false);
+        ComplaintsView.setVisible(true);
+    }//GEN-LAST:event_jLabel68MouseClicked
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+       jLabel100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
+        jLabel98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel6MouseEntered
+
+    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
+       jLabel98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel6MouseExited
+
+    private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
+       jLabel99.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel5MouseEntered
+
+    private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
+        jLabel99.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel5MouseExited
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        
+        jLabel100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel7MouseExited
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+       jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+         jLabel102.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        jLabel102.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/layout past.png")));
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+        jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/opd/java/photoes/Buutons/medilayout pre.png")));
+    }//GEN-LAST:event_jLabel8MouseExited
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+         
+        // Sign Out
+        int result = JOptionPane.showConfirmDialog(frame,"Sure? You want to exit?", "Sign Out",
+               JOptionPane.YES_NO_CANCEL_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+              this.setVisible(false);
+              Main login = new Main();
+              login.setVisible(true);
+            }else if (result == JOptionPane.NO_OPTION){
+               
+            }else if (result == JOptionPane.CANCEL_OPTION){
+              
+            }else {
+               
+            }
+       
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jTextField12.setText("");
+        jTextField13.setText("");
+        jTextArea3.setText("");
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+       jTextField1.setText("");
+       jTextField2.setText("");
+       jComboBox6.setSelectedIndex(0);
+       jTextField8.setText("");
+       jTextField10.setText("");
+       jTextField11.setText("");
+       jTextArea2.setText("");
+       jComboBox7.setSelectedIndex(0);
+       jTextField14.setText("");
+       jTextField15.setText("");
+       jTextField16.setText("");
+       jComboBox8.setSelectedIndex(0);
+       
+       
+        
+        
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        
+        jTextField26.setText("");
+        jTextField30.setText("");
+        jTextField31.setText("");
+        jTextField32.setText("");
+        jTextField33.setText("");
+        jComboBox12.setSelectedIndex(1);
+        
+        
+    }//GEN-LAST:event_jButton33ActionPerformed
        
    
     /**
