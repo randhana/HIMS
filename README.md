@@ -16,7 +16,7 @@ Password:  0000 <br>
 
 <b>Patients Login</b>  
 
-Username: Kasun <br>     
+Username: Kasun   
 Password: 990450567V <br>  
 
 
