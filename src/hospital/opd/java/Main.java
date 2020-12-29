@@ -130,8 +130,14 @@ public class Main extends javax.swing.JFrame {
                                 obj.putTextNow(jLabel20,Patientsblock[4]);
                                 obj.putTextNow(jLabel13,Patientsblock[3]);
                                 
-                                obj.setVisible(true);
                                 obj.jPanel3.setVisible(false);
+                                obj.jPanel4.setVisible(false);
+                                obj.jPanel6.setVisible(false);
+                                obj.jPanel5.setVisible(true);
+        
+                                obj.setVisible(true);
+                                
+                                
                                 
                             
                             }

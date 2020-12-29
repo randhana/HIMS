@@ -59,14 +59,14 @@ public class Dashboard extends javax.swing.JFrame {
          for (int i=0; i<(Plines-3); i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
-             //PatientsNamesList = thisline.split(",");
+             
              PatientsNamesList.add(i, temp[1]);
              temp2[i] = PatientsNamesList.get(i);
              
              
              
              System.out.println(PatientsNamesList);   
-             //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>();  
+             
             DefaultComboBoxModel Patient = new DefaultComboBoxModel(temp2);
              jComboBox4.setModel(Patient);
              
@@ -96,14 +96,14 @@ public class Dashboard extends javax.swing.JFrame {
          for (int i=0; i<(Mlines); i++){
              thisline = reader.readLine();
              temp = thisline.split(",");  
-             //MedicalOfficersNamesList = thisline.split(",");
+             
              MedicalOfficersNamesList.add(i, temp[1]);
              temp2[i] = MedicalOfficersNamesList.get(i);
              
              
              
              System.out.println(MedicalOfficersNamesList);   
-             //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>();  
+             
             DefaultComboBoxModel MediOfficer = new DefaultComboBoxModel(temp2);
              jComboBox5.setModel(MediOfficer);
              
@@ -2098,9 +2098,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel14)
-                .addGap(20, 20, 20))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
@@ -2311,19 +2311,10 @@ public class Dashboard extends javax.swing.JFrame {
         AddAppointmentsLayout.setHorizontalGroup(
             AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddAppointmentsLayout.createSequentialGroup()
-                .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(AddAppointmentsLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AddAppointmentsLayout.createSequentialGroup()
-                        .addGap(616, 616, 616)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
             .addGroup(AddAppointmentsLayout.createSequentialGroup()
                 .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2347,6 +2338,14 @@ public class Dashboard extends javax.swing.JFrame {
                                         .addComponent(jTextField12)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(509, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddAppointmentsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         AddAppointmentsLayout.setVerticalGroup(
             AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2375,7 +2374,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(AddAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
 
@@ -4929,8 +4928,7 @@ public class Dashboard extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //UserdetailsView("db\\Receptionists.txt");
-        //UserdetailsView("db\\MedicalOfficers.txt");
+        
       AppointmentView.setVisible(false);
        AddPatients.setVisible(false);
        AddAppointments.setVisible(false);
