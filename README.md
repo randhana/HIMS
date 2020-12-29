@@ -1,21 +1,27 @@
 # HIMS
 
-Description 👈
+ Hospital-Management-System 👈 
+ 
+Written in Java using Netbeans and MySQL A Hospital Management System Which we created for our 1st year group project using java swings in netbeans.
 
-                      
+Startup Process
 
-
-  This is to certify that the below mentioned first year ict students have carried out the necessary a project report work on “HOSPITAL MANAGEMENT SYSTEM” in the department of computer science,
-faculty of applied science, university of sri jayawardenepura, sri lanka. 
-They have completed this project work under my guidance in satisfactory manner in December 2020 of first year physical science ict. 
-Ict students have successfully completed a project report on “HOSPITAL MANAGEMENT SYSTEM” towards the fulfillment of their Degree in physical science ict academic year 2019-2020. 
-The performance of each of these students during the course was very good.  
+The Hospital Management System can be entered using a username and password. It is accessible by an Admin, Doctor & Receptionist. Only they can add data into the database. The data can be retrieved easily.  The data are well protected for personal use and makes the data processing very fast. Hospital Management System is powerful, flexible, and easy to use and is designed and developed to deliver real conceivable benefits to hospitals. 
 
 
-                       CERTIFICATE
+Admin Login
+
+UserName:  Admin
+Password:  0000
+
+Patients Login     
+
+Username: Kasun               Username: Channa
+Password: 990450567V          Password: 940210678V
+                                        
+Receptionist Login
+Username: Kumara              Username: Kumudhu
+Password: 98848201V           Password: 958350121V
 
 
- This is to certify that the below mentioned first year ict students have carried out the necessary a project report work on “HOSPITAL MANAGEMENT SYSTEM” in the department of computer science, 
-faculty of applied science, university of sri jayawardenepura, sri lanka. They have completed this project work under my guidance in satisfactory manner in December 2020 of first year physical science ict. 
-Ict students have successfully completed a project report on “HOSPITAL MANAGEMENT SYSTEM” towards the fulfillment of their Degree in physical science ict academic year 2019-2020. 
-The performance of each of these students during the course was very good.  
+
