@@ -1,8 +1,3 @@
-Med1,Dr Soma,Female,1234,234567u,12/12/213,wesdfgv,Married,12345,sd@fdxf.df,123/2135/23,Family Physicians
-Med2,Dr John Yenje,Male,21345,234567,21/2/2323,sfs,Single,23456,esd@fse.lk,12/23/2323,Family Physicians
-Med3,Dr Aiken,Male,12345,2345678V,12/02/2121,street20,Single,21121,erfs@sd.ku,12/98/3443,Allergists/Immunologists
-Jake21,Jake Farhan,Male,2345,234546576V,21/23/1111,stree4,Single,32123,sdfs@fsf.gh,12/23/1212,Allergists/Immunologists
-Akash1,Dr Akash,Male,243235435345,3452342,12/21/22,esf,Single,23432132,214234,12/23/12,Allergists/Immunologists
-Heshan2,Dr.Silva ,Male,32523523,243535332V,17/09/2001,street87,Married,12212,dwadawd@es.ft,21/21/2005,Allergists/Immunologists
-Med7,Darshana Perera,Male,342342342,4534342234V,2/07/1888,street8,Single,21,fsefse@fcesf.dr,12/06/2000,Allergists/Immunologists
-DDDD,DD,Male,ddd,ddd,dd,ddd,Single,ddd,dd,dd,Allergists/Immunologists
+Med1,Dr Soma,Female,0753906231,9164258734V,12/12/1991,Galle,Married,12345,sd@fdxf.df,12/09/2013,Family Physicians
+Med2,Dr John Yenje,Male,0784512964,9167345216V,21/2/1991,Kandy,Single,23456,esd@fse.lk,12/30/2010,Family Physicians
+Med3,Dr Aiken,Male,0785624192,2345678V,12/02/1991,Jaffna,Single,21121,erfs@sd.ku,12/06/2010,Allergists/Immunologists

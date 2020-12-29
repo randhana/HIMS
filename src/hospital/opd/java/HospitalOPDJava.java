@@ -33,6 +33,8 @@ public class HospitalOPDJava extends Application {
         
         Main u =new Main();
         u.setVisible(true);
+       // Dashboard obj = new Dashboard();
+       // obj.setVisible(true);
         
         
         
