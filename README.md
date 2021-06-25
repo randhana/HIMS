@@ -2,7 +2,7 @@
 
  <b>Hospital-Management-System </b>👈 
  
-Written in Java using Netbeans and MySQL A Hospital Management System Which we created for our 1st year group project using java swings in netbeans.
+A Hospital Management System Which we created for our 1st year group project using java swings in netbeans.
 
 <b>Startup Process</b>
 
