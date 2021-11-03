@@ -1,0 +1,12 @@
+Admin,0000,Admin
+Kasun,990450567V,Patient
+Recep1,32413124123V,Receptionist
+Med1,9164258734V,Medical Officer
+Warun,920057462V,Patient
+Thamal,199172519921,Patient
+Recep2,764566541X,Receptionist
+Recep12,342423423V,Receptionist
+Nimal,930730988V,Patient
+Praveen,990730988V,Patient
+Supun,970870561V,Patient
+Piyal,950057667V,Patient

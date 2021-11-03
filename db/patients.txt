@@ -1,0 +1,8 @@
+Kasun,Kasun Perera,Male,0782354678,990450567V,12/04/1999,Galle,Single,A-,no
+Nimal,Nimal Perera,Male,0712544988,930730988V,12/06/1993,Kandy,Single,O+,no
+Piyal,Piyal Aruna,Male,0752344638,950057667V,11/08/1995,Jaffna,Single,A-,no
+Supun,Supun Perera,Male,0785454888,970870561V,12/04/1997,Galle,Single,B+,no
+Praveen,Praveen Suresh,Male,072254448,990730988V,17/01/1993,Kegalle,Single,O-,no
+Warun,Warun Weeraratne,Male,0752344637,920057462V,14/09/1992,Ragama,Single,A-,no
+Thamal,Thamal Sirisena,Male,0422163772,199172519921,1991-09-21,1st Street Kolonnawa,Married,AB+,no
+

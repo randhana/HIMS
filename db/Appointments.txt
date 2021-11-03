@@ -1,0 +1,6 @@
+Rakesh Silva,Jake fedy,20/02/2020,7.45PM,Blood test
+Rakesh Silva,Dr Aiken,20/02/2020,7.40PM,Blood test & Sugar
+Kumara Dhar,Dr Aiken,31/7/2020,2.00PM,Reports
+Jagath,Dr Aiken,2020/12/06,3.45PM,Blood Reports 
+Jim Wisely, Dr Aiken,2020/04/25,7.00AM,Sugar
+

@@ -1,0 +1,3 @@
+Med1,Dr Soma,Female,0753906231,9164258734V,12/12/1991,Galle,Married,12345,sd@fdxf.df,12/09/2013,Family Physicians
+Med2,Dr John Yenje,Male,0784512964,9167345216V,21/2/1991,Kandy,Single,23456,esd@fse.lk,12/30/2010,Family Physicians
+Med3,Dr Aiken,Male,0785624192,2345678V,12/02/1991,Jaffna,Single,21121,erfs@sd.ku,12/06/2010,Allergists/Immunologists
